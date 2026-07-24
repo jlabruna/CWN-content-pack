@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.2
+
+- Fixed generated compendium folder and item IDs so they meet Foundry VTT's
+  16-character alphanumeric document-ID requirement.
+- Added build-time ID validation to prevent an invalid compendium from being
+  packaged again.
+
 ## 0.2.1
 
 - Added the complete 64-item Harbour City Stories native Item compendium.
