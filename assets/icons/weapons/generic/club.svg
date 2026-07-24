@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Club">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1219"/>
+      <stop offset="1" stop-color="#030507"/>
+    </linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2="0.8" y2="1">
+      <stop offset="0" stop-color="#77808b"/>
+      <stop offset="0.38" stop-color="#242b32"/>
+      <stop offset="0.72" stop-color="#303841"/>
+      <stop offset="1" stop-color="#11151a"/>
+    </linearGradient>
+    <linearGradient id="blade" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f0f3f5"/>
+      <stop offset="0.42" stop-color="#7c8792"/>
+      <stop offset="0.72" stop-color="#303841"/>
+      <stop offset="1" stop-color="#222930"/>
+    </linearGradient>
+    <linearGradient id="wood" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#303841"/>
+      <stop offset="1" stop-color="#161b20"/>
+    </linearGradient>
+    <radialGradient id="halo">
+      <stop offset="0" stop-color="#596675" stop-opacity=".25"/>
+      <stop offset="1" stop-color="#596675" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      .body{fill:url(#metal);stroke:#596675;stroke-width:6;stroke-linejoin:round}
+      .blade{fill:url(#blade);stroke:#c2ccd6;stroke-width:6;stroke-linejoin:round}
+      .wood{fill:url(#wood);stroke:#596675;stroke-width:6;stroke-linejoin:round}
+      .detail{fill:#11161c;stroke:#596675;stroke-width:5;stroke-linejoin:round}
+      .linefill{fill:#090c10;stroke:#c2ccd6;stroke-width:5}
+      .line{fill:none;stroke:#c2ccd6;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;opacity:.72}
+      .edge{fill:none;stroke:#c2ccd6;stroke-width:7;stroke-linecap:round;filter:url(#glow)}
+      .bolt{fill:#c2ccd6;stroke:#596675;stroke-width:4}
+    </style>
+  </defs>
+  <rect width="512" height="512" rx="48" fill="url(#bg)"/>
+  <circle cx="256" cy="256" r="209" fill="url(#halo)"/>
+  <circle cx="256" cy="256" r="179" fill="none" stroke="#596675" stroke-width="3" opacity=".22"/>
+  <circle cx="256" cy="256" r="132" fill="none" stroke="#c2ccd6" stroke-width="2" stroke-dasharray="11 17" opacity=".16"/>
+  <path d="M79 65h354l14 14v354l-14 14H79l-14-14V79z" fill="none" stroke="#596675" stroke-width="9"/>
+  <path d="M96 83h320M429 97v318M416 429H96M83 415V97" fill="none" stroke="#c2ccd6" stroke-width="2" opacity=".72"/>
+  <path d="M65 151h28m-28 210h28M419 151h28m-28 210h28" stroke="#c2ccd6" stroke-width="5" opacity=".5"/>
+  
+    <g class="weapon" transform="rotate(-35 256 256)">
+      <path class="wood" d="M222 55c52 0 69 8 79 29l20 235-91 9 9-237c3-24 16-36 43-36z"/>
+      <path class="detail" d="M230 310h91l-12 146h-66z"/>
+      <path class="line" d="M245 336l53 92m-57-43l64 15"/>
+      <path class="edge" d="M259 90l19 199"/>
+    </g>
+</svg>

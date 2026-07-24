@@ -1,3 +1,17 @@
 {
-  "CWNContentPack.Title": "CWN Content & Icon Pack"
+  "CWNContentPack.Title": "CWN Content & Icon Pack",
+  "CWNContentPack.Settings.WeaponCatalogue.Name": "Harbour City Stories Weapon Catalogue",
+  "CWNContentPack.Settings.WeaponCatalogue.Label": "Open Weapon Catalogue Installer",
+  "CWNContentPack.Settings.WeaponCatalogue.Hint": "Install or update the 64 Harbour City Stories weapons and their colour-coded icons.",
+  "CWNContentPack.Catalogue.Title": "Harbour City Stories Weapon Catalogue",
+  "CWNContentPack.Catalogue.Intro": "Install the complete Harbour City Stories weapon catalogue as World Items. Existing catalogue weapons are updated in place.",
+  "CWNContentPack.Catalogue.Expected": "Catalogue weapons",
+  "CWNContentPack.Catalogue.Installed": "Currently installed",
+  "CWNContentPack.Catalogue.Install": "Install or Update 64 Weapons",
+  "CWNContentPack.Catalogue.Safe": "This operation is safe to rerun. Existing items retain their stable catalogue identity, so updates do not create duplicates.",
+  "CWNContentPack.Catalogue.ConfirmTitle": "Install or Update Weapon Catalogue?",
+  "CWNContentPack.Catalogue.Confirm": "Foundry will create any missing Harbour City Stories weapons and update existing catalogue items, descriptions, statistics, folders, and managed icons.",
+  "CWNContentPack.Catalogue.ConfirmButton": "Install or Update",
+  "CWNContentPack.Catalogue.Started": "Installing the Harbour City Stories weapon catalogue...",
+  "CWNContentPack.Catalogue.Failed": "The weapon catalogue could not be installed. Check the browser console for details."
 }

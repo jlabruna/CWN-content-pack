@@ -3,18 +3,34 @@
 An independent Foundry VTT v13 content and icon pack for **Cities Without
 Number** games running on the **Systems Without Number Redux (SWNR)** system.
 
-## Version 0.1.0
+## Version 0.2.0
 
-This first release provides the installable module scaffold:
+The content pack now includes:
 
 - Organized asset folders for weapons, armor, cyberware, cyberdecks, programs,
   drones, and general gear.
 - A versioned JSON icon-mapping file.
 - A non-destructive icon resolver that supports source UUID and name fallbacks.
+- The complete 64-item Harbour City Stories weapon catalogue.
+- 46 colour-coded SVG icons covering the catalogue's weapon platforms and
+  manufacturers.
+- A GM-only Foundry settings menu that safely installs or updates the catalogue.
 - Licensing and third-party attribution files.
 
-Version 0.1.0 does **not** change existing actors, items, compendiums, or icons.
-The first tested icon collection will be added in a later release.
+The catalogue installer changes World Items only when the GM explicitly runs
+it. Stable flags are retained from the earlier standalone installer, so existing
+Harbour City Stories weapons are updated rather than duplicated.
+
+## Installing the weapon catalogue
+
+1. Enable **CWN Content & Icon Pack** in the world.
+2. Open **Game Settings → Configure Settings**.
+3. Select **CWN Content & Icon Pack**.
+4. Click **Open Weapon Catalogue Installer**.
+5. Click **Install or Update 64 Weapons** and confirm.
+
+After the migration has completed successfully, the earlier standalone
+**Harbour City Stories Weapon Icons** module can be disabled.
 
 ## Planned workflow
 

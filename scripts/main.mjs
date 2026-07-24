@@ -1,14 +1,26 @@
 import { CwnIconManager } from "./icon-manager.mjs";
+import { WeaponCatalogueApp } from "./weapon-catalogue-app.mjs";
+import { installWeaponCatalogue } from "./weapon-catalogue.mjs";
 
 const MODULE_ID = "cwn-content-pack";
 
 Hooks.once("init", () => {
+  game.settings.registerMenu(MODULE_ID, "weaponCatalogue", {
+    name: "CWNContentPack.Settings.WeaponCatalogue.Name",
+    label: "CWNContentPack.Settings.WeaponCatalogue.Label",
+    hint: "CWNContentPack.Settings.WeaponCatalogue.Hint",
+    icon: "fa-solid fa-gun",
+    type: WeaponCatalogueApp,
+    restricted: true
+  });
+
   const module = game.modules.get(MODULE_ID);
   if (!module) return;
 
   const iconManager = new CwnIconManager();
   module.api = {
     iconManager,
+    installWeaponCatalogue,
     findIcon: (item) => iconManager.findIcon(item),
     get mappings() {
       return iconManager.mappings;
