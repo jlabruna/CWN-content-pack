@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.1
+
+- Fixed the release workflow so the armor compendium database is built and packaged.
+- Added a post-build extraction check requiring exactly 14 compiled armor items.
+- Added release staging checks for both the weapon and armor database directories.
+
 ## 0.3.0
 
 - Added a native 14-item Harbour City Stories Armor compendium.

@@ -9,10 +9,11 @@ const defaultSystemRoot = path.resolve(moduleRoot, "..", "..", "work", "swnr-v2.
 const systemRoot = path.resolve(process.argv[2] ?? defaultSystemRoot);
 const moduleRequire = createRequire(path.join(moduleRoot, "package.json"));
 const YAML = moduleRequire("yaml");
-const { compilePack } = moduleRequire("@foundryvtt/foundryvtt-cli");
+const { compilePack, extractPack } = moduleRequire("@foundryvtt/foundryvtt-cli");
 
 const sourcePack = path.join(moduleRoot, "src", "packs", "harbour-city-stories-armor");
 const outputPack = path.join(moduleRoot, "packs", "harbour-city-stories-armor");
+const verificationPack = path.join(moduleRoot, ".build", "verify-harbour-city-stories-armor");
 const systemItems = path.join(systemRoot, "src", "packs", "cwn-items");
 
 const slugify = (value) =>
@@ -120,4 +121,24 @@ if (items.length !== 14) {
 }
 
 await compilePack(sourcePack, outputPack, { yaml: true, log: true });
-console.log(`Built ${items.length} armor items and ${folders.size} folders.`);
+
+let compiledArmorCount = 0;
+await fs.rm(verificationPack, { recursive: true, force: true });
+await extractPack(outputPack, verificationPack, {
+  yaml: true,
+  log: false,
+  transformEntry: async (entry) => {
+    if (entry?.type === "armor") compiledArmorCount += 1;
+  }
+});
+await fs.rm(verificationPack, { recursive: true, force: true });
+
+if (compiledArmorCount !== 14) {
+  throw new Error(
+    `Armor compendium verification failed: expected 14 compiled armor items but found ${compiledArmorCount}.`
+  );
+}
+
+console.log(
+  `Built and verified ${compiledArmorCount} armor items and ${folders.size} folders.`
+);
