@@ -17,8 +17,16 @@ const outputPack = path.join(moduleRoot, "packs", "harbour-city-stories-weapons"
 const systemItems = path.join(systemRoot, "src", "packs", "cwn-items");
 
 const stableId = (prefix, value) => {
-  const digest = crypto.createHash("sha256").update(value).digest("base64url");
+  // Foundry document IDs must be exactly 16 alphanumeric characters.
+  // Hex avoids the "-" and "_" characters emitted by base64url digests.
+  const digest = crypto.createHash("sha256").update(value).digest("hex");
   return `${prefix}${digest}`.slice(0, 16);
+};
+
+const assertFoundryId = (id, label) => {
+  if (!/^[A-Za-z0-9]{16}$/.test(id)) {
+    throw new Error(`${label} has invalid Foundry ID "${id}".`);
+  }
 };
 
 const getProperty = (object, property) =>
@@ -112,6 +120,7 @@ const cleanStats = {
 };
 
 for (const [index, folder] of folders.entries()) {
+  assertFoundryId(folder.id, `Folder "${folder.name}"`);
   const document = {
     type: "Item",
     folder: folder.folder ?? null,
@@ -135,6 +144,7 @@ for (const [index, folder] of folders.entries()) {
 for (const [index, item] of createdItems.entries()) {
   const key = getProperty(item, "flags.harbour-city-stories.catalogueKey");
   const id = stableId("W", key);
+  assertFoundryId(id, `Weapon "${item.name}"`);
 
   // Correct legacy installer property names to the SWNR 2.3 data schema.
   if (item.system?.shock?.damage !== undefined) {
