@@ -5,53 +5,38 @@ Number** games running on the **Systems Without Number Redux (SWNR)** system.
 
 ## Version 0.2.0
 
-The content pack now includes:
+The content pack includes:
 
+- The complete 64-item Harbour City Stories weapon catalogue in a native
+  Foundry Item compendium.
+- 46 colour-coded SVG icons covering the catalogue's weapon platforms and
+  manufacturers.
 - Organized asset folders for weapons, armor, cyberware, cyberdecks, programs,
   drones, and general gear.
 - A versioned JSON icon-mapping file.
 - A non-destructive icon resolver that supports source UUID and name fallbacks.
-- The complete 64-item Harbour City Stories weapon catalogue.
-- 46 colour-coded SVG icons covering the catalogue's weapon platforms and
-  manufacturers.
-- A GM-only Foundry settings menu that safely installs or updates the catalogue.
 - Licensing and third-party attribution files.
 
-The catalogue installer changes World Items only when the GM explicitly runs
-it. Stable flags are retained from the earlier standalone installer, so existing
-Harbour City Stories weapons are updated rather than duplicated.
+The module does not automatically create or overwrite World Items, actor items,
+or NPC items. Weapons dragged or imported from the compendium become independent
+copies, so later module updates do not silently alter an active campaign.
 
-## Installing the weapon catalogue
+## Using the weapon compendium
 
 1. Enable **CWN Content & Icon Pack** in the world.
-2. Open **Game Settings → Configure Settings**.
-3. Select **CWN Content & Icon Pack**.
-4. Click **Open Weapon Catalogue Installer**.
-5. Click **Install or Update 64 Weapons** and confirm.
+2. Open the **Compendium Packs** sidebar.
+3. Open **Harbour City Stories Weapons**.
+4. Drag a weapon directly onto an actor, or import selected weapons into World
+   Items.
 
-After the migration has completed successfully, the earlier standalone
-**Harbour City Stories Weapon Icons** module can be disabled.
+After replacing older weapons, the earlier standalone **Harbour City Stories
+Weapon Icons** module can be disabled.
 
-## Planned workflow
+## Icon workflow
 
-Icons will live in `assets/icons/`. Their mappings will be recorded in
-`data/icon-mappings.json`. A future opt-in tool will apply mapped icons to
-existing world items without modifying the installed SWNR system files.
-
-Mappings should prefer a stable SWNR compendium source UUID. Item type and item
-name are supported as a fallback for custom or imported items.
-
-Example:
-
-```json
-{
-  "id": "weapon-heavy-pistol",
-  "sourceUuid": "Compendium.swnr.example.Item.example",
-  "itemType": "weapon",
-  "name": "Heavy Pistol",
-  "img": "modules/cwn-content-pack/assets/icons/weapons/heavy-pistol.webp"
-}
-```
+Icons live in `assets/icons/`. Their mappings are recorded in
+`data/icon-mappings.json`. Mappings prefer a stable SWNR compendium source UUID;
+item type and item name are supported as fallbacks for custom or imported items.
 
 ## Compatibility
 

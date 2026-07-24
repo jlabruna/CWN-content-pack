@@ -1,0 +1,13 @@
+{
+  "name": "cwn-content-pack",
+  "private": true,
+  "version": "0.2.0",
+  "type": "module",
+  "scripts": {
+    "build:weapons": "node tools/build-weapon-compendium.mjs"
+  },
+  "devDependencies": {
+    "@foundryvtt/foundryvtt-cli": "^1.0.3",
+    "yaml": "^2.8.0"
+  }
+}

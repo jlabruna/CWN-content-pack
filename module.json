@@ -28,14 +28,24 @@
   "esmodules": [
     "scripts/main.mjs"
   ],
-  "styles": [
-    "styles/cwn-content-pack.css"
-  ],
   "languages": [
     {
       "lang": "en",
       "name": "English",
       "path": "lang/en.json"
+    }
+  ],
+  "packs": [
+    {
+      "name": "harbour-city-stories-weapons",
+      "label": "Harbour City Stories Weapons",
+      "path": "packs/harbour-city-stories-weapons",
+      "type": "Item",
+      "system": "swnr",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     }
   ],
   "url": "https://github.com/jlabruna/CWN-content-pack",
