@@ -34,6 +34,21 @@ jobs:
       - name: Build weapon compendium
         run: node tools/build-weapon-compendium.mjs vendor/swnr
 
+      - name: Generate armor icons
+        run: node tools/generate-armor-icons.mjs
+
+      - name: Build armor compendium
+        run: node tools/build-armor-compendium.mjs vendor/swnr
+
+      - name: Verify release compendia exist
+        shell: bash
+        run: |
+          test -d packs/harbour-city-stories-weapons
+          test -d packs/harbour-city-stories-armor
+          test -n "$(find packs/harbour-city-stories-weapons -type f -print -quit)"
+          test -n "$(find packs/harbour-city-stories-armor -type f -print -quit)"
+          echo "Weapon and armor compendium databases are present."
+
       - name: Stage Foundry module
         shell: bash
         run: |
