@@ -1,10 +1,12 @@
 {
   "name": "cwn-content-pack",
   "private": true,
-  "version": "0.2.2",
+  "version": "0.3.0",
   "type": "module",
   "scripts": {
-    "build:weapons": "node tools/build-weapon-compendium.mjs"
+    "build:weapons": "node tools/build-weapon-compendium.mjs",
+    "build:armor": "node tools/generate-armor-icons.mjs && node tools/build-armor-compendium.mjs",
+    "build": "npm run build:weapons && npm run build:armor"
   },
   "devDependencies": {
     "@foundryvtt/foundryvtt-cli": "^1.0.3",

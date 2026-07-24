@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Armored Clothing">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#101923"/><stop offset="1" stop-color="#030609"/>
+    </linearGradient>
+    <linearGradient id="armor" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8594a3"/><stop offset=".38" stop-color="#26323d"/>
+      <stop offset=".72" stop-color="#17212a"/><stop offset="1" stop-color="#090d12"/>
+    </linearGradient>
+    <radialGradient id="halo"><stop offset="0" stop-color="#25d9ff" stop-opacity=".24"/><stop offset="1" stop-color="#25d9ff" stop-opacity="0"/></radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <style>
+      .plate{fill:url(#armor);stroke:#25d9ff;stroke-width:7;stroke-linejoin:round}
+      .accent{fill:#0a1118;stroke:#25d9ff;stroke-width:6;stroke-linejoin:round}
+      .line{fill:none;stroke:#25d9ff;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;opacity:.78}
+    </style>
+  </defs>
+  <rect width="512" height="512" rx="48" fill="url(#bg)"/>
+  <circle cx="256" cy="256" r="208" fill="url(#halo)"/>
+  <circle cx="256" cy="256" r="177" fill="none" stroke="#25d9ff" stroke-width="3" opacity=".22"/>
+  <circle cx="256" cy="256" r="133" fill="none" stroke="#25d9ff" stroke-width="2" stroke-dasharray="12 18" opacity=".16"/>
+  <path d="M79 65h354l14 14v354l-14 14H79l-14-14V79z" fill="none" stroke="#25d9ff" stroke-width="9"/>
+  <path d="M96 83h320M429 97v318M416 429H96M83 415V97" fill="none" stroke="#25d9ff" stroke-width="2" opacity=".72"/>
+  <g filter="url(#glow)"><path class="plate" d="M151 123l65-28 40 31 40-31 65 28 54 84-58 35-22-37v198H177V205l-22 37-58-35z"/>
+      <path class="line" d="M216 95l-9 103 49 35 49-35-9-103M207 198l-18 148m116-148l18 148"/>
+      <path class="accent" d="M224 137h64l17 61-49 35-49-35z"/></g>
+</svg>

@@ -3,7 +3,7 @@
 An independent Foundry VTT v13 content and icon pack for **Cities Without
 Number** games running on the **Systems Without Number Redux (SWNR)** system.
 
-## Version 0.2.2
+## Version 0.3.0
 
 The content pack includes:
 
@@ -11,6 +11,10 @@ The content pack includes:
   Foundry Item compendium.
 - 46 colour-coded SVG icons covering the catalogue's weapon platforms and
   manufacturers.
+- A 14-item Harbour City Stories armor catalogue in its own native Foundry
+  Item compendium.
+- 14 original armor icons covering clothing, armored suits, longcoats,
+  accessories, and shields.
 - Organized asset folders for weapons, armor, cyberware, cyberdecks, programs,
   drones, and general gear.
 - A versioned JSON icon-mapping file.
@@ -18,8 +22,9 @@ The content pack includes:
 - Licensing and third-party attribution files.
 
 The module does not automatically create or overwrite World Items, actor items,
-or NPC items. Weapons dragged or imported from the compendium become independent
-copies, so later module updates do not silently alter an active campaign.
+or NPC items. Weapons and armor dragged or imported from a compendium become
+independent copies, so later module updates do not silently alter an active
+campaign.
 
 ## Using the weapon compendium
 
@@ -31,6 +36,15 @@ copies, so later module updates do not silently alter an active campaign.
 
 After replacing older weapons, the earlier standalone **Harbour City Stories
 Weapon Icons** module can be disabled.
+
+## Using the armor compendium
+
+1. Enable **CWN Content & Icon Pack** in the world.
+2. Open the **Compendium Packs** sidebar.
+3. Open **Harbour City Stories Armor**.
+4. Drag armor directly onto an actor, or import selected armor into World Items.
+
+The compendium is organized into Armor, Armor Accessories, and Shields.
 
 ## Icon workflow
 

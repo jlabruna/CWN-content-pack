@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.0
+
+- Added a native 14-item Harbour City Stories Armor compendium.
+- Added 14 original cyberpunk armor SVG icons.
+- Organized armor into Armor, Armor Accessories, and Shields folders.
+- Armor dragged or imported from the compendium remains an independent copy.
+
 ## 0.2.2
 
 - Fixed generated compendium folder and item IDs so they meet Foundry VTT's

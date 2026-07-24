@@ -2,7 +2,7 @@
   "id": "cwn-content-pack",
   "title": "CWN Content & Icon Pack",
   "description": "An independent content and icon pack for Cities Without Number games using the SWNR Foundry VTT system.",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "authors": [
     {
       "name": "jlabruna"
@@ -46,10 +46,21 @@
         "PLAYER": "OBSERVER",
         "ASSISTANT": "OWNER"
       }
+    },
+    {
+      "name": "harbour-city-stories-armor",
+      "label": "Harbour City Stories Armor",
+      "path": "packs/harbour-city-stories-armor",
+      "type": "Item",
+      "system": "swnr",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     }
   ],
   "url": "https://github.com/jlabruna/CWN-content-pack",
   "manifest": "https://github.com/jlabruna/CWN-content-pack/releases/latest/download/module.json",
-  "download": "https://github.com/jlabruna/CWN-content-pack/releases/download/v0.2.2/cwn-content-pack-v0.2.2.zip",
+  "download": "https://github.com/jlabruna/CWN-content-pack/releases/download/v0.3.0/cwn-content-pack-v0.3.0.zip",
   "license": "LICENSE"
 }
