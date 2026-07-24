@@ -1,0 +1,5 @@
+{
+  "schemaVersion": 1,
+  "notes": "Add tested mappings here. Prefer sourceUuid; itemType and name provide a fallback.",
+  "mappings": []
+}
