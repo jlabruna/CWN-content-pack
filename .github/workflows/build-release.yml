@@ -1,0 +1,62 @@
+name: Build Foundry module
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out content pack
+        uses: actions/checkout@v4
+
+      - name: Check out SWNR 2.3.0 build reference
+        uses: actions/checkout@v4
+        with:
+          repository: wintersleepAI/swnr
+          ref: v2.3.0
+          path: vendor/swnr
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install build dependencies
+        run: npm install --ignore-scripts --no-audit --no-fund
+
+      - name: Build weapon compendium
+        run: node tools/build-weapon-compendium.mjs vendor/swnr
+
+      - name: Stage Foundry module
+        shell: bash
+        run: |
+          mkdir -p release/cwn-content-pack
+          cp -R assets data lang packs scripts release/cwn-content-pack/
+          cp module.json README.md CHANGELOG.md LICENSE ASSET-LICENSE.md THIRD-PARTY-LICENSES.md release/cwn-content-pack/
+          rm -f release/cwn-content-pack/scripts/weapon-catalogue.mjs
+          cd release/cwn-content-pack
+          zip -r ../cwn-content-pack-${GITHUB_REF_NAME}.zip .
+          cp module.json ../module.json
+
+      - name: Upload workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cwn-content-pack-${{ github.ref_name }}
+          path: |
+            release/cwn-content-pack-${{ github.ref_name }}.zip
+            release/module.json
+
+      - name: Attach files to GitHub release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            release/cwn-content-pack-${{ github.ref_name }}.zip
+            release/module.json
