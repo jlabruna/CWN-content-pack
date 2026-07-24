@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.0
+## 0.2.1
 
 - Added the complete 64-item Harbour City Stories native Item compendium.
 - Migrated all 46 manufacturer-coded SVG weapon icons.
