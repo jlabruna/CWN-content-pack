@@ -1,15 +1,12 @@
 {
-  "name": "cwn-content-pack",
+  "name": "cwn-combat-enhancements",
   "private": true,
-  "version": "0.3.1",
+  "version": "0.10.2",
   "type": "module",
   "scripts": {
-    "build:weapons": "node tools/build-weapon-compendium.mjs",
-    "build:armor": "node tools/generate-armor-icons.mjs && node tools/build-armor-compendium.mjs",
-    "build": "npm run build:weapons && npm run build:armor"
-  },
-  "devDependencies": {
-    "@foundryvtt/foundryvtt-cli": "^1.0.3",
-    "yaml": "^2.8.0"
+    "check": "node --check scripts/cwn-combat-enhancements.mjs && node --check scripts/magazine-reload.mjs && node --check scripts/weapon-family.mjs && node --check scripts/suppressive-fire.mjs && node --check scripts/network-console/network-console.mjs && node --check tools/stage-release.mjs",
+    "test": "node --test tests",
+    "stage": "node tools/stage-release.mjs",
+    "build": "npm run check && npm test && npm run stage"
   }
 }

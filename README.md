@@ -1,71 +1,349 @@
-# CWN Content & Icon Pack
+# CWN Combat Enhancements
 
-An independent Foundry VTT v13 content and icon pack for **Cities Without
-Number** games running on the **Systems Without Number Redux (SWNR)** system.
+A minimal Foundry VTT v13 companion module for **Cities Without Number** games
+running on **Systems Without Number Redux (SWNR) 2.3.0**.
 
-## Version 0.3.1
+## Current scope
 
-The content pack includes:
+- Captures the user's targeted tokens when an SWNR weapon attack is rolled.
+- Detects melee attacks through `weapon.system.isMelee`.
+- Uses `actor.system.meleeAc` for melee and `actor.system.ac` for ranged attacks.
+- Measures token-center distance with Foundry's grid path measurement.
+- Treats SWNR weapon ranges as meters and converts common scene units.
+- Applies CWN's Prone attack modifiers using condition state captured when the
+  attack is rolled. Touching or diagonally touching token footprints count as
+  adjacent.
+- Applies CWN's −2 modifier beyond normal range and up to maximum range.
+- Reports hit, miss, or out of range separately for each target.
+- Highlights successful Trauma hits separately in blue. A high Trauma Die never
+  changes a missed or out-of-range attack into a Trauma hit.
+- Adds labelled modifier breakdowns to expanded attack, damage, Trauma, and
+  Trauma-damage rolls.
+- Adds explicit Burst Fire and Suppressive Fire choices to eligible weapon
+  attack dialogs. Both choices start unticked and cannot be selected together.
+- Resolves CWN Suppressive Fire with a 90-degree cone, normal-range limit,
+  two-round ammunition cost, hard-cover exclusions, Evasion Saves, half damage
+  rounded up, and separate Trauma checks for each struck target.
+- Keeps exact enemy AC hidden from players by default; GMs always see it.
+- Gives the GM one **Apply damage to HIT targets** action on attack cards with a
+  completed damage roll.
+- Applies damage to every attack-time target marked HIT, even when the weapon
+  would ordinarily attack only one target. Target selection is treated as the
+  user's declaration of every intended damage recipient.
+- Compares the attack's Trauma Die against each target's modified Trauma Target
+  and applies either normal or multiplied Trauma damage independently.
+- Delegates actual health changes to SWNR so Damage Reduction, Soak, HP, defeated
+  status, and floating damage numbers retain the system's standard behavior.
+- Calculates NPC ranged AC, melee AC, Soak, and Trauma protection from armor
+  that is both Readied and Equipped. Manual NPC AC remains the fallback when
+  active armor does not improve it.
+- Includes an optional experimental **Network Console** for mapping CWN network
+  nodes, connections, hidden connections, Barriers, and visible network
+  contents. It is disabled by default.
+- Adds Weapon Family metadata to SWNR weapon sheets without overwriting the
+  native Ammo Type field.
+- Optionally reloads family-aware weapons from a selected, actor-owned physical
+  magazine with the exact same family, preserving partial magazines and deleting
+  depleted magazine Items.
 
-- The complete 64-item Harbour City Stories weapon catalogue in a native
-  Foundry Item compendium.
-- 46 colour-coded SVG icons covering the catalogue's weapon platforms and
-  manufacturers.
-- A 14-item Harbour City Stories armor catalogue in its own native Foundry
-  Item compendium.
-- 14 original armor icons covering clothing, armored suits, longcoats,
-  accessories, and shields.
-- Organized asset folders for weapons, armor, cyberware, cyberdecks, programs,
-  drones, and general gear.
-- A versioned JSON icon-mapping file.
-- A non-destructive icon resolver that supports source UUID and name fallbacks.
-- Licensing and third-party attribution files.
+Ordinary attacks continue to use SWNR's original rolls and loaded-ammunition
+expenditure. The optional magazine feature only replaces the actor-sheet reload
+action for family-aware weapons. Suppressive Fire has its own rules workflow and
+spends two rounds. Hard cover is selected manually in its confirmation window.
 
-The module does not automatically create or overwrite World Items, actor items,
-or NPC items. Weapons and armor dragged or imported from a compendium become
-independent copies, so later module updates do not silently alter an active
-campaign.
+## Install on The Forge
 
-## Using the weapon compendium
+Install the module using this manifest URL:
 
-1. Enable **CWN Content & Icon Pack** in the world.
-2. Open the **Compendium Packs** sidebar.
-3. Open **Harbour City Stories Weapons**.
-4. Drag a weapon directly onto an actor, or import selected weapons into World
-   Items.
+```text
+https://github.com/jlabruna/CWN-combat-enhancements/releases/latest/download/module.json
+```
 
-After replacing older weapons, the earlier standalone **Harbour City Stories
-Weapon Icons** module can be disabled.
+Then enable **CWN Combat Enhancements** in the world's Manage Modules screen and
+ensure SWNR's **CWN Armor** setting is enabled so melee AC is derived.
 
-## Using the armor compendium
+For a manual Forge import, upload the versioned
+`cwn-combat-enhancements-v0.10.2.zip` release asset. The ZIP must contain
+`module.json` at its root.
 
-1. Enable **CWN Content & Icon Pack** in the world.
-2. Open the **Compendium Packs** sidebar.
-3. Open **Harbour City Stories Armor**.
-4. Drag armor directly onto an actor, or import selected armor into World Items.
+For development testing, target one or more tokens, control the attacker's token,
+and roll a weapon from that actor's sheet. Use a scene whose distance units are
+meters, feet, yards, kilometres, or miles.
 
-The compendium is organized into Armor, Armor Accessories, and Shields.
+## SWNR 2.3.0 integration notes
 
-## Icon workflow
+- Attack entry point: `module/data/items/item-weapon.mjs`, `SWNWeapon.rollAttack()`.
+- Weapon dialog entry point: `SWNWeapon.roll()` and
+  `templates/dialogs/roll-attack.hbs`.
+- Attack card: `templates/chat/attack-roll.hbs`.
+- Card linkage: `data-actor-id` and `data-item-id` on `.chat-card.item-card`.
+- Attack roll: first roll on the resulting `ChatMessage` (`message.rolls[0]`).
+- Weapon item type: `weapon`.
+- Attack classification: `weapon.system.isMelee`.
+- Range fields: `weapon.system.range.normal` and `.max`.
+- Fire-mode fields: `weapon.system.ammo.burst` and `.suppress`.
+- Character Evasion Save: `actor.system.save.evasion`; NPC Evasion Save:
+  `actor.system.saves`.
+- Base/derived AC schema: `module/data/actors/base-actor.mjs`.
+- Character AC derivation: `module/data/actors/actor-character.mjs`.
+- Ranged AC: `actor.system.ac`; melee AC: `actor.system.meleeAc`.
+- Weapon sheet: `templates/item/attribute-parts/weapon.hbs`.
+- Native ammunition source: `weapon.system.ammo.current`.
+- Loaded rounds: `weapon.system.ammo.value/max`.
+- Count-based magazine rounds: `item.system.uses.value/max`, with
+  `item.system.uses.consumable === "count"`.
+- Actor-sheet reload action: `SWNActorSheet.DEFAULT_OPTIONS.actions.reload`,
+  originally inherited from `SWNBaseSheet._onReload()`.
 
-Icons live in `assets/icons/`. Their mappings are recorded in
-`data/icon-mappings.json`. Mappings prefer a stable SWNR compendium source UUID;
-item type and item name are supported as fallbacks for custom or imported items.
+## Weapon Families and physical magazines
 
-## Compatibility
+Weapon Family is semantic compatibility metadata, not a displayed-name match.
+Family keys are lowercase slugs such as `combat-rifle` or `heavy-pistol`.
 
-- Foundry Virtual Tabletop v13
-- Systems Without Number Redux (SWNR) 2.3.0
+The module resolves a weapon family in this order:
 
-## Independence notice
+1. `flags["cwn-combat-enhancements"].weaponFamily`
+2. `flags["cwn-content-pack"].weaponFamily`
+3. Recognized legacy
+   `flags["harbour-city-stories"].baseWeapon` values through a controlled map
+4. No family, which preserves native SWNR behavior
 
-CWN Content & Icon Pack is an independent module compatible with Cities Without
-Number. It is not affiliated with, endorsed by, or approved by Sine Nomine
-Publishing.
+Magazine family resolution uses:
 
-Cities Without Number is © Sine Nomine Publishing, Inc. Game material used by
-this module is derived only from the Cities Without Number System Reference
-Document, released under CC0 1.0. All module artwork and additional content are
-original or separately licensed.
+1. `flags["cwn-combat-enhancements"].magazineFamily`
+2. `flags["cwn-content-pack"].magazineFamily`
 
-See `LICENSE`, `ASSET-LICENSE.md`, and `THIRD-PARTY-LICENSES.md`.
+The **Weapon Family Editing** world setting controls whether the override is
+editable by the GM only (default), Item owners, or nobody. The permission is
+enforced on both the sheet and `preUpdateItem`; disabling an input is not the
+only protection.
+
+The **Enable exact magazine automation** world setting defaults to enabled.
+When enabled, a family-aware weapon can reload only from its selected,
+actor-owned `count` consumable with the exact same Magazine Family and at least
+one round. Readied and Stowed magazines are both accepted; location is
+deliberately ignored.
+
+Reloading transfers only the lesser of the weapon's missing rounds and the
+selected magazine's remaining rounds. A partial magazine remains a distinct
+Item. A depleted magazine is set to zero, its stale weapon reference is cleared,
+and the embedded Item is deleted. Empty magazines are not created, magazines
+are never merged, and this module does not provide refilling or Encumbrance
+rules.
+
+CWN Content Pack integration is optional. Untagged weapons and worlds with exact
+magazine automation disabled use SWNR's native ammunition source selection and
+reload logic. GMs can still find **Native Ammo Type** under **Advanced SWNR
+Compatibility** on the weapon sheet.
+
+## Experimental Network Console
+
+Enable **Experimental Network Console** under **Configure Settings > CWN Combat
+Enhancements**, then reload the world. Open it from the network icon in the
+Token controls or from the module's settings submenu.
+
+The v0.8.0 prototype follows CWN's network vocabulary:
+
+- networks contain device **nodes** joined by **connections**;
+- **Barriers** protect connections rather than acting as nodes;
+- Demons and watchdogs occupy nodes, and datafiles are node contents;
+- networks record their Security difficulty and primary server class;
+- connections and nodes can be hidden until the GM reveals them.
+
+The full network is kept in a GM-only Journal Entry. Players receive a sanitized
+projection containing only revealed nodes, revealed connections, and
+player-facing details. Private GM notes are never included in that projection.
+
+Players can select a revealed node and send CWN-labelled requests to the GM,
+including **Jack In**, **Move Nodes**, **Look for Hidden Connections**, **Run a
+Program**, **Copy File**, and **Issue Command**.
+
+**Run a Program** finds SWNR cyberdeck Actors linked to a hacker controlled by
+the requesting player. The player can only choose Verbs and Subjects embedded
+on that cyberdeck, which are the programs prepared on it. The request is blocked
+when the Verb's allowed target types do not match the selected Subject. The GM
+receives the hacker, cyberdeck, combined program, Access cost, check modifier,
+and selected node.
+
+These requests are still a visualization and table-communication aid. The
+prototype does not yet:
+
+- roll Program checks or resolve defensive programs;
+- spend Access or CPU;
+- automate Alert the Network;
+- limit a published network to a designated player.
+
+The saved network schema already reserves an authorization list so
+designated-player sharing can be added without redesigning saved networks.
+
+## Known limitations
+
+- Results require the attacker's token and targets to be on the currently viewed
+  scene when the card renders. Otherwise distance is marked unavailable.
+- Unknown/custom scene distance units cannot be converted to weapon-range meters.
+- Melee attacks select melee AC and report distance, but v0.1 does not enforce a
+  reach limit because SWNR's melee compendium entries contain generic range data.
+- The module recognizes SWNR's existing attack-card HTML because SWNR 2.3.0 does
+  not attach weapon/target metadata to every attack message. A future SWNR card
+  markup change may require a compatibility update.
+- Multi-level/elevation distance and wall/line-of-sight checks are not included.
+- Prone affects Target Check attack totals, but this module does not restrict
+  token movement or spend the Move action required to stand.
+- Weapon-sheet and reload integration targets SWNR 2.3.x. If SWNR changes the
+  weapon template or `SWNActorSheet.DEFAULT_OPTIONS.actions.reload`, the module
+  logs a compatibility warning and leaves the affected integration unpatched.
+- Physical magazine Items are expected to be supplied by a content module or
+  created by the user. Version 0.10.2 does not create or migrate weapons or
+  magazines.
+
+## Suppressive Fire workflow
+
+1. Control the firing token and target exactly one token to aim the cone.
+2. Roll a weapon whose **Suppressive Fire** box is enabled on its item sheet.
+3. Leave Burst Fire unticked and tick **Use Suppressive Fire**.
+4. The module places a temporary 90-degree cone from the shooter toward the aim
+   target and finds every non-hidden token inside the weapon's normal range.
+5. In the confirmation window, confirm that the weapon is braced against a
+   solid support or that the gunner has gone prone, and tick **Hard cover**
+   beside any protected targets.
+6. The module spends two rounds, rolls weapon damage once, and rolls an Evasion
+   Save separately for every uncovered token. Failed saves take half damage,
+   rounded up. Every failed target gets its own Trauma Die and Trauma Target
+   comparison.
+7. The GM can use **Apply Suppressive Damage** on the resulting chat card. SWNR
+   still processes Damage Reduction, Soak, HP, defeat, and floating numbers.
+
+Suppressive Fire does not roll to hit or compare AC. The temporary cone is an
+aiming preview; this release does not automatically determine hard cover from
+walls. If a custom actor has no readable Evasion Save, the card marks that
+target for manual resolution and does not apply damage automatically.
+
+## Target-aware damage behavior
+
+- The damage action is GM-only because it can update NPC actors.
+- It appears when SWNR rolls damage on the original attack card. If the world is
+  configured to roll damage later in a separate chat message, use SWNR's normal
+  damage buttons for that attack.
+- Every captured target marked HIT receives damage. The module intentionally
+  does not restrict ordinary weapons to one recipient; targeting multiple tokens
+  is treated as an explicit request to apply that attack to all successful ones.
+- Targets marked MISS or OUT OF RANGE never receive damage from the action.
+- Each target is processed separately through SWNR's health helper so one
+  target's Damage Reduction or Soak cannot reduce another target's damage.
+- After a successful application, the chat message records that damage was
+  applied and replaces the action with a completed summary. SWNR's original
+  buttons remain available for GM corrections or exceptional rules.
+
+## Changes
+
+### 0.10.2
+
+- Prevented inactive optional Content Pack and legacy flag scopes from aborting
+  weapon-sheet rendering.
+- Added a regression test for family resolution when an optional flag scope is
+  unavailable.
+
+### 0.10.1
+
+- Fixed the Weapon Family field failing to appear because the sheet integration
+  targeted SWNR's nested Ammo Type form group instead of its direct grid child.
+- Restored the GM-only Advanced SWNR Compatibility section on weapon sheets.
+
+### 0.10.0
+
+- Added centralized Weapon Family and Magazine Family resolution with optional
+  CWN Content Pack and controlled legacy metadata support.
+- Replaced the ordinary weapon-sheet Ammo Type presentation with a
+  permission-controlled Weapon Family field while retaining native Ammo Type in
+  a GM-only advanced compatibility section.
+- Added optional exact-family magazine selection and partial-round transfer.
+- Depleted embedded magazine Items are deleted after their remaining rounds and
+  the weapon's stale source reference are safely updated.
+- Added automated family, permission, compatibility, and reload-calculation
+  tests plus a focused Foundry manual regression checklist.
+- Added repeatable release staging and a tag-driven GitHub Actions build.
+
+### 0.9.0
+
+- Run a Program now reads the acting player's linked SWNR cyberdeck.
+- Only Verbs and Subjects prepared on that deck can be requested.
+- Incompatible program target types are rejected before sending the request.
+- GM notifications include the hacker, cyberdeck, program, Access cost, check
+  modifier, and network node.
+
+### 0.8.1
+
+- Fixed the Network Console template so the console window opens correctly.
+
+### 0.8.0
+
+- Added an opt-in experimental Network Console with GM editing, player reveal,
+  persistent sanitized sharing, and player-to-GM action requests.
+- Added the Network Console world setting and launcher.
+- Prepared the saved-data schema for later designated-player sharing.
+
+### 0.6.1
+
+- Added expanded modifier breakdowns to Suppressive Fire weapon-damage,
+  Evasion Save, and Trauma rolls.
+- Evasion details now identify the rolled die, target number, and success or
+  failure; Trauma details identify the Trauma Target and resulting outcome.
+
+### 0.6.0
+
+- Added an automated CWN Suppressive Fire workflow for weapons carrying SWNR's
+  Suppressive Fire flag.
+- Added mutually exclusive Burst Fire and Suppressive Fire choices, both
+  unticked by default on every attack dialog.
+- Added temporary 90-degree cone targeting, normal-range filtering, bracing and
+  hard-cover confirmation, two-round ammo use, per-target Evasion Saves, half
+  damage, Trauma checks, and GM damage application.
+
+### 0.5.1
+
+- Fixed labelled modifier breakdowns remaining visible while Foundry's dice
+  details were collapsed.
+
+### 0.5.0
+
+- Added detailed, labelled modifier breakdowns inside SWNR's existing expanded
+  weapon-roll details.
+- Captured the breakdown at roll time so historical cards remain accurate.
+
+### 0.4.0
+
+- Added a blue **TRAUMA HIT!** outcome for successful attacks whose Trauma Die
+  meets or exceeds that target's modified Trauma Target.
+- Kept misses and out-of-range attacks independent from the Trauma result.
+
+### 0.3.1
+
+- Prevented multiple active body-armour suits from stacking Soak.
+- Retained additive Soak from active armor accessories.
+- Required NPC armor and accessories to be both Readied and Equipped.
+- Disabled equipping stowed NPC armor and unequipped armor whenever its carried
+  location changes.
+
+### 0.3.0
+
+- Added active-armor-derived AC, Soak, and Trauma Target protection for NPCs.
+- Retained the NPC's manual Base AC and Melee AC as fallback values.
+- Added a world setting to disable NPC armor automation.
+
+### 0.2.0
+
+- Added target-aware normal and Trauma damage application for all targets marked
+  HIT by the attack card.
+- Added per-target modified Trauma Target checks.
+- Preserved SWNR's existing Damage Reduction, Soak, HP, and defeat handling.
+- Added natural 1 automatic misses and natural 20 automatic hits.
+
+### 0.1.1
+
+- Read weapons from the attacking token's synthetic actor before falling back to
+  the original world actor. This fixes stale melee and range values for unlinked
+  NPC tokens whose embedded weapons were edited on the token sheet.
+
+### 0.1.0
+
+- Initial target-aware attack, AC, and ranged-distance checks.

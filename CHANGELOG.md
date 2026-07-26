@@ -1,37 +1,190 @@
 # Changelog
 
+## 0.10.2
+
+- Fixed weapon-sheet rendering when the optional `harbour-city-stories` or CWN
+  Content Pack flag scopes are not active. Family metadata is now read safely
+  from the Item's stored flags without asking Foundry to validate an inactive
+  package scope.
+- Added a regression test for inactive optional flag scopes.
+
+## 0.10.1
+
+- Fixed the Weapon Family field failing to appear on SWNR 2.3.x weapon sheets
+  by targeting the outer Ammo Type resource container used by the ammunition
+  grid.
+- Restored the GM-only Advanced SWNR Compatibility section and its Native Ammo
+  Type control.
+
+## 0.10.0
+
+- Added centralized Weapon Family resolution from Combat Enhancements
+  overrides, optional Content Pack metadata, and recognized legacy base-weapon
+  flags.
+- Added Magazine Family resolution from Combat Enhancements and optional
+  Content Pack metadata.
+- Replaced the normal weapon-sheet Ammo Type presentation with Weapon Family,
+  including known choices, custom slug keys, an Unassigned state, and read-only
+  presentation when editing is not permitted.
+- Preserved Native Ammo Type in a GM-only Advanced SWNR Compatibility section.
+- Added GM Only, Item Owners, and Nobody Weapon Family editing modes, enforced
+  by both the sheet and `preUpdateItem`.
+- Added optional exact-family physical-magazine reload automation, enabled by
+  default.
+- Added partial magazine transfer, safe depleted-magazine deletion, and stale
+  selected-ammunition cleanup.
+- Accepted both Readied and Stowed magazines while deliberately ignoring
+  location.
+- Preserved native SWNR reload behavior for untagged weapons and when exact
+  magazine automation is disabled.
+- Added Node test coverage, repeatable release staging, and a tag-driven GitHub
+  Actions release build.
+
+## 0.9.0
+
+- Connected Network Console program requests to SWNR cyberdeck Actors.
+- Run a Program now finds cyberdecks linked to hackers controlled by the
+  requesting player.
+- Players can only choose Verbs and Subjects actually loaded on the selected
+  cyberdeck.
+- Incompatible Verb and Subject target types are rejected before a request is
+  sent.
+- GM requests identify the hacker, cyberdeck, prepared program, Access cost,
+  check modifier, and selected network node.
+- Program checks, Access spending, CPU use, and program effects remain manual.
+
+## 0.8.1
+
+- Fixed a mismatched Handlebars block that prevented the Network Console window
+  from rendering when opened from either launcher.
+
+## 0.8.0
+
+- Added an opt-in experimental Network Console for visualizing CWN networks.
+- GMs can create multiple networks, set Security difficulty and server class,
+  and add device nodes, connections, hidden connections, and Barriers.
+- GMs can reveal individual nodes and connections to players while retaining
+  private GM notes in a GM-only Journal Entry.
+- Players receive a sanitized persistent view containing only revealed network
+  information.
+- Added CWN-labelled action requests such as Jack In, Move Nodes, Look for
+  Hidden Connections, Run a Program, Copy File, and Issue Command.
+- Player requests notify the GM but do not yet make checks, spend Access,
+  consume CPU, or validate prepared Verbs and Subjects.
+- Added a world setting to enable or disable the Network Console. It defaults
+  to disabled and requires a reload when changed.
+- Included an authorization field in the saved network schema for future
+  designated-player sharing; v0.8.0 shares revealed information with all
+  players.
+
+## 0.7.0
+
+- Added optional, target-specific automation for CWN's Prone attack modifiers.
+- Melee attacks made by a prone attacker now take a -4 modifier.
+- Attacks against an adjacent prone target gain +2; distant ranged attacks
+  against a prone target take -2.
+- Prone state and adjacency are captured when the attack is rolled, so later
+  condition changes do not alter an existing chat card.
+- Suppressive Fire now pre-confirms the brace-or-prone requirement when the
+  shooter has the Prone status.
+- Token movement and standing up remain manual.
+
+## 0.6.2
+
+- Corrected the Suppressive Fire confirmation to state that the weapon must be
+  braced against a solid support or the gunner must have gone prone.
+- Corrected the cancellation warning to use the same rules-accurate wording.
+
+## 0.6.1
+
+- Added labelled modifier breakdowns to expanded Suppressive Fire weapon-damage
+  rolls.
+- Expanded Evasion Save rolls now show the die, Evasion target, and save result.
+- Expanded Trauma rolls now show the Trauma Die, target-specific Trauma Target,
+  and whether the roll produced a Trauma Hit.
+
+## 0.6.0
+
+- Added **Use Suppressive Fire** to eligible SWNR weapon attack dialogs.
+- Burst Fire and Suppressive Fire now both start unticked on every attack and
+  are mutually exclusive.
+- Added a temporary 90-degree cone aimed through exactly one targeted token.
+- Limited affected targets to the weapon's normal range and non-hidden tokens
+  inside that cone.
+- Added a confirmation window for the required braced or mounted state and
+  manual hard-cover exclusions.
+- Suppressive Fire now spends two rounds, rolls weapon damage once, and rolls
+  each uncovered target's Evasion Save separately.
+- Failed Evasion Saves take half damage rounded up and receive an individual
+  Trauma Die check; successful saves and hard-cover targets take no damage.
+- Added a dedicated Suppressive Fire chat card and GM-only damage action that
+  delegates Damage Reduction, Soak, HP, and defeat handling to SWNR.
+
+## 0.5.1
+
+- Fixed modifier breakdowns remaining visible when their Foundry roll details
+  were collapsed.
+- Modifier breakdowns now open and close with their corresponding dice tooltip.
+
+## 0.5.0
+
+- Added labelled modifier breakdowns inside expanded weapon attack rolls.
+- Attack details itemise the attack die, Burst Fire, manual modifier, character
+  attack bonus, weapon bonus, attribute modifier, skill rank, and total.
+- Damage details itemise weapon damage, Burst Fire, attribute modifier, damage
+  bonus, and total.
+- Trauma rolls and Trauma damage now explain their die or multiplier components.
+- Breakdown values are captured at roll time and do not change if the actor or
+  weapon is edited later.
+
+## 0.4.0
+
+- Successful attacks that also beat a target's Trauma Target are now displayed
+  as a blue **TRAUMA HIT!** instead of a standard green **HIT**.
+- Trauma outcomes are determined separately for every target.
+- Misses and out-of-range attacks remain misses regardless of the Trauma Die.
+
 ## 0.3.1
 
-- Fixed the release workflow so the armor compendium database is built and packaged.
-- Added a post-build extraction check requiring exactly 14 compiled armor items.
-- Added release staging checks for both the weapon and armor database directories.
+- Fixed NPC Soak incorrectly stacking from multiple active body-armour suits.
+- Soak now comes from the single highest active body armor plus active armor
+  accessories, such as Absorption Plates.
+- NPC armor and accessories must now be both Readied and Equipped to provide
+  protection.
+- Stowed NPC armor cannot be equipped from the NPC armor list, and changing an
+  armor item's carried location automatically unequips it.
 
 ## 0.3.0
 
-- Added a native 14-item Harbour City Stories Armor compendium.
-- Added 14 original cyberpunk armor SVG icons.
-- Organized armor into Armor, Armor Accessories, and Shields folders.
-- Armor dragged or imported from the compendium remains an independent copy.
+- Added NPC armor defense calculation for SWNR's CWN mode.
+- Ticked NPC armor now determines ranged and melee AC, using the highest active
+  body armor and active shield bonuses.
+- Manual Base AC and Melee AC remain the NPC's fallback defenses.
+- Only ticked NPC armor contributes Soak and Trauma Target protection.
+- Added a world setting allowing GMs to disable NPC armor automation.
 
-## 0.2.2
+## 0.2.0
 
-- Fixed generated compendium folder and item IDs so they meet Foundry VTT's
-  16-character alphanumeric document-ID requirement.
-- Added build-time ID validation to prevent an invalid compendium from being
-  packaged again.
+- Added a GM-only **Apply damage to HIT targets** action to attack cards.
+- Applies damage to every target captured at attack time that the Target Check
+  marks as a hit, without requiring those tokens to remain selected.
+- Compares the rolled Trauma Die with each target's modified Trauma Target and
+  applies either normal damage or multiplied Trauma damage independently.
+- Uses SWNR's existing health application so Damage Reduction, Soak, HP,
+  defeated status, and floating damage numbers continue to work normally.
+- Restores the user's original controlled-token selection after damage is
+  applied and records completed application on the message to discourage
+  accidental double damage.
+- Added natural 1 automatic misses and natural 20 automatic hits to Target Check.
 
-## 0.2.1
+## 0.1.1
 
-- Added the complete 64-item Harbour City Stories native Item compendium.
-- Migrated all 46 manufacturer-coded SVG weapon icons.
-- Weapons can be dragged onto actors or selectively imported into World Items.
-- The module does not automatically create or overwrite world or actor items.
-- Changed all managed icon paths to the CWN Content & Icon Pack.
+- Fixed weapon classification and range lookup for unlinked NPC tokens.
+- The module now prefers the attacking token's synthetic actor and embedded
+  weapon data over the original world actor.
 
 ## 0.1.0
 
-- Added the initial Foundry VTT v13 module scaffold.
-- Added organized icon asset directories.
-- Added a versioned icon mapping format.
-- Added a non-destructive icon mapping loader and resolver.
-- Added licensing and attribution documentation.
+- Added target-aware melee and ranged AC checks.
+- Added token distance measurement and CWN ranged-weapon range bands.
+- Added normal, extreme (−2), and out-of-range results.
