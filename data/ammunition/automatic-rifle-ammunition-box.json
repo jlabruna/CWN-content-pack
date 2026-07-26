@@ -1,0 +1,13 @@
+{
+  "sourceKey": "automatic-rifle-ammunition-box",
+  "name": "Automatic Rifle Ammunition Box",
+  "folderKey": "belts-and-boxes",
+  "img": "modules/cwn-content-pack/assets/icons/ammunition/automatic-rifle-ammunition-box.svg",
+  "magazineFamily": "automatic-rifle",
+  "description": "A full 10-expenditure automatic rifle ammunition box. Each Use is one 50-credit ammunition expenditure.",
+  "system": {
+    "cost": 500,
+    "uses": { "value": 10, "max": 10, "ammo": "special" }
+  },
+  "provenance": "CWN SRD explicit exception: 10 ammunition expenditures at 50 credits each."
+}

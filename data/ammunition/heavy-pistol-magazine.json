@@ -1,0 +1,13 @@
+{
+  "sourceKey": "heavy-pistol-magazine",
+  "name": "Heavy Pistol Magazine",
+  "folderKey": "magazines",
+  "img": "modules/cwn-content-pack/assets/icons/ammunition/heavy-pistol-magazine.svg",
+  "magazineFamily": "heavy-pistol",
+  "description": "A full 8-round heavy pistol magazine. Uses track the individual rounds remaining.",
+  "system": {
+    "cost": 8,
+    "uses": { "value": 8, "max": 8, "ammo": "ammo" }
+  },
+  "provenance": "CWN SRD ordinary ammunition baseline: 8 rounds at 1 credit per round."
+}

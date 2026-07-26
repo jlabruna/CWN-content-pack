@@ -1,3 +1,8 @@
+import {
+  CONTENT_PACK_FLAG_SCOPE,
+  contractForBaseWeapon
+} from "./weapon-family-contract.mjs";
+
 /**
  * Harbour City Stories weapon catalogue installer
  * Foundry VTT v13 / Systems Without Number Redux v2.3.0
@@ -16,7 +21,7 @@
 export async function installWeaponCatalogue() {
   "use strict";
 
-  const INSTALLER_VERSION = "2.0.0";
+  const INSTALLER_VERSION = "2.1.0";
   const FLAG_SCOPE = "harbour-city-stories";
   const ROOT_FOLDER_NAME = "Harbour City Stories Weapons";
   const ICON_MODULE_ID = "cwn-content-pack";
@@ -1567,6 +1572,7 @@ export async function installWeaponCatalogue() {
 
   for (const weapon of weapons) {
     try {
+      const baseContract = contractForBaseWeapon(weapon.base);
       const baseItem = baseItems.get(weapon.base);
       const source = foundry.utils.deepClone(baseItem.toObject());
       delete source._id;
@@ -1589,6 +1595,13 @@ export async function installWeaponCatalogue() {
           manufacturer: manufacturerData[weapon.manufacturer].name,
         },
       });
+      if (baseContract.reloadable) {
+        source.flags = foundry.utils.mergeObject(source.flags, {
+          [CONTENT_PACK_FLAG_SCOPE]: {
+            weaponFamily: baseContract.weaponFamily
+          }
+        });
+      }
       if (iconModuleActive) {
         source.flags[FLAG_SCOPE].managedIcon = desiredIcon;
       }

@@ -1,0 +1,13 @@
+{
+  "sourceKey": "taser-pistol-charge-pack",
+  "name": "Taser Pistol Charge Pack",
+  "folderKey": "specialised-reloads",
+  "img": "modules/cwn-content-pack/assets/icons/ammunition/taser-pistol-charge-pack.svg",
+  "magazineFamily": "taser-pistol",
+  "description": "A full 2-shot taser pistol charge pack. Uses track the individual discharges remaining.",
+  "system": {
+    "cost": 2,
+    "uses": { "value": 2, "max": 2, "ammo": "ammo" }
+  },
+  "provenance": "CWN SRD ordinary ammunition baseline applied because no special charge price is stated: 2 discharges at 1 credit each."
+}

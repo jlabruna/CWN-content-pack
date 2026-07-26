@@ -1,0 +1,13 @@
+{
+  "sourceKey": "heavy-machine-gun-ammunition-box",
+  "name": "Heavy Machine Gun Ammunition Box",
+  "folderKey": "belts-and-boxes",
+  "img": "modules/cwn-content-pack/assets/icons/ammunition/heavy-machine-gun-ammunition-box.svg",
+  "magazineFamily": "heavy-machine-gun",
+  "description": "A full 10-expenditure heavy machine gun ammunition box. Each Use is one 100-credit ammunition expenditure.",
+  "system": {
+    "cost": 1000,
+    "uses": { "value": 10, "max": 10, "ammo": "special" }
+  },
+  "provenance": "CWN SRD explicit exception: 10 ammunition expenditures at 100 credits each."
+}

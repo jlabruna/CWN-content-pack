@@ -1,0 +1,13 @@
+{
+  "sourceKey": "combat-rifle-magazine",
+  "name": "Combat Rifle Magazine",
+  "folderKey": "magazines",
+  "img": "modules/cwn-content-pack/assets/icons/ammunition/combat-rifle-magazine.svg",
+  "magazineFamily": "combat-rifle",
+  "description": "A full 30-round combat rifle magazine. Uses track the individual rounds remaining.",
+  "system": {
+    "cost": 30,
+    "uses": { "value": 30, "max": 30, "ammo": "ammo" }
+  },
+  "provenance": "CWN SRD ordinary ammunition baseline: 30 rounds at 1 credit per round."
+}

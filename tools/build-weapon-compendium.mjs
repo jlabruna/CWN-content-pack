@@ -4,17 +4,26 @@ import path from "node:path";
 import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
 import { installWeaponCatalogue } from "../scripts/weapon-catalogue.mjs";
+import {
+  CONTENT_PACK_FLAG_SCOPE,
+  contractForBaseWeapon
+} from "../scripts/weapon-family-contract.mjs";
 
 const moduleRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const defaultSystemRoot = path.resolve(moduleRoot, "..", "..", "work", "swnr-v2.3.0");
-const systemRoot = path.resolve(process.argv[2] ?? defaultSystemRoot);
+const defaultSystemRoot = path.resolve(moduleRoot, "vendor", "swnr");
+const systemRoot = path.resolve(
+  process.argv[2] ?? process.env.SWNR_ROOT ?? defaultSystemRoot
+);
 const moduleRequire = createRequire(path.join(moduleRoot, "package.json"));
 const YAML = moduleRequire("yaml");
-const { compilePack } = moduleRequire("@foundryvtt/foundryvtt-cli");
+const { compilePack, extractPack } = await import("@foundryvtt/foundryvtt-cli");
 
 const sourcePack = path.join(moduleRoot, "src", "packs", "harbour-city-stories-weapons");
 const outputPack = path.join(moduleRoot, "packs", "harbour-city-stories-weapons");
+const verificationPack = path.join(moduleRoot, ".build", "verify-harbour-city-stories-weapons");
 const systemItems = path.join(systemRoot, "src", "packs", "cwn-items");
+const expectedWeaponIdentityDigest =
+  "ea6b624ee9c9a8fa10fdca13971315ecb7cfd332643b952c7421a08f947b936b";
 
 const stableId = (prefix, value) => {
   // Foundry document IDs must be exactly 16 alphanumeric characters.
@@ -141,10 +150,30 @@ for (const [index, folder] of folders.entries()) {
   );
 }
 
+const weaponIdentityLines = [];
 for (const [index, item] of createdItems.entries()) {
   const key = getProperty(item, "flags.harbour-city-stories.catalogueKey");
+  const baseWeapon = getProperty(item, "flags.harbour-city-stories.baseWeapon");
+  const baseContract = contractForBaseWeapon(baseWeapon);
   const id = stableId("W", key);
   assertFoundryId(id, `Weapon "${item.name}"`);
+  weaponIdentityLines.push(`${key}:${id}`);
+
+  const generatedFamily = getProperty(
+    item,
+    `flags.${CONTENT_PACK_FLAG_SCOPE}.weaponFamily`
+  );
+  if (baseContract.reloadable && generatedFamily !== baseContract.weaponFamily) {
+    throw new Error(
+      `Reloadable weapon "${item.name}" must have family `
+      + `"${baseContract.weaponFamily}", found "${generatedFamily ?? ""}".`
+    );
+  }
+  if (!baseContract.reloadable && generatedFamily !== undefined) {
+    throw new Error(
+      `Excluded weapon "${item.name}" unexpectedly has family "${generatedFamily}".`
+    );
+  }
 
   // Correct legacy installer property names to the SWNR 2.3 data schema.
   if (item.system?.shock?.damage !== undefined) {
@@ -173,5 +202,35 @@ if (createdItems.length !== 64) {
   throw new Error(`Expected 64 weapons but generated ${createdItems.length}.`);
 }
 
+const weaponIdentityDigest = crypto
+  .createHash("sha256")
+  .update(weaponIdentityLines.sort().join("\n"))
+  .digest("hex");
+if (weaponIdentityDigest !== expectedWeaponIdentityDigest) {
+  throw new Error(
+    "Deterministic weapon IDs changed unexpectedly. "
+    + `Expected ${expectedWeaponIdentityDigest}, found ${weaponIdentityDigest}.`
+  );
+}
+
 await compilePack(sourcePack, outputPack, { yaml: true, log: true });
-console.log(`Built ${createdItems.length} weapons and ${folders.length} folders.`);
+
+let compiledWeaponCount = 0;
+await fs.rm(verificationPack, { recursive: true, force: true });
+await extractPack(outputPack, verificationPack, {
+  yaml: true,
+  log: false,
+  transformEntry: async (entry) => {
+    if (entry?.type === "weapon") compiledWeaponCount += 1;
+  }
+});
+await fs.rm(verificationPack, { recursive: true, force: true });
+if (compiledWeaponCount !== 64) {
+  throw new Error(
+    `Weapon compendium verification failed: expected 64 items but found ${compiledWeaponCount}.`
+  );
+}
+
+console.log(
+  `Built and verified ${compiledWeaponCount} weapons and ${folders.length} folders.`
+);

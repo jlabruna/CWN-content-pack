@@ -5,11 +5,13 @@ import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
 
 const moduleRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const defaultSystemRoot = path.resolve(moduleRoot, "..", "..", "work", "swnr-v2.3.0");
-const systemRoot = path.resolve(process.argv[2] ?? defaultSystemRoot);
+const defaultSystemRoot = path.resolve(moduleRoot, "vendor", "swnr");
+const systemRoot = path.resolve(
+  process.argv[2] ?? process.env.SWNR_ROOT ?? defaultSystemRoot
+);
 const moduleRequire = createRequire(path.join(moduleRoot, "package.json"));
 const YAML = moduleRequire("yaml");
-const { compilePack, extractPack } = moduleRequire("@foundryvtt/foundryvtt-cli");
+const { compilePack, extractPack } = await import("@foundryvtt/foundryvtt-cli");
 
 const sourcePack = path.join(moduleRoot, "src", "packs", "harbour-city-stories-armor");
 const outputPack = path.join(moduleRoot, "packs", "harbour-city-stories-armor");

@@ -1,0 +1,13 @@
+{
+  "sourceKey": "anti-materiel-rifle-magazine",
+  "name": "Anti-Materiel Rifle Magazine",
+  "folderKey": "magazines",
+  "img": "modules/cwn-content-pack/assets/icons/ammunition/anti-materiel-rifle-magazine.svg",
+  "magazineFamily": "anti-materiel-rifle",
+  "description": "A full 5-round anti-materiel rifle magazine. Uses track the individual rounds remaining.",
+  "system": {
+    "cost": 5,
+    "uses": { "value": 5, "max": 5, "ammo": "special" }
+  },
+  "provenance": "CWN SRD ordinary ammunition baseline applied because no special ammunition price is stated: 5 rounds at 1 credit per round."
+}

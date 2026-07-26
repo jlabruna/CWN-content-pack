@@ -1,0 +1,13 @@
+{
+  "sourceKey": "rifle-magazine",
+  "name": "Rifle Magazine",
+  "folderKey": "magazines",
+  "img": "modules/cwn-content-pack/assets/icons/ammunition/rifle-magazine.svg",
+  "magazineFamily": "rifle",
+  "description": "A full 6-round rifle magazine. Uses track the individual rounds remaining.",
+  "system": {
+    "cost": 6,
+    "uses": { "value": 6, "max": 6, "ammo": "ammo" }
+  },
+  "provenance": "CWN SRD ordinary ammunition baseline: 6 rounds at 1 credit per round."
+}

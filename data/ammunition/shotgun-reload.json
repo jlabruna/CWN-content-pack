@@ -1,0 +1,13 @@
+{
+  "sourceKey": "shotgun-reload",
+  "name": "Shotgun Reload",
+  "folderKey": "shells-and-rounds",
+  "img": "modules/cwn-content-pack/assets/icons/ammunition/shotgun-reload.svg",
+  "magazineFamily": "shotgun",
+  "description": "Two shotgun shells forming one complete reload. Uses track the individual shells remaining.",
+  "system": {
+    "cost": 2,
+    "uses": { "value": 2, "max": 2, "ammo": "ammo" }
+  },
+  "provenance": "CWN SRD ordinary ammunition baseline: 2 shells at 1 credit per shell."
+}

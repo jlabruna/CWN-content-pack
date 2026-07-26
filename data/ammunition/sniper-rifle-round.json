@@ -1,0 +1,13 @@
+{
+  "sourceKey": "sniper-rifle-round",
+  "name": "Sniper Rifle Round",
+  "folderKey": "shells-and-rounds",
+  "img": "modules/cwn-content-pack/assets/icons/ammunition/sniper-rifle-round.svg",
+  "magazineFamily": "sniper-rifle",
+  "description": "One sniper rifle round. Uses track the individual round remaining.",
+  "system": {
+    "cost": 1,
+    "uses": { "value": 1, "max": 1, "ammo": "ammo" }
+  },
+  "provenance": "CWN SRD ordinary ammunition baseline: 1 round at 1 credit per round."
+}

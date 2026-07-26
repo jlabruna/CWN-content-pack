@@ -1,0 +1,13 @@
+{
+  "sourceKey": "submachine-gun-magazine",
+  "name": "Submachine Gun Magazine",
+  "folderKey": "magazines",
+  "img": "modules/cwn-content-pack/assets/icons/ammunition/submachine-gun-magazine.svg",
+  "magazineFamily": "submachine-gun",
+  "description": "A full 20-round submachine gun magazine. Uses track the individual rounds remaining.",
+  "system": {
+    "cost": 20,
+    "uses": { "value": 20, "max": 20, "ammo": "ammo" }
+  },
+  "provenance": "CWN SRD ordinary ammunition baseline: 20 rounds at 1 credit per round."
+}

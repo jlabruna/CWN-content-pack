@@ -1,0 +1,13 @@
+{
+  "sourceKey": "semi-auto-shotgun-magazine",
+  "name": "Semi-Auto Shotgun Magazine",
+  "folderKey": "magazines",
+  "img": "modules/cwn-content-pack/assets/icons/ammunition/semi-auto-shotgun-magazine.svg",
+  "magazineFamily": "semi-auto-shotgun",
+  "description": "A full 6-shell semi-auto shotgun magazine. Uses track the individual shells remaining.",
+  "system": {
+    "cost": 6,
+    "uses": { "value": 6, "max": 6, "ammo": "ammo" }
+  },
+  "provenance": "CWN SRD ordinary ammunition baseline: 6 shells at 1 credit per shell."
+}

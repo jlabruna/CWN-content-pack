@@ -1,0 +1,13 @@
+{
+  "sourceKey": "light-pistol-magazine",
+  "name": "Light Pistol Magazine",
+  "folderKey": "magazines",
+  "img": "modules/cwn-content-pack/assets/icons/ammunition/light-pistol-magazine.svg",
+  "magazineFamily": "light-pistol",
+  "description": "A full 15-round light pistol magazine. Uses track the individual rounds remaining.",
+  "system": {
+    "cost": 15,
+    "uses": { "value": 15, "max": 15, "ammo": "ammo" }
+  },
+  "provenance": "CWN SRD ordinary ammunition baseline: 15 rounds at 1 credit per round."
+}

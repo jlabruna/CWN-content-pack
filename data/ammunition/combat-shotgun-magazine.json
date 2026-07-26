@@ -1,0 +1,13 @@
+{
+  "sourceKey": "combat-shotgun-magazine",
+  "name": "Combat Shotgun Magazine",
+  "folderKey": "magazines",
+  "img": "modules/cwn-content-pack/assets/icons/ammunition/combat-shotgun-magazine.svg",
+  "magazineFamily": "combat-shotgun",
+  "description": "A full 12-shell combat shotgun magazine. Uses track the individual shells remaining.",
+  "system": {
+    "cost": 12,
+    "uses": { "value": 12, "max": 12, "ammo": "ammo" }
+  },
+  "provenance": "CWN SRD ordinary ammunition baseline: 12 shells at 1 credit per shell."
+}

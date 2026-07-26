@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Combat Shotgun Magazine</title>
+  <defs>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#566574"/><stop offset=".45" stop-color="#202b35"/>
+      <stop offset="1" stop-color="#090d12"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      .body{fill:url(#metal);stroke:#ff3fa4;stroke-width:8;stroke-linejoin:round}
+      .accent{fill:#0b1118;stroke:#ff3fa4;stroke-width:7;stroke-linejoin:round}
+      .detail{fill:none;stroke:#ff3fa4;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;opacity:.82}
+      .round{fill:#1c2630;stroke:#ff3fa4;stroke-width:6;stroke-linejoin:round}
+    </style>
+  </defs>
+  <path d="M72 56h368l16 16v368l-16 16H72l-16-16V72z" fill="none" stroke="#ff3fa4" stroke-width="7" opacity=".75"/>
+  <path d="M94 76h324M436 96v320M418 436H94M76 416V96" fill="none" stroke="#ff3fa4" stroke-width="2" opacity=".45"/>
+  <g filter="url(#glow)"><circle class="body" cx="256" cy="267" r="143"/>
+      <circle class="detail" cx="256" cy="267" r="77"/>
+      <path class="detail" d="M256 124v66M256 344v66M113 267h66M333 267h66M155 166l47 47M310 321l47 47M357 166l-47 47M202 321l-47 47"/>
+      <path class="accent" d="M205 91h102l22 64-73 35-73-35z"/></g>
+</svg>

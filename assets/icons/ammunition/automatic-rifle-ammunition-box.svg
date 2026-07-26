@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Automatic Rifle Ammunition Box</title>
+  <defs>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#566574"/><stop offset=".45" stop-color="#202b35"/>
+      <stop offset="1" stop-color="#090d12"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      .body{fill:url(#metal);stroke:#ffd166;stroke-width:8;stroke-linejoin:round}
+      .accent{fill:#0b1118;stroke:#ffd166;stroke-width:7;stroke-linejoin:round}
+      .detail{fill:none;stroke:#ffd166;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;opacity:.82}
+      .round{fill:#1c2630;stroke:#ffd166;stroke-width:6;stroke-linejoin:round}
+    </style>
+  </defs>
+  <path d="M72 56h368l16 16v368l-16 16H72l-16-16V72z" fill="none" stroke="#ffd166" stroke-width="7" opacity=".75"/>
+  <path d="M94 76h324M436 96v320M418 436H94M76 416V96" fill="none" stroke="#ffd166" stroke-width="2" opacity=".45"/>
+  <g filter="url(#glow)"><path class="body" d="M123 184h266v209H123z"/>
+      <path class="accent" d="M105 145h302v65H105z"/>
+      <path class="detail" d="M163 245h186v87H163zM193 145v-34h126v34"/>
+      <path class="round" d="M127 116l30-35 33 24-30 35zm58-18l30-35 33 24-30 35zm58-18l30-35 33 24-30 35zm58 18l30-35 33 24-30 35"/></g>
+</svg>
