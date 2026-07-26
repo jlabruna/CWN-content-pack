@@ -40,25 +40,38 @@ jobs:
       - name: Build armor compendium
         run: node tools/build-armor-compendium.mjs vendor/swnr
 
-      - name: Verify release compendia exist
-        shell: bash
-        run: |
-          test -d packs/harbour-city-stories-weapons
-          test -d packs/harbour-city-stories-armor
-          test -n "$(find packs/harbour-city-stories-weapons -type f -print -quit)"
-          test -n "$(find packs/harbour-city-stories-armor -type f -print -quit)"
-          echo "Weapon and armor compendium databases are present."
+      - name: Generate ammunition icons
+        run: node tools/generate-ammunition-icons.mjs
+
+      - name: Build ammunition compendium
+        run: node tools/build-ammunition-compendium.mjs
+
+      - name: Validate generated content
+        run: node tools/validate-content.mjs
+
+      - name: Verify deterministic rebuild
+        run: node tools/verify-deterministic-build.mjs vendor/swnr
 
       - name: Stage Foundry module
+        run: node tools/stage-release.mjs
+
+      - name: Build Foundry ZIP
         shell: bash
         run: |
-          mkdir -p release/cwn-content-pack
-          cp -R assets data lang packs scripts release/cwn-content-pack/
-          cp module.json README.md CHANGELOG.md LICENSE ASSET-LICENSE.md THIRD-PARTY-LICENSES.md release/cwn-content-pack/
-          rm -f release/cwn-content-pack/scripts/weapon-catalogue.mjs
           cd release/cwn-content-pack
           zip -r ../cwn-content-pack-${GITHUB_REF_NAME}.zip .
-          cp module.json ../module.json
+
+      - name: Validate ZIP contents
+        shell: bash
+        run: |
+          ZIP="release/cwn-content-pack-${GITHUB_REF_NAME}.zip"
+          unzip -t "$ZIP"
+          unzip -Z1 "$ZIP" | grep -qx "module.json"
+          unzip -Z1 "$ZIP" | grep -q "^packs/harbour-city-stories-weapons/"
+          unzip -Z1 "$ZIP" | grep -q "^packs/harbour-city-stories-armor/"
+          unzip -Z1 "$ZIP" | grep -q "^packs/cwn-ammunition/"
+          test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/ammunition/.*\.svg$')" -eq 14
+          echo "Release ZIP contains all three declared packs and 14 ammunition icons."
 
       - name: Upload workflow artifact
         uses: actions/upload-artifact@v4
