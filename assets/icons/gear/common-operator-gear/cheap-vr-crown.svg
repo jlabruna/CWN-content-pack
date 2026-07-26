@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title>cheap-vr-crown</title>
+  <g fill="none" stroke="#a979ff" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
+    <path opacity=".45" d="M256 40 435 143v226L256 472 77 369V143z"/>
+    <path d="M104 191h304l-27 153H131z"/><path d="M104 213L66 250m342-37 38 37"/><circle cx="193" cy="266" r="41"/><circle cx="319" cy="266" r="41"/><path d="M234 266h44"/>
+  </g>
+</svg>

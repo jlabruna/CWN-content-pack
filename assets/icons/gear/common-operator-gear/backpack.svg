@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title>backpack</title>
+  <g fill="none" stroke="#59d5e0" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
+    <path opacity=".45" d="M256 40 435 143v226L256 472 77 369V143z"/>
+    <path d="M159 186c0-45 35-80 97-80s97 35 97 80"/><rect x="126" y="171" width="260" height="236" rx="48"/><path d="M183 171v236m146-236v236M177 264h158v102H177z"/>
+  </g>
+</svg>

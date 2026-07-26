@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title>lockpicks</title>
+  <g fill="none" stroke="#c6a0ff" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
+    <path opacity=".45" d="M256 40 435 143v226L256 472 77 369V143z"/>
+    <path d="M128 348c64-13 93-51 116-112l35-91"/><path d="M246 348c51-21 73-65 78-133l5-81"/><circle cx="125" cy="350" r="25"/><path d="M279 145l58 25m-8-36 49 33"/>
+  </g>
+</svg>

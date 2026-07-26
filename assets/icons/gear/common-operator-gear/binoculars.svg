@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title>binoculars</title>
+  <g fill="none" stroke="#58c4dd" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
+    <path opacity=".45" d="M256 40 435 143v226L256 472 77 369V143z"/>
+    <path d="M153 178h74v72h58v-72h74l54 176h-107l-50-78-50 78H99z"/><circle cx="163" cy="325" r="42"/><circle cx="349" cy="325" r="42"/>
+  </g>
+</svg>

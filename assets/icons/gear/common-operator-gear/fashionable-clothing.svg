@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title>fashionable-clothing</title>
+  <g fill="none" stroke="#b486ff" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
+    <path opacity=".45" d="M256 40 435 143v226L256 472 77 369V143z"/>
+    <path d="M187 120l69 38 69-38 77 65-52 68-30-24v170H192V229l-30 24-52-68z"/><path d="M256 158v241m-38-151 38 25 38-25"/>
+  </g>
+</svg>

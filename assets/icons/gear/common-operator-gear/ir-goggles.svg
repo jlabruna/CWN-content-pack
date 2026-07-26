@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title>ir-goggles</title>
+  <g fill="none" stroke="#ff5b9a" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
+    <path opacity=".45" d="M256 40 435 143v226L256 472 77 369V143z"/>
+    <path d="M104 226h80l34 58H116zM328 226h80l-12 58h-102z"/><path d="M218 253h76"/><circle cx="168" cy="255" r="15"/><circle cx="344" cy="255" r="15"/><path d="M256 120v58m-29-29h58"/>
+  </g>
+</svg>

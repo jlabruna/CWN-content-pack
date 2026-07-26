@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title>climbing-kit</title>
+  <g fill="none" stroke="#78d68b" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
+    <path opacity=".45" d="M256 40 435 143v226L256 472 77 369V143z"/>
+    <path d="M150 374l89-232c12-31 48-31 60 0l63 164"/><circle cx="344" cy="342" r="54"/><path d="M344 288v108m-54-54h108M125 374h148"/>
+  </g>
+</svg>

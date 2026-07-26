@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title>active-hearing-protection</title>
+  <g fill="none" stroke="#49d6ff" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
+    <path opacity=".45" d="M256 40 435 143v226L256 472 77 369V143z"/>
+    <path d="M142 275v-55c0-70 51-120 114-120s114 50 114 120v55"/><rect x="115" y="245" width="62" height="118" rx="25"/><rect x="335" y="245" width="62" height="118" rx="25"/><path d="M177 326c28 45 58 66 96 66h42"/>
+  </g>
+</svg>

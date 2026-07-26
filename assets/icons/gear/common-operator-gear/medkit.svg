@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title>medkit</title>
+  <g fill="none" stroke="#ff6b6b" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
+    <path opacity=".45" d="M256 40 435 143v226L256 472 77 369V143z"/>
+    <rect x="118" y="161" width="276" height="236" rx="30"/><path d="M191 161v-51h130v51M256 213v132m-66-66h132"/>
+  </g>
+</svg>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title>monthly-bus-pass</title>
+  <g fill="none" stroke="#64c7ff" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
+    <path opacity=".45" d="M256 40 435 143v226L256 472 77 369V143z"/>
+    <rect x="105" y="143" width="302" height="226" rx="26"/><path d="M105 219h302M159 181h92"/><circle cx="168" cy="300" r="36"/><path d="M242 281h112m-112 39h78"/>
+  </g>
+</svg>
