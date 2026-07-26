@@ -18,4 +18,5 @@ included in this module.
 
 ## Asset attributions
 
-No third-party media assets are included in version 0.1.0.
+No third-party media assets are included in version 0.4.0. Weapon, armor, and
+ammunition icons are original module artwork.

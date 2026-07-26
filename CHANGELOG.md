@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.4.0
+
+- Added explicit `cwn-content-pack` Weapon Family metadata to all 52 reloadable
+  Harbour City Stories catalogue weapons while preserving existing legacy
+  metadata and deterministic IDs.
+- Added a native 14-item **CWN Ammunition & Reloads** compendium.
+- Added 14 original transparent-background ammunition SVG icons.
+- Added count-based physical reload Items with matching Magazine Family flags,
+  full starting Uses, quantity 1, and zero Encumbrance.
+- Documented the ammunition-only table abstraction: no empty magazine objects,
+  refill bookkeeping, shell costs, stacking, or ammunition Encumbrance.
+- Added strict validation for source data, SWNR fields, icons, family
+  relationships, folder relationships, deterministic builds, expected pack
+  counts, release staging, and ZIP contents.
+- Added optional compatibility with CWN Combat Enhancements v0.10.3 without
+  creating a hard dependency.
+
 ## 0.3.1
 
 - Fixed the release workflow so the armor compendium database is built and packaged.
