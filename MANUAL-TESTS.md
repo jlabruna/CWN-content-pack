@@ -1,6 +1,6 @@
 # Foundry VTT v13 / SWNR 2.3.x manual test checklist
 
-Use CWN Content & Icon Pack 0.4.0 in a disposable Foundry v13 world running
+Use CWN Content & Icon Pack 0.4.1 in a disposable Foundry v13 world running
 SWNR 2.3.x. Tests marked as Combat Enhancements integration require CWN Combat
 Enhancements 0.10.3.
 

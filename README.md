@@ -3,7 +3,7 @@
 An independent Foundry VTT v13 content and icon pack for **Cities Without
 Number** games running on the **Systems Without Number Redux (SWNR)** system.
 
-## Version 0.4.0
+## Version 0.4.1
 
 The content pack includes:
 

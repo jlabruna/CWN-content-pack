@@ -2,7 +2,7 @@
   "id": "cwn-content-pack",
   "title": "CWN Content & Icon Pack",
   "description": "An independent content and icon pack for Cities Without Number games using the SWNR Foundry VTT system.",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "authors": [
     {
       "name": "jlabruna"
@@ -72,6 +72,6 @@
   ],
   "url": "https://github.com/jlabruna/CWN-content-pack",
   "manifest": "https://github.com/jlabruna/CWN-content-pack/releases/latest/download/module.json",
-  "download": "https://github.com/jlabruna/CWN-content-pack/releases/download/v0.4.0/cwn-content-pack-v0.4.0.zip",
+  "download": "https://github.com/jlabruna/CWN-content-pack/releases/download/v0.4.1/cwn-content-pack-v0.4.1.zip",
   "license": "LICENSE"
 }

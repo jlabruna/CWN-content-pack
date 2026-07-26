@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.4.1
+
+- Fix release packaging so the compiled CWN Ammunition & Reloads database is
+  generated, validated, staged, and included in the downloadable module ZIP.
+- Add a release assertion that fails unless the ammunition pack contains exactly
+  14 Items and four folders.
+- Restore the omitted ammunition icon generator, content validator,
+  deterministic-build verifier, and release staging tools to the tagged source.
+
 ## 0.4.0
 
 - Added explicit `cwn-content-pack` Weapon Family metadata to all 52 reloadable
