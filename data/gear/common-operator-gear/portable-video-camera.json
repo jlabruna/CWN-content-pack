@@ -1,0 +1,9 @@
+{
+  "sourceKey": "portable-video-camera",
+  "sourceName": "Portable video camera",
+  "name": "Portable Video Camera",
+  "folderKey": "personal-electronics",
+  "description": "Palm-sized and discreet, this camera can record up to twelve hours of high-definition video before its internal memory is filled.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Portable_video_camera_EyaVU5RxezYVxyhF.yml",
+  "system": { "cost": 300, "encumbrance": 1, "noEncReadied": false }
+}

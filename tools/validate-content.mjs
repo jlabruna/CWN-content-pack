@@ -14,8 +14,9 @@ const manifest = JSON.parse(await fs.readFile(path.join(moduleRoot, "module.json
 
 const expectedPacks = Object.freeze({
   "harbour-city-stories-weapons": { itemType: "weapon", count: 64 },
-  "harbour-city-stories-armor": { itemType: "armor", count: 14 },
-  "cwn-ammunition": { itemType: "item", count: 14 }
+  "harbour-city-stories-armor": { itemType: "armor", count: 14, folderCount: 3 },
+  "cwn-ammunition": { itemType: "item", count: 14, folderCount: 4 },
+  "cwn-common-operator-gear": { itemType: "item", count: 27, folderCount: 5 }
 });
 const expectedWeaponIdentityDigest =
   "ea6b624ee9c9a8fa10fdca13971315ecb7cfd332643b952c7421a08f947b936b";
@@ -84,6 +85,12 @@ for (const [packName, expected] of Object.entries(expectedPacks)) {
   if (items.length !== expected.count) {
     throw new Error(
       `Pack "${packName}" expected ${expected.count} items but found ${items.length}.`
+    );
+  }
+  if (expected.folderCount !== undefined && folders.length !== expected.folderCount) {
+    throw new Error(
+      `Pack "${packName}" expected ${expected.folderCount} folders but found `
+      + `${folders.length}.`
     );
   }
 
@@ -235,7 +242,152 @@ for (const item of ammunition) {
   }
 }
 
+const expectedGear = Object.freeze({
+  "active-hearing-protection": ["Active Hearing Protection", 250, 1, false, 0],
+  "gas-mask": ["Gas Mask", 1000, 1, false, 0],
+  "anti-flash-goggles": ["Anti-Flash Goggles", 100, 1, false, 0],
+  "ir-goggles": ["IR Goggles", 1000, 1, false, 0],
+  backpack: ["Backpack", 25, 1, true, 6],
+  "gear-harness": ["Gear Harness", 25, 1, true, 4],
+  "ordinary-clothing": ["Ordinary Clothing", 25, 1, true, 0],
+  "fashionable-clothing": ["Fashionable Clothing", 500, 1, true, 0],
+  "haute-couture-clothing": ["Haute Couture Clothing", 10000, 1, true, 0],
+  binoculars: ["Binoculars", 100, 1, false, 0],
+  "climbing-kit": ["Climbing Kit", 150, 2, false, 0],
+  "basic-tools-kit": ["Basic Tools Kit", 100, 2, false, 0],
+  "cyberdoc-kit": ["Cyberdoc Kit", 500, 2, false, 0],
+  medkit: ["Medkit", 100, 1, false, 0],
+  "survival-kit": ["Survival Kit", 100, 2, false, 0],
+  lockpicks: ["Lockpicks", 100, 1, false, 0],
+  "wearable-light": ["Wearable Light", 25, 1, true, 0],
+  "portable-video-camera": ["Portable Video Camera", 300, 1, false, 0],
+  "handheld-radio": ["Handheld Radio", 50, 1, false, 0],
+  "ultralight-radio-tab": ["Ultralight Radio Tab", 500, 0, false, 0],
+  "basic-smartphone": ["Basic Smartphone", 50, 0, false, 0],
+  "fashionable-smartphone": ["Fashionable Smartphone", 2000, 0, false, 0],
+  "cheap-vr-crown": ["Cheap VR Crown", 50, 1, false, 0],
+  "monthly-bus-pass": ["Monthly Bus Pass", 50, 0, false, 0],
+  "smartphone-service-plan-one-month": [
+    "Smartphone Service Plan — One Month",
+    10,
+    0,
+    false,
+    0
+  ],
+  "military-ration": ["Military Ration", 20, 1, false, 0],
+  "military-ration-with-water": ["Military Ration with Water", 20, 2, false, 0]
+});
+const expectedGearFolders = new Set([
+  "Protective Gear",
+  "Carry and Clothing",
+  "Tools and Field Gear",
+  "Electronics",
+  "Services and Supplies"
+]);
+const gearPack = loadedPacks.get("cwn-common-operator-gear");
+const actualGearFolders = new Set(gearPack.folders.map((folder) => folder.name));
+if (
+  actualGearFolders.size !== expectedGearFolders.size
+  || [...expectedGearFolders].some((name) => !actualGearFolders.has(name))
+) {
+  throw new Error("Common Operator Gear folder names do not match the approved manifest.");
+}
+
+const gearKeys = new Set();
+const gearNames = new Set();
+const gearIconPaths = new Set();
+const gearIconHashes = new Set();
+for (const item of gearPack.items) {
+  const sourceKey = getProperty(item, `flags.${CONTENT_PACK_FLAG_SCOPE}.catalogueKey`);
+  const provenance = getProperty(item, `flags.${CONTENT_PACK_FLAG_SCOPE}.provenance`);
+  const expected = expectedGear[sourceKey];
+  if (!expected) {
+    throw new Error(`Common Operator Gear "${item.name}" has unknown sourceKey "${sourceKey}".`);
+  }
+  if (gearKeys.has(sourceKey)) {
+    throw new Error(`Duplicate Common Operator Gear sourceKey "${sourceKey}".`);
+  }
+  gearKeys.add(sourceKey);
+  if (gearNames.has(item.name)) {
+    throw new Error(`Duplicate Common Operator Gear name "${item.name}".`);
+  }
+  gearNames.add(item.name);
+
+  const [name, cost, encumbrance, noEncReadied, capacity] = expected;
+  if (
+    item.name !== name
+    || item.type !== "item"
+    || item.system?.cost !== cost
+    || item.system?.encumbrance !== encumbrance
+    || item.system?.noEncReadied !== noEncReadied
+  ) {
+    throw new Error(`Common Operator Gear "${item.name}" has invalid SWNR fields.`);
+  }
+  if (
+    item.system?.quantity !== 1
+    || item.system?.bundle?.bundled !== false
+    || item.system?.containerId !== ""
+    || item.system?.uses?.consumable !== "none"
+  ) {
+    throw new Error(`Common Operator Gear "${item.name}" has invalid base gear fields.`);
+  }
+  if (typeof item.system?.description !== "string" || item.system.description.trim() === "") {
+    throw new Error(`Common Operator Gear "${item.name}" has an empty description.`);
+  }
+  if (typeof provenance !== "string" || !provenance.includes("CWN SRD via SWNR 2.3.0")) {
+    throw new Error(`Common Operator Gear "${item.name}" has invalid provenance.`);
+  }
+
+  if (capacity > 0) {
+    if (
+      item.system?.container?.isContainer !== true
+      || item.system?.container?.isOpen !== true
+      || item.system?.container?.capacity?.max !== capacity
+      || item.system?.container?.capacity?.value !== 0
+    ) {
+      throw new Error(`Container gear "${item.name}" has invalid native SWNR capacity.`);
+    }
+  } else if (
+    item.system?.container?.isContainer !== false
+    || item.system?.container?.capacity?.max !== 0
+    || item.system?.container?.capacity?.value !== 0
+  ) {
+    throw new Error(`Non-container gear "${item.name}" has invalid container fields.`);
+  }
+
+  const deterministicId = `G${crypto
+    .createHash("sha256")
+    .update(`common-operator-gear:${sourceKey}`)
+    .digest("hex")}`.slice(0, 16);
+  if (item._id !== deterministicId) {
+    throw new Error(`Common Operator Gear "${item.name}" has a non-deterministic ID.`);
+  }
+  if (gearIconPaths.has(item.img)) {
+    throw new Error(`Duplicate Common Operator Gear icon path "${item.img}".`);
+  }
+  gearIconPaths.add(item.img);
+  const icon = await fs.readFile(moduleAssetPath(item.img), "utf8");
+  if (!/<svg\b/.test(icon) || !/viewBox="0 0 512 512"/.test(icon)) {
+    throw new Error(`Common Operator Gear "${item.name}" has an invalid square SVG icon.`);
+  }
+  if (/<rect\b[^>]*\bfill=(?!["']none["'])/i.test(icon)) {
+    throw new Error(`Common Operator Gear "${item.name}" icon has a background fill.`);
+  }
+  const iconHash = crypto.createHash("sha256").update(icon).digest("hex");
+  if (gearIconHashes.has(iconHash)) {
+    throw new Error(`Common Operator Gear "${item.name}" does not have a distinct icon.`);
+  }
+  gearIconHashes.add(iconHash);
+}
+if (
+  gearKeys.size !== Object.keys(expectedGear).length
+  || Object.keys(expectedGear).some((key) => !gearKeys.has(key))
+) {
+  throw new Error("Common Operator Gear does not contain the exact approved 27-item manifest.");
+}
+
 console.log(
   "Validated 64 weapons (52 reloadable), 14 armor items, 14 ammunition items, "
-  + "all deterministic IDs, folder relationships, icons, and SWNR fields."
+  + "27 Common Operator Gear items, all deterministic IDs, folder relationships, "
+  + "icons, and SWNR fields."
 );

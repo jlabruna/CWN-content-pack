@@ -1,0 +1,9 @@
+{
+  "sourceKey": "cheap-vr-crown",
+  "sourceName": "VR crown,cheap",
+  "name": "Cheap VR Crown",
+  "folderKey": "personal-electronics",
+  "description": "A cheap headset for a VR addict or a hacker too poor for a cranial jack.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/VR_crown_cheap_ojOOplHngKQIPYtV.yml",
+  "system": { "cost": 50, "encumbrance": 1, "noEncReadied": false }
+}

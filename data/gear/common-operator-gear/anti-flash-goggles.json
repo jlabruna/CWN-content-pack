@@ -1,0 +1,9 @@
+{
+  "sourceKey": "anti-flash-goggles",
+  "sourceName": "Goggles,Anti-Flash",
+  "name": "Anti-Flash Goggles",
+  "folderKey": "protective-gear",
+  "description": "Basic anti-flash goggles defuse the visual threat of flashbangs and similar dazzlers.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Goggles_Anti_Flash_ciKwVBzpxZEmvw9r.yml",
+  "system": { "cost": 100, "encumbrance": 1, "noEncReadied": false }
+}

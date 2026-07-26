@@ -1,0 +1,9 @@
+{
+  "sourceKey": "basic-smartphone",
+  "sourceName": "Smartphone,basic",
+  "name": "Basic Smartphone",
+  "folderKey": "personal-electronics",
+  "description": "Corp-approved media devices are cheap and ubiquitous, but few operators trust them with sensitive information.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Smartphone_basic_LPCo0OM98vSR0G7J.yml",
+  "system": { "cost": 50, "encumbrance": 0, "noEncReadied": false }
+}

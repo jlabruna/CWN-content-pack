@@ -1,0 +1,9 @@
+{
+  "sourceKey": "climbing-kit",
+  "sourceName": "Climbing kit",
+  "name": "Climbing Kit",
+  "folderKey": "tools-and-field-kits",
+  "description": "Ultralight cord, a grapnel, grip handholds, and a fast-acting, ultra-strong wall adhesive make up this kit.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Climbing_kit_LVxHccxW3e2jeGy4.yml",
+  "system": { "cost": 150, "encumbrance": 2, "noEncReadied": false }
+}

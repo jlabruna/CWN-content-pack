@@ -1,0 +1,9 @@
+{
+  "sourceKey": "gas-mask",
+  "sourceName": "Gas mask",
+  "name": "Gas Mask",
+  "folderKey": "protective-gear",
+  "description": "Bulky and uncomfortable, but once Readied it leaves the user immune to most inhaled gases, including tear gas grenades.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Gas_mask_dcRKLunJWQKqAZ4g.yml",
+  "system": { "cost": 1000, "encumbrance": 1, "noEncReadied": false }
+}

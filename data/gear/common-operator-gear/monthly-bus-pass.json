@@ -1,0 +1,9 @@
+{
+  "sourceKey": "monthly-bus-pass",
+  "sourceName": "Bus pass,monthly",
+  "name": "Monthly Bus Pass",
+  "folderKey": "services-and-consumables",
+  "description": "A critical mobility resource for the first mission of many operators.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Bus_pass_monthly_Stz8STWLUO3NWAiF.yml",
+  "system": { "cost": 50, "encumbrance": 0, "noEncReadied": false }
+}

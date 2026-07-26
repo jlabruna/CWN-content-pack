@@ -1,0 +1,9 @@
+{
+  "sourceKey": "ultralight-radio-tab",
+  "sourceName": "Radio,ultralight tab",
+  "name": "Ultralight Radio Tab",
+  "folderKey": "personal-electronics",
+  "description": "An ultra-convenient headset or collar-tab radio with a range of one kilometer in the city and six kilometers in an open, flat area.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Radio_ultralight_tab_dTPa6dQrfZshBfR6.yml",
+  "system": { "cost": 500, "encumbrance": 0, "noEncReadied": false }
+}

@@ -1,0 +1,9 @@
+{
+  "sourceKey": "haute-couture-clothing",
+  "sourceName": "Clothing,haute couture",
+  "name": "Haute Couture Clothing",
+  "folderKey": "carry-gear-and-clothing",
+  "description": "Clothing has no Encumbrance when worn, but it is sometimes prudent to have a spare outfit in your pack.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Clothing_haute_couture_WMrmlZ99qnE6ztQt.yml",
+  "system": { "cost": 10000, "encumbrance": 1, "noEncReadied": true }
+}

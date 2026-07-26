@@ -1,0 +1,9 @@
+{
+  "sourceKey": "handheld-radio",
+  "sourceName": "Radio,handheld",
+  "name": "Handheld Radio",
+  "folderKey": "personal-electronics",
+  "description": "A conventional handheld radio with a range of one kilometer in the city and six kilometers in an open, flat area.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Radio_handheld_nFd6xlrB2vgaL5If.yml",
+  "system": { "cost": 50, "encumbrance": 1, "noEncReadied": false }
+}

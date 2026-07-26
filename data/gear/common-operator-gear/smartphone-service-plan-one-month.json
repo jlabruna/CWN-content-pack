@@ -1,0 +1,9 @@
+{
+  "sourceKey": "smartphone-service-plan-one-month",
+  "sourceName": "Smartphone service plan/month",
+  "name": "Smartphone Service Plan — One Month",
+  "folderKey": "services-and-consumables",
+  "description": "One month of ordinary smartphone network service.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Smartphone_service_plan_month_sy7utEVzpm8ZxTF3.yml",
+  "system": { "cost": 10, "encumbrance": 0, "noEncReadied": false }
+}

@@ -6,7 +6,9 @@ rights are reserved.
 
 This includes the Harbour City Stories weapon and armor icon collections in
 `assets/icons/weapons/` and `assets/icons/armor/`, and the original physical
-ammunition icon collection in `assets/icons/ammunition/`.
+ammunition icon collection in `assets/icons/ammunition/`, and the Common
+Operator Gear icon collection in
+`assets/icons/gear/common-operator-gear/`.
 
 The MIT license in `LICENSE` applies to the module's software and documentation;
 it does not automatically grant rights to artwork or other media assets.

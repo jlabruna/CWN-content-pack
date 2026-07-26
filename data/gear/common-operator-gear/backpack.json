@@ -1,0 +1,14 @@
+{
+  "sourceKey": "backpack",
+  "sourceName": "Backpack",
+  "name": "Backpack",
+  "folderKey": "carry-gear-and-clothing",
+  "description": "A practical load-bearing pack for an operator's carried equipment. This Content Pack version uses SWNR's native container system with six points of Encumbrance capacity.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Backpack_AcDB7LSrCGWRKdxm.yml; capacity is a Content Pack abstraction",
+  "system": {
+    "cost": 25,
+    "encumbrance": 1,
+    "noEncReadied": true,
+    "container": { "isContainer": true, "isOpen": true, "capacity": { "max": 6, "value": 0 } }
+  }
+}

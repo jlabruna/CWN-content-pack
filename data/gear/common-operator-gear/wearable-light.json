@@ -1,0 +1,9 @@
+{
+  "sourceKey": "wearable-light",
+  "sourceName": "Wearable light",
+  "name": "Wearable Light",
+  "folderKey": "tools-and-field-kits",
+  "description": "This clip-on light can illuminate up to 30 meters ahead of the wearer.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Wearable_light_ByKbAiJA0PahauYA.yml",
+  "system": { "cost": 25, "encumbrance": 1, "noEncReadied": true }
+}

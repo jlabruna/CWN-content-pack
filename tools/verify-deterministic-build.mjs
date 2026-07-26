@@ -14,7 +14,8 @@ if (!systemRoot) {
 const packNames = [
   "harbour-city-stories-weapons",
   "harbour-city-stories-armor",
-  "cwn-ammunition"
+  "cwn-ammunition",
+  "cwn-common-operator-gear"
 ];
 
 const sortObject = (value) => {
@@ -59,6 +60,22 @@ const snapshotGeneratedContent = async (label) => {
       .digest("hex");
   }
 
+  const gearIconRoot = path.join(
+    moduleRoot,
+    "assets",
+    "icons",
+    "gear",
+    "common-operator-gear"
+  );
+  content.commonOperatorGearIcons = {};
+  for (const filename of (await fs.readdir(gearIconRoot)).sort()) {
+    const bytes = await fs.readFile(path.join(gearIconRoot, filename));
+    content.commonOperatorGearIcons[filename] = crypto
+      .createHash("sha256")
+      .update(bytes)
+      .digest("hex");
+  }
+
   return crypto
     .createHash("sha256")
     .update(JSON.stringify(sortObject(content)))
@@ -71,7 +88,9 @@ const commands = [
   ["tools/generate-armor-icons.mjs"],
   ["tools/build-armor-compendium.mjs", systemRoot],
   ["tools/generate-ammunition-icons.mjs"],
-  ["tools/build-ammunition-compendium.mjs"]
+  ["tools/build-ammunition-compendium.mjs"],
+  ["tools/generate-common-operator-gear-icons.mjs"],
+  ["tools/build-common-operator-gear-compendium.mjs"]
 ];
 
 for (const args of commands) {
@@ -95,4 +114,3 @@ if (before !== after) {
 }
 
 console.log(`Deterministic rebuild verified: ${after}.`);
-

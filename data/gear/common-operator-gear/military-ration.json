@@ -1,0 +1,9 @@
+{
+  "sourceKey": "military-ration",
+  "sourceName": "Military ration (1 day)",
+  "name": "Military Ration",
+  "folderKey": "services-and-consumables",
+  "description": "This unappetizing food brick contains the nutrition necessary for one day of heavy activity.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Military_ration__1_day__m1c7rtdxiBprAHko.yml",
+  "system": { "cost": 20, "encumbrance": 1, "noEncReadied": false }
+}

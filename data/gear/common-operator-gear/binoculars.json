@@ -1,0 +1,9 @@
+{
+  "sourceKey": "binoculars",
+  "sourceName": "Binoculars",
+  "name": "Binoculars",
+  "folderKey": "tools-and-field-kits",
+  "description": "Most modern binoculars have low-light functionality and magnification sufficient to bring targets as much as a kilometer distant into view.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Binoculars_NiiMKmQpIeyFb9FL.yml",
+  "system": { "cost": 100, "encumbrance": 1, "noEncReadied": false }
+}

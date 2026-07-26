@@ -1,0 +1,9 @@
+{
+  "sourceKey": "active-hearing-protection",
+  "sourceName": "Active Hearing Protection",
+  "name": "Active Hearing Protection",
+  "folderKey": "protective-gear",
+  "description": "This headset protects the wearer from disorientation due to loud noises. It passes along conversational-level speech without difficulty.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Active_Hearing_Protection_LFD1kDRzgJmY1UJ5.yml",
+  "system": { "cost": 250, "encumbrance": 1, "noEncReadied": false }
+}

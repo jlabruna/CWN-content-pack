@@ -1,0 +1,9 @@
+{
+  "sourceKey": "fashionable-smartphone",
+  "sourceName": "Smartphone,fashionable",
+  "name": "Fashionable Smartphone",
+  "folderKey": "personal-electronics",
+  "description": "A conspicuously fashionable corp-approved media device; few operators trust such phones with sensitive information.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Smartphone_fashionable_9yR3oGnVwwoBFyCB.yml",
+  "system": { "cost": 2000, "encumbrance": 0, "noEncReadied": false }
+}

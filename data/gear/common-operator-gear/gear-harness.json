@@ -1,0 +1,14 @@
+{
+  "sourceKey": "gear-harness",
+  "sourceName": "Gear harness",
+  "name": "Gear Harness",
+  "folderKey": "carry-gear-and-clothing",
+  "description": "A fitted harness that keeps an operator's field equipment organized and accessible. This Content Pack version uses SWNR's native container system with four points of Encumbrance capacity.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Gear_harness_gx2lski0teFEOmvH.yml; capacity is a Content Pack abstraction",
+  "system": {
+    "cost": 25,
+    "encumbrance": 1,
+    "noEncReadied": true,
+    "container": { "isContainer": true, "isOpen": true, "capacity": { "max": 4, "value": 0 } }
+  }
+}

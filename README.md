@@ -3,7 +3,7 @@
 An independent Foundry VTT v13 content and icon pack for **Cities Without
 Number** games running on the **Systems Without Number Redux (SWNR)** system.
 
-## Version 0.4.1
+## Version 0.5.0
 
 The content pack includes:
 
@@ -17,6 +17,12 @@ The content pack includes:
 - A 14-item **CWN Ammunition & Reloads** compendium containing preconfigured
   physical magazines, shells, ammunition boxes, rounds, and charge packs.
 - 14 original transparent-background ammunition SVG icons.
+- A 27-item **CWN Common Operator Gear** compendium organized into Protective
+  Gear, Carry and Clothing, Tools and Field Gear, Electronics, and Services and
+  Supplies.
+- 27 distinct original Common Operator Gear SVG icons.
+- Native SWNR containers for Backpack (capacity 6) and Gear Harness (capacity
+  4), with no Content Pack runtime automation.
 - Licensing, provenance, validation, and manual test documentation.
 
 The module does not automatically create or overwrite World Items, actor Items,
@@ -32,6 +38,7 @@ campaign.
    - **Harbour City Stories Weapons**
    - **Harbour City Stories Armor**
    - **CWN Ammunition & Reloads**
+   - **CWN Common Operator Gear**
 4. Drag selected Items onto an actor or import them into World Items.
 
 No World Items are created automatically.
@@ -54,7 +61,7 @@ These flags are ignored when **CWN Combat Enhancements** is absent. The Content
 Pack therefore remains independently usable and does not declare Combat
 Enhancements as a dependency.
 
-With CWN Combat Enhancements v0.10.3 enabled, matching actor-owned ammunition
+With CWN Combat Enhancements v0.10.4 enabled, matching actor-owned ammunition
 Items appear in the weapon's **Compatible Magazine** selector. Every imported
 physical reload remains a distinct Item with its own remaining Uses.
 
@@ -91,19 +98,36 @@ no reload Item or Weapon Family flag.
 See [AMMUNITION-CATALOGUE.md](AMMUNITION-CATALOGUE.md) for the exact manifest,
 family mapping, costs, capacities, and exclusions.
 
+## Common Operator Gear
+
+The Common Operator Gear pack contains exactly 27 everyday CWN Items. Generic
+ammunition table rows are intentionally excluded because the separate
+Ammunition & Reloads pack supplies the module's physical ammunition Items.
+
+Backpack and Gear Harness use SWNR 2.3.x's native container fields. Capacity is
+measured in contained-item Encumbrance, containers cannot be nested, and
+contained Items inherit the container's location. The capacities of 6 and 4 are
+Content Pack gameplay abstractions; the Content Pack does not replace or patch
+SWNR's container implementation.
+
+See
+[COMMON-OPERATOR-GEAR-CATALOGUE.md](COMMON-OPERATOR-GEAR-CATALOGUE.md) for the
+complete manifest, source policy, and container limitations.
+
 ## Icon workflow
 
 Icons live in `assets/icons/`. Weapon mappings are recorded in
 `data/icon-mappings.json`. Ammunition and armor compendium Items use direct,
 module-relative icon paths.
 
-All ammunition artwork is original SVG line art with a transparent background.
+All ammunition and Common Operator Gear artwork is original SVG line art with a
+transparent background.
 
 ## Compatibility
 
 - Foundry Virtual Tabletop v13
 - Systems Without Number Redux 2.3.x
-- Optional integration with CWN Combat Enhancements v0.10.3
+- Optional integration with CWN Combat Enhancements v0.10.4
 
 ## Independence notice
 

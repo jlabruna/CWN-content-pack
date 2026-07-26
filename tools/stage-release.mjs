@@ -2,12 +2,19 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+const { extractPack } = await import("@foundryvtt/foundryvtt-cli");
 const moduleRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const releaseRoot = path.join(moduleRoot, "release");
 const stagedModule = path.join(releaseRoot, "cwn-content-pack");
 const githubUpload = path.join(releaseRoot, "github-upload");
-const githubPackagingFix = path.join(releaseRoot, "github-fix-v0.4.1");
+const githubDotfilesUpload = path.join(releaseRoot, "github-dotfiles-upload");
 const manifest = JSON.parse(await fs.readFile(path.join(moduleRoot, "module.json"), "utf8"));
+const expectedPackCounts = Object.freeze({
+  "harbour-city-stories-weapons": { type: "weapon", count: 64 },
+  "harbour-city-stories-armor": { type: "armor", count: 14 },
+  "cwn-ammunition": { type: "item", count: 14 },
+  "cwn-common-operator-gear": { type: "item", count: 27 }
+});
 
 const expectedDownload =
   `/v${manifest.version}/cwn-content-pack-v${manifest.version}.zip`;
@@ -33,6 +40,7 @@ for (const filename of [
   "ASSET-LICENSE.md",
   "THIRD-PARTY-LICENSES.md",
   "AMMUNITION-CATALOGUE.md",
+  "COMMON-OPERATOR-GEAR-CATALOGUE.md",
   "MANUAL-TESTS.md"
 ]) {
   await fs.copyFile(path.join(moduleRoot, filename), path.join(stagedModule, filename));
@@ -49,6 +57,28 @@ for (const pack of manifest.packs ?? []) {
   if (files.length === 0) {
     throw new Error(`Staged declared pack "${pack.name}" is empty.`);
   }
+  const expected = expectedPackCounts[pack.name];
+  if (!expected) {
+    throw new Error(`No release count assertion exists for declared pack "${pack.name}".`);
+  }
+  const extractPath = path.join(moduleRoot, ".build", `stage-${pack.name}`);
+  let itemCount = 0;
+  await fs.rm(extractPath, { recursive: true, force: true });
+  await extractPack(packPath, extractPath, {
+    yaml: true,
+    log: false,
+    transformEntry: async (entry) => {
+      if (entry?.type === expected.type) itemCount += 1;
+      return entry;
+    }
+  });
+  await fs.rm(extractPath, { recursive: true, force: true });
+  if (itemCount !== expected.count) {
+    throw new Error(
+      `Staged pack "${pack.name}" expected ${expected.count} ${expected.type} Items `
+      + `but found ${itemCount}.`
+    );
+  }
 }
 
 const stagedAmmunitionIcons = await fs.readdir(
@@ -56,6 +86,12 @@ const stagedAmmunitionIcons = await fs.readdir(
 );
 if (stagedAmmunitionIcons.filter((name) => name.endsWith(".svg")).length !== 14) {
   throw new Error("Staged release must contain exactly 14 ammunition SVG icons.");
+}
+const stagedGearIcons = await fs.readdir(
+  path.join(stagedModule, "assets", "icons", "gear", "common-operator-gear")
+);
+if (stagedGearIcons.filter((name) => name.endsWith(".svg")).length !== 27) {
+  throw new Error("Staged release must contain exactly 27 Common Operator Gear SVG icons.");
 }
 
 await fs.copyFile(
@@ -91,50 +127,28 @@ for (const filename of [
   "ASSET-LICENSE.md",
   "THIRD-PARTY-LICENSES.md",
   "AMMUNITION-CATALOGUE.md",
+  "COMMON-OPERATOR-GEAR-CATALOGUE.md",
   "MANUAL-TESTS.md"
 ]) {
   await fs.copyFile(path.join(moduleRoot, filename), path.join(githubUpload, filename));
 }
 
-// Small browser-upload bundle for repairing the incomplete v0.4.0 tag without
-// requiring the full source tree to be uploaded again.
-await fs.rm(githubPackagingFix, { recursive: true, force: true });
-await fs.mkdir(path.join(githubPackagingFix, ".github", "workflows"), {
-  recursive: true
-});
-await fs.mkdir(path.join(githubPackagingFix, "tools"), { recursive: true });
-
-await fs.copyFile(
-  path.join(moduleRoot, ".github", "workflows", "build-release.yml"),
-  path.join(githubPackagingFix, ".github", "workflows", "build-release.yml")
+// A separate dotfiles bundle makes hidden browser-upload paths easy to locate
+// in Windows Explorer when "Hidden items" is enabled.
+await fs.rm(githubDotfilesUpload, { recursive: true, force: true });
+await fs.mkdir(githubDotfilesUpload, { recursive: true });
+await fs.cp(
+  path.join(moduleRoot, ".github"),
+  path.join(githubDotfilesUpload, ".github"),
+  { recursive: true }
 );
-for (const filename of [
-  "generate-ammunition-icons.mjs",
-  "validate-content.mjs",
-  "verify-deterministic-build.mjs",
-  "stage-release.mjs"
-]) {
-  await fs.copyFile(
-    path.join(moduleRoot, "tools", filename),
-    path.join(githubPackagingFix, "tools", filename)
-  );
-}
-for (const filename of [
-  ".gitignore",
-  "module.json",
-  "package.json",
-  "README.md",
-  "CHANGELOG.md",
-  "MANUAL-TESTS.md"
-]) {
-  await fs.copyFile(
-    path.join(moduleRoot, filename),
-    path.join(githubPackagingFix, filename)
-  );
-}
+await fs.copyFile(
+  path.join(moduleRoot, ".gitignore"),
+  path.join(githubDotfilesUpload, ".gitignore")
+);
 
 console.log(
   `Staged CWN Content Pack ${manifest.version} at ${stagedModule} `
   + `and browser-upload sources at ${githubUpload}. `
-  + `Packaging repair files are at ${githubPackagingFix}.`
+  + `Hidden browser-upload paths are also at ${githubDotfilesUpload}.`
 );

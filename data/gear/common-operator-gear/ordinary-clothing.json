@@ -1,0 +1,9 @@
+{
+  "sourceKey": "ordinary-clothing",
+  "sourceName": "Clothing,ordinary",
+  "name": "Ordinary Clothing",
+  "folderKey": "carry-gear-and-clothing",
+  "description": "Clothing has no Encumbrance when worn, but it is sometimes prudent to have a spare outfit in your pack.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Clothing_ordinary_kZ5hbRszlmMIZwjh.yml",
+  "system": { "cost": 25, "encumbrance": 1, "noEncReadied": true }
+}

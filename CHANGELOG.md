@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.5.0
+
+- Added the native 27-item **CWN Common Operator Gear** compendium.
+- Organized gear into five deterministic folders: Protective Gear, Carry and
+  Clothing, Tools and Field Gear, Electronics, and Services and Supplies.
+- Added 27 distinct original transparent-background SVG gear icons.
+- Added native SWNR containers for Backpack (capacity 6) and Gear Harness
+  (capacity 4), while preserving `No Encumbrance Readied` on those Items,
+  clothing, and Wearable Light.
+- Excluded the two generic ammunition rows already superseded by the dedicated
+  physical ammunition compendium.
+- Added strict source, field, description, provenance, icon, deterministic ID,
+  folder, count, staging, and release-package validation for all 27 Items.
+- Updated release packaging to require all four compendia and exact counts of
+  64 weapons, 14 armor Items, 14 ammunition Items, and 27 gear Items.
+
 ## 0.4.1
 
 - Fix release packaging so the compiled CWN Ammunition & Reloads database is

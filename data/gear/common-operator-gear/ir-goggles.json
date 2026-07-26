@@ -1,0 +1,9 @@
+{
+  "sourceKey": "ir-goggles",
+  "sourceName": "Goggles,IR",
+  "name": "IR Goggles",
+  "folderKey": "protective-gear",
+  "description": "These goggles include anti-flash technology and give the user effective infrared vision out to 50 meters in most environments.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Goggles_IR_PRNnmQsoTGAiEKru.yml",
+  "system": { "cost": 1000, "encumbrance": 1, "noEncReadied": false }
+}

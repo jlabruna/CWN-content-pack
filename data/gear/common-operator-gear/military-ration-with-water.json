@@ -1,0 +1,9 @@
+{
+  "sourceKey": "military-ration-with-water",
+  "sourceName": "Military ration w/ water (1 day)",
+  "name": "Military Ration with Water",
+  "folderKey": "services-and-consumables",
+  "description": "This unappetizing food brick contains the nutrition necessary for one day of heavy activity, together with the water needed for that day.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Military_ration_w__water__1_day__eZWpOXtmpHIHUXnT.yml",
+  "system": { "cost": 20, "encumbrance": 2, "noEncReadied": false }
+}
