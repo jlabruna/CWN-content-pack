@@ -1,21 +1,17 @@
 {
-  "id": "cwn-combat-enhancements",
-  "title": "CWN Combat Enhancements",
-  "description": "Combat automation, exact weapon-family magazine reloads, and an experimental Network Console for Cities Without Number games using the SWNR system.",
-  "version": "0.10.2",
+  "id": "cwn-content-pack",
+  "title": "CWN Content & Icon Pack",
+  "description": "An independent content and icon pack for Cities Without Number games using the SWNR Foundry VTT system.",
+  "version": "0.3.1",
   "authors": [
     {
       "name": "jlabruna"
     }
   ],
-  "url": "https://github.com/jlabruna/CWN-combat-enhancements",
-  "manifest": "https://github.com/jlabruna/CWN-combat-enhancements/releases/latest/download/module.json",
-  "download": "https://github.com/jlabruna/CWN-combat-enhancements/releases/download/v0.10.2/cwn-combat-enhancements-v0.10.2.zip",
-  "socket": true,
-  "bugs": "https://github.com/jlabruna/CWN-combat-enhancements/issues",
   "compatibility": {
-    "minimum": "13.345",
-    "verified": "13.348"
+    "minimum": "13",
+    "verified": "13",
+    "maximum": "13"
   },
   "relationships": {
     "systems": [
@@ -30,14 +26,7 @@
     ]
   },
   "esmodules": [
-    "scripts/cwn-combat-enhancements.mjs",
-    "scripts/magazine-reload.mjs",
-    "scripts/suppressive-fire.mjs",
-    "scripts/network-console/network-console.mjs"
-  ],
-  "styles": [
-    "styles/cwn-combat-enhancements.css",
-    "styles/network-console.css"
+    "scripts/main.mjs"
   ],
   "languages": [
     {
@@ -45,5 +34,33 @@
       "name": "English",
       "path": "lang/en.json"
     }
-  ]
+  ],
+  "packs": [
+    {
+      "name": "harbour-city-stories-weapons",
+      "label": "Harbour City Stories Weapons",
+      "path": "packs/harbour-city-stories-weapons",
+      "type": "Item",
+      "system": "swnr",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "harbour-city-stories-armor",
+      "label": "Harbour City Stories Armor",
+      "path": "packs/harbour-city-stories-armor",
+      "type": "Item",
+      "system": "swnr",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    }
+  ],
+  "url": "https://github.com/jlabruna/CWN-content-pack",
+  "manifest": "https://github.com/jlabruna/CWN-content-pack/releases/latest/download/module.json",
+  "download": "https://github.com/jlabruna/CWN-content-pack/releases/download/v0.3.1/cwn-content-pack-v0.3.1.zip",
+  "license": "LICENSE"
 }
