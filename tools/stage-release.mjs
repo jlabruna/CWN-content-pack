@@ -13,7 +13,8 @@ const expectedPackCounts = Object.freeze({
   "harbour-city-stories-weapons": { type: "weapon", count: 64 },
   "harbour-city-stories-armor": { type: "armor", count: 14 },
   "cwn-ammunition": { type: "item", count: 14 },
-  "cwn-common-operator-gear": { type: "item", count: 27 }
+  "cwn-common-operator-gear": { type: "item", count: 27 },
+  "cwn-cyberware": { type: "cyberware", count: 88 }
 });
 
 const expectedDownload =
@@ -41,6 +42,8 @@ for (const filename of [
   "THIRD-PARTY-LICENSES.md",
   "AMMUNITION-CATALOGUE.md",
   "COMMON-OPERATOR-GEAR-CATALOGUE.md",
+  "CYBERWARE-CATALOGUE.md",
+  "CYBERWARE-AUDIT.md",
   "MANUAL-TESTS.md"
 ]) {
   await fs.copyFile(path.join(moduleRoot, filename), path.join(stagedModule, filename));
@@ -93,6 +96,12 @@ const stagedGearIcons = await fs.readdir(
 if (stagedGearIcons.filter((name) => name.endsWith(".svg")).length !== 27) {
   throw new Error("Staged release must contain exactly 27 Common Operator Gear SVG icons.");
 }
+const stagedCyberwareIcons = await fs.readdir(
+  path.join(stagedModule, "assets", "icons", "cyberware")
+);
+if (stagedCyberwareIcons.filter((name) => name.endsWith(".svg")).length !== 88) {
+  throw new Error("Staged release must contain exactly 88 cyberware SVG icons.");
+}
 
 await fs.copyFile(
   path.join(moduleRoot, "module.json"),
@@ -128,6 +137,8 @@ for (const filename of [
   "THIRD-PARTY-LICENSES.md",
   "AMMUNITION-CATALOGUE.md",
   "COMMON-OPERATOR-GEAR-CATALOGUE.md",
+  "CYBERWARE-CATALOGUE.md",
+  "CYBERWARE-AUDIT.md",
   "MANUAL-TESTS.md"
 ]) {
   await fs.copyFile(path.join(moduleRoot, filename), path.join(githubUpload, filename));

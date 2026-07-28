@@ -16,7 +16,8 @@ const expectedPacks = Object.freeze({
   "harbour-city-stories-weapons": { itemType: "weapon", count: 64 },
   "harbour-city-stories-armor": { itemType: "armor", count: 14, folderCount: 3 },
   "cwn-ammunition": { itemType: "item", count: 14, folderCount: 4 },
-  "cwn-common-operator-gear": { itemType: "item", count: 27, folderCount: 5 }
+  "cwn-common-operator-gear": { itemType: "item", count: 27, folderCount: 5 },
+  "cwn-cyberware": { itemType: "cyberware", count: 88, folderCount: 8 }
 });
 const expectedWeaponIdentityDigest =
   "ea6b624ee9c9a8fa10fdca13971315ecb7cfd332643b952c7421a08f947b936b";
@@ -338,6 +339,19 @@ for (const item of gearPack.items) {
     throw new Error(`Common Operator Gear "${item.name}" has invalid provenance.`);
   }
 
+  const recurringExpense = getProperty(
+    item,
+    `flags.${CONTENT_PACK_FLAG_SCOPE}.recurringExpense`
+  );
+  const expectedRecurring = sourceKey === "monthly-bus-pass"
+    ? { key: "monthly-bus-pass", type: "service", monthlyCost: 50 }
+    : sourceKey === "smartphone-service-plan-one-month"
+      ? { key: "smartphone-service-plan", type: "service", monthlyCost: 10 }
+      : null;
+  if (JSON.stringify(recurringExpense ?? null) !== JSON.stringify(expectedRecurring)) {
+    throw new Error(`Common Operator Gear "${item.name}" has invalid recurring-expense metadata.`);
+  }
+
   if (capacity > 0) {
     if (
       item.system?.container?.isContainer !== true
@@ -386,8 +400,115 @@ if (
   throw new Error("Common Operator Gear does not contain the exact approved 27-item manifest.");
 }
 
+const cyberwarePack = loadedPacks.get("cwn-cyberware");
+const expectedCyberwareFolders = new Set([
+  "Body",
+  "Head",
+  "Skin",
+  "Limb",
+  "Nerve",
+  "Sensory",
+  "Medical",
+  "General"
+]);
+const actualCyberwareFolders = new Set(cyberwarePack.folders.map((folder) => folder.name));
+if (
+  actualCyberwareFolders.size !== expectedCyberwareFolders.size
+  || [...expectedCyberwareFolders].some((name) => !actualCyberwareFolders.has(name))
+) {
+  throw new Error("Cyberware folder names do not match the approved eight-category manifest.");
+}
+
+const cyberwareKeys = new Set();
+const cyberwareNames = new Set();
+const cyberwareIconPaths = new Set();
+const cyberwareIconHashes = new Set();
+const cyberwareAutomationLevels = new Set([
+  "native",
+  "safe-active-effect",
+  "combat-enhancements-handler",
+  "contextual",
+  "manual",
+  "description-only-for-now"
+]);
+for (const item of cyberwarePack.items) {
+  const flags = getProperty(item, `flags.${CONTENT_PACK_FLAG_SCOPE}`);
+  const sourceKey = flags?.catalogueKey;
+  if (
+    typeof sourceKey !== "string"
+    || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(sourceKey)
+    || cyberwareKeys.has(sourceKey)
+  ) {
+    throw new Error(`Cyberware "${item.name}" has an invalid or duplicate catalogue key.`);
+  }
+  cyberwareKeys.add(sourceKey);
+  if (!item.name || cyberwareNames.has(item.name)) {
+    throw new Error(`Cyberware "${item.name}" has an invalid or duplicate name.`);
+  }
+  cyberwareNames.add(item.name);
+  if (
+    item.type !== "cyberware"
+    || !Number.isFinite(item.system?.cost)
+    || item.system.cost < 0
+    || !Number.isFinite(item.system?.strain)
+    || item.system.strain < 0
+    || !Number.isInteger(item.system?.tl)
+    || item.system.tl < 0
+    || !["Body", "Head", "Skin", "Limb", "Nerve", "Sensory", "Medical", "None"]
+      .includes(item.system?.type)
+    || !["Sight", "Touch", "Medical"].includes(item.system?.concealment)
+    || typeof item.system?.effect !== "string"
+    || item.system.effect.trim() === ""
+    || typeof item.system?.description !== "string"
+    || item.system.description.trim() === ""
+  ) {
+    throw new Error(`Cyberware "${item.name}" has invalid native SWNR fields.`);
+  }
+  if (
+    flags?.cyberware?.key !== sourceKey
+    || flags?.cyberware?.sourceType !== "official-catalogue"
+    || flags?.cyberware?.category !== item.system.type.toLowerCase()
+    || !cyberwareAutomationLevels.has(flags?.cyberware?.automationLevel)
+    || flags?.cyberwareMaintenance?.required !== true
+    || flags?.cyberwareMaintenance?.baseCostOverride !== null
+    || typeof flags?.provenance !== "string"
+    || !flags.provenance.includes("CWN SRD via SWNR 2.3.0")
+  ) {
+    throw new Error(`Cyberware "${item.name}" has invalid provenance or automation metadata.`);
+  }
+  if (!Array.isArray(item.effects) || item.effects.length !== 0) {
+    throw new Error(`Cyberware "${item.name}" must not contain unverified Active Effects.`);
+  }
+  const deterministicId = `C${crypto
+    .createHash("sha256")
+    .update(`cwn-cyberware:${sourceKey}`)
+    .digest("hex")}`.slice(0, 16);
+  if (item._id !== deterministicId) {
+    throw new Error(`Cyberware "${item.name}" has a non-deterministic ID.`);
+  }
+  if (cyberwareIconPaths.has(item.img)) {
+    throw new Error(`Duplicate cyberware icon path "${item.img}".`);
+  }
+  cyberwareIconPaths.add(item.img);
+  const icon = await fs.readFile(moduleAssetPath(item.img), "utf8");
+  if (!/<svg\b/.test(icon) || !/viewBox="0 0 512 512"/.test(icon)) {
+    throw new Error(`Cyberware "${item.name}" has an invalid square SVG icon.`);
+  }
+  if (/<rect\b[^>]*\bfill=(?!["']none["'])/i.test(icon)) {
+    throw new Error(`Cyberware "${item.name}" icon has a background fill.`);
+  }
+  const iconHash = crypto.createHash("sha256").update(icon).digest("hex");
+  if (cyberwareIconHashes.has(iconHash)) {
+    throw new Error(`Cyberware "${item.name}" does not have a distinct icon.`);
+  }
+  cyberwareIconHashes.add(iconHash);
+}
+if (cyberwareKeys.size !== 88) {
+  throw new Error(`Cyberware compendium contains ${cyberwareKeys.size} unique entries, expected 88.`);
+}
+
 console.log(
   "Validated 64 weapons (52 reloadable), 14 armor items, 14 ammunition items, "
-  + "27 Common Operator Gear items, all deterministic IDs, folder relationships, "
-  + "icons, and SWNR fields."
+  + "27 Common Operator Gear items, and 88 cyberware items; all deterministic IDs, "
+  + "folder relationships, icons, metadata, and SWNR fields are valid."
 );

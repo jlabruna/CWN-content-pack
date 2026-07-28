@@ -15,7 +15,8 @@ const packNames = [
   "harbour-city-stories-weapons",
   "harbour-city-stories-armor",
   "cwn-ammunition",
-  "cwn-common-operator-gear"
+  "cwn-common-operator-gear",
+  "cwn-cyberware"
 ];
 
 const sortObject = (value) => {
@@ -76,6 +77,16 @@ const snapshotGeneratedContent = async (label) => {
       .digest("hex");
   }
 
+  const cyberwareIconRoot = path.join(moduleRoot, "assets", "icons", "cyberware");
+  content.cyberwareIcons = {};
+  for (const filename of (await fs.readdir(cyberwareIconRoot)).sort()) {
+    const bytes = await fs.readFile(path.join(cyberwareIconRoot, filename));
+    content.cyberwareIcons[filename] = crypto
+      .createHash("sha256")
+      .update(bytes)
+      .digest("hex");
+  }
+
   return crypto
     .createHash("sha256")
     .update(JSON.stringify(sortObject(content)))
@@ -90,7 +101,9 @@ const commands = [
   ["tools/generate-ammunition-icons.mjs"],
   ["tools/build-ammunition-compendium.mjs"],
   ["tools/generate-common-operator-gear-icons.mjs"],
-  ["tools/build-common-operator-gear-compendium.mjs"]
+  ["tools/build-common-operator-gear-compendium.mjs"],
+  ["tools/generate-cyberware-icons.mjs"],
+  ["tools/build-cyberware-compendium.mjs"]
 ];
 
 for (const args of commands) {

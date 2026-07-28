@@ -82,3 +82,23 @@ Do not claim Foundry runtime success until these checks have been completed.
 - [ ] Weapon and armor icons still render.
 - [ ] No red console errors identify CWN Content Pack or CWN Combat
       Enhancements during import and reload tests.
+
+## CWN Cyberware v0.6.0
+
+- [ ] **CWN Cyberware** appears and contains exactly 88 Items in Body, Head,
+      Skin, Limb, Nerve, Sensory, Medical, and General folders.
+- [ ] All 88 Items display distinct original icons and non-empty descriptions.
+- [ ] Inspect examples from every folder and confirm cost, Strain, TL,
+      category, concealment, effect, complication, and Disabled match the
+      permitted source.
+- [ ] Drag cyberware onto a character and confirm native SWNR installed Strain
+      updates normally.
+- [ ] Disable an installed cyberware Item and confirm it remains installed;
+      SWNR's native Strain calculation is not overridden by the Content Pack.
+- [ ] Confirm no cyberware Item contains a generated Active Effect.
+- [ ] With CWN Combat Enhancements disabled, the compendium still opens and
+      Items can be imported and edited normally.
+- [ ] Edit an actor-owned or World Item copy and confirm the compendium source
+      remains unchanged.
+- [ ] Monthly Bus Pass and Smartphone Service Plan still behave as ordinary
+      native SWNR Items when Combat Enhancements is absent.

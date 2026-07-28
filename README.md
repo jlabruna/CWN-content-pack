@@ -3,7 +3,7 @@
 An independent Foundry VTT v13 content and icon pack for **Cities Without
 Number** games running on the **Systems Without Number Redux (SWNR)** system.
 
-## Version 0.5.0
+## Version 0.6.0
 
 The content pack includes:
 
@@ -21,6 +21,13 @@ The content pack includes:
   Gear, Carry and Clothing, Tools and Field Gear, Electronics, and Services and
   Supplies.
 - 27 distinct original Common Operator Gear SVG icons.
+- A complete 88-item **CWN Cyberware** catalogue using native SWNR Cyberware
+  fields and eight category folders.
+- 88 distinct original transparent-background cyberware SVG icons.
+- Audited automation classifications and neutral recurring-maintenance metadata
+  on every cyberware Item.
+- Recurring-service metadata on Monthly Bus Pass and Smartphone Service Plan
+  for optional use by CWN Combat Enhancements.
 - Native SWNR containers for Backpack (capacity 6) and Gear Harness (capacity
   4), with no Content Pack runtime automation.
 - Licensing, provenance, validation, and manual test documentation.
@@ -39,9 +46,30 @@ campaign.
    - **Harbour City Stories Armor**
    - **CWN Ammunition & Reloads**
    - **CWN Common Operator Gear**
+   - **CWN Cyberware**
 4. Drag selected Items onto an actor or import them into World Items.
 
 No World Items are created automatically.
+
+## Cyberware and recurring expenses
+
+The cyberware catalogue uses the native SWNR 2.3.x Cyberware schema for cost,
+Strain, tech level, category, concealment, effect text, complication, and the
+disabled state. SWNR continues to calculate installed Strain. The Content Pack
+does not add runtime automation or speculative Active Effects.
+
+Every cyberware Item has an audited automation classification and a neutral
+maintenance contract under `flags["cwn-content-pack"]`. CWN Combat Enhancements
+v0.13.0 can use this metadata to calculate optional monthly cyberware upkeep.
+Disabled cyberware remains installed and therefore still incurs upkeep unless a
+GM explicitly disables its maintenance override.
+
+The Monthly Bus Pass and Smartphone Service Plan also carry neutral monthly
+service metadata. The Content Pack remains independently usable if Combat
+Enhancements is absent.
+
+See [CYBERWARE-CATALOGUE.md](CYBERWARE-CATALOGUE.md) for the complete manifest
+and [CYBERWARE-AUDIT.md](CYBERWARE-AUDIT.md) for the automation audit.
 
 ## Weapon Families and physical reloads
 

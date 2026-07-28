@@ -18,10 +18,17 @@ included in this module.
 
 ## Asset attributions
 
-No third-party media assets are included in version 0.5.0. Weapon, armor,
-ammunition, and Common Operator Gear icons are original module artwork.
+No third-party media assets are included in version 0.6.0. Weapon, armor,
+ammunition, Common Operator Gear, and cyberware icons are original module
+artwork.
 
 The Common Operator Gear descriptions and table values were checked against CWN
 SRD material distributed by the SWNR 2.3.0 `cwn-items` source pack. Backpack and
 Gear Harness container capacities are original Content Pack gameplay
 abstractions and are not presented as SRD rules.
+
+The Cyberware names, table values, and rules text were checked against CWN SRD
+material distributed by the SWNR 2.3.0 `cwn-items` source pack. The Content Pack
+adds only schema normalization, provenance and interoperability metadata,
+automation-audit classifications, deterministic identifiers, and original
+icons.

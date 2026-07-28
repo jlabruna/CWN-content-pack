@@ -257,6 +257,11 @@ for (const [folderKey, folder] of Object.entries(GEAR_FOLDER_DEFINITIONS)) {
 for (const [index, source] of sources.entries()) {
   const id = stableId("G", `common-operator-gear:${source.sourceKey}`);
   const capacity = source.system.container?.capacity?.max ?? 0;
+  const recurringExpense = source.sourceKey === "monthly-bus-pass"
+    ? { key: "monthly-bus-pass", type: "service", monthlyCost: 50 }
+    : source.sourceKey === "smartphone-service-plan-one-month"
+      ? { key: "smartphone-service-plan", type: "service", monthlyCost: 10 }
+      : null;
   const item = {
     name: source.name,
     type: "item",
@@ -268,7 +273,8 @@ for (const [index, source] of sources.entries()) {
       "cwn-content-pack": {
         catalogueKey: source.sourceKey,
         sourceName: source.sourceName,
-        provenance: source.provenance
+        provenance: source.provenance,
+        ...(recurringExpense ? { recurringExpense } : {})
       }
     },
     system: {

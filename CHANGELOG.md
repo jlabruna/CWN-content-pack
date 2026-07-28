@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.6.0
+
+- Added the complete 88-item **CWN Cyberware** catalogue as a native SWNR Item
+  compendium.
+- Organized cyberware into eight deterministic folders: Body, Head, Skin, Limb,
+  Nerve, Sensory, Medical, and General.
+- Added 88 distinct original transparent-background SVG cyberware icons.
+- Preserved native SWNR cost, Strain, tech level, category, concealment, effect,
+  complication, and disabled fields.
+- Added provenance, deterministic catalogue keys, audited automation
+  classifications, and neutral monthly-maintenance metadata to every cyberware
+  Item.
+- Deliberately omitted unverified Active Effects; the audit documents which
+  effects are native, contextual, manual, description-only, or candidates for
+  an explicit Combat Enhancements handler.
+- Added neutral recurring-service metadata to Monthly Bus Pass ($50/month) and
+  Smartphone Service Plan ($10/month).
+- Added strict 88-item, eight-folder, field, metadata, icon, deterministic-build,
+  staging, and release-package validation.
+
 ## 0.5.0
 
 - Added the native 27-item **CWN Common Operator Gear** compendium.
