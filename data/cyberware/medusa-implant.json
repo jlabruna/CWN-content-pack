@@ -1,0 +1,20 @@
+{
+  "sourceKey": "medusa-implant",
+  "sourceName": "Medusa Implant",
+  "name": "Medusa Implant",
+  "category": "Head",
+  "description": "Prehensile hair implants. Consult the permitted CWN rules reference for activation, limits, and special interactions.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Medusa Implant.yml",
+  "automationLevel": "manual",
+  "maintenanceRequired": true,
+  "system": {
+    "cost": 20000,
+    "strain": 0.5,
+    "tl": 4,
+    "type": "Head",
+    "concealment": "Sight",
+    "effect": "Prehensile hair implants",
+    "complication": "",
+    "disabled": false
+  }
+}

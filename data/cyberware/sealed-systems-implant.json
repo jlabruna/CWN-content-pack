@@ -1,0 +1,20 @@
+{
+  "sourceKey": "sealed-systems-implant",
+  "sourceName": "Sealed Systems Implant",
+  "name": "Sealed Systems Implant",
+  "category": "Skin",
+  "description": "Trigger a temp space suit. Consult the permitted CWN rules reference for activation, limits, and special interactions.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Sealed Systems Implant.yml",
+  "automationLevel": "combat-enhancements-handler",
+  "maintenanceRequired": true,
+  "system": {
+    "cost": 15000,
+    "strain": 1,
+    "tl": 4,
+    "type": "Skin",
+    "concealment": "Medical",
+    "effect": "Trigger a temp space suit",
+    "complication": "",
+    "disabled": false
+  }
+}

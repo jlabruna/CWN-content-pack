@@ -1,0 +1,20 @@
+{
+  "sourceKey": "assisted-glide-system",
+  "sourceName": "Assisted Glide System",
+  "name": "Assisted Glide System",
+  "category": "Body",
+  "description": "Glide from high launch points. Consult the permitted CWN rules reference for activation, limits, and special interactions.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Assisted Glide System.yml",
+  "automationLevel": "manual",
+  "maintenanceRequired": true,
+  "system": {
+    "cost": 50000,
+    "strain": 2,
+    "tl": 4,
+    "type": "Body",
+    "concealment": "Touch",
+    "effect": "Glide from high launch points",
+    "complication": "",
+    "disabled": false
+  }
+}

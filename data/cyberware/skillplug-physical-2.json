@@ -1,0 +1,20 @@
+{
+  "sourceKey": "skillplug-physical-2",
+  "sourceName": "Skillplug Physical 2",
+  "name": "Skillplug Physical 2",
+  "category": "Head",
+  "description": "Level-2 physical skill. Consult the permitted CWN rules reference for activation, limits, and special interactions.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Skillplug Physical 2.yml",
+  "automationLevel": "manual",
+  "maintenanceRequired": true,
+  "system": {
+    "cost": 100000,
+    "strain": 0,
+    "tl": 4,
+    "type": "Head",
+    "concealment": "Touch",
+    "effect": "Level-2 physical skill",
+    "complication": "",
+    "disabled": false
+  }
+}

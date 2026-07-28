@@ -1,0 +1,20 @@
+{
+  "sourceKey": "titan-gun-system",
+  "sourceName": "Titan Gun System",
+  "name": "Titan Gun System",
+  "category": "Body",
+  "description": "Mount a Heavy weapon. Consult the permitted CWN rules reference for activation, limits, and special interactions.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Titan Gun System.yml",
+  "automationLevel": "combat-enhancements-handler",
+  "maintenanceRequired": true,
+  "system": {
+    "cost": 100000,
+    "strain": 1,
+    "tl": 4,
+    "type": "Body",
+    "concealment": "Sight",
+    "effect": "Mount a Heavy weapon",
+    "complication": "",
+    "disabled": false
+  }
+}

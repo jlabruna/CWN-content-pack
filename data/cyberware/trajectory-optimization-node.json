@@ -1,0 +1,20 @@
+{
+  "sourceKey": "trajectory-optimization-node",
+  "sourceName": "Trajectory Optimization Node",
+  "name": "Trajectory Optimization Node",
+  "category": "Nerve",
+  "description": "1/scene turn a miss into a hit. Consult the permitted CWN rules reference for activation, limits, and special interactions.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Trajectory Optimization Node.yml",
+  "automationLevel": "combat-enhancements-handler",
+  "maintenanceRequired": true,
+  "system": {
+    "cost": 50000,
+    "strain": 1,
+    "tl": 4,
+    "type": "Nerve",
+    "concealment": "Medical",
+    "effect": "1/scene turn a miss into a hit",
+    "complication": "",
+    "disabled": false
+  }
+}

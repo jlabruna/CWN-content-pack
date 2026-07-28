@@ -1,0 +1,20 @@
+{
+  "sourceKey": "skillplug-mental-1",
+  "sourceName": "Skillplug Mental 1",
+  "name": "Skillplug Mental 1",
+  "category": "Head",
+  "description": "Level-1 mental skill or fluent language. Consult the permitted CWN rules reference for activation, limits, and special interactions.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Skillplug Mental 1.yml",
+  "automationLevel": "manual",
+  "maintenanceRequired": true,
+  "system": {
+    "cost": 10000,
+    "strain": 0,
+    "tl": 4,
+    "type": "Head",
+    "concealment": "Touch",
+    "effect": "Level-1 mental skill or fluent language",
+    "complication": "",
+    "disabled": false
+  }
+}

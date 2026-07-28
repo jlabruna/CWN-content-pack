@@ -1,0 +1,20 @@
+{
+  "sourceKey": "ear-mod-filter",
+  "sourceName": "Ear Mod/Filter",
+  "name": "Ear Mod/Filter",
+  "category": "Sensory",
+  "description": "Get +2 on hearing skill checks. Consult the permitted CWN rules reference for activation, limits, and special interactions.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Ear Mod-Filter.yml",
+  "automationLevel": "contextual",
+  "maintenanceRequired": true,
+  "system": {
+    "cost": 10000,
+    "strain": 0.5,
+    "tl": 4,
+    "type": "Sensory",
+    "concealment": "Medical",
+    "effect": "Get +2 on hearing skill checks",
+    "complication": "",
+    "disabled": false
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "sourceKey": "muscle-fiber-replacement-i",
+  "sourceName": "Muscle Fiber Replacement I",
+  "name": "Muscle Fiber Replacement I",
+  "category": "Limb",
+  "description": "Str 14, or +2 if higher. Consult the permitted CWN rules reference for activation, limits, and special interactions.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Muscle Fiber Replacement I.yml",
+  "automationLevel": "combat-enhancements-handler",
+  "maintenanceRequired": true,
+  "system": {
+    "cost": 50000,
+    "strain": 1,
+    "tl": 4,
+    "type": "Limb",
+    "concealment": "Touch",
+    "effect": "Str 14, or +2 if higher",
+    "complication": "",
+    "disabled": false
+  }
+}

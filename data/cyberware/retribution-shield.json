@@ -1,0 +1,20 @@
+{
+  "sourceKey": "retribution-shield",
+  "sourceName": "Retribution Shield",
+  "name": "Retribution Shield",
+  "category": "Body",
+  "description": "Burst to harm melee targets. Consult the permitted CWN rules reference for activation, limits, and special interactions.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Retribution Shield.yml",
+  "automationLevel": "combat-enhancements-handler",
+  "maintenanceRequired": true,
+  "system": {
+    "cost": 50000,
+    "strain": 1,
+    "tl": 4,
+    "type": "Body",
+    "concealment": "Touch",
+    "effect": "Burst to harm melee targets",
+    "complication": "",
+    "disabled": false
+  }
+}

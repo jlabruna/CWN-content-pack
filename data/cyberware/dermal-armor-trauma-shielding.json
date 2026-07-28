@@ -1,0 +1,20 @@
+{
+  "sourceKey": "dermal-armor-trauma-shielding",
+  "sourceName": "Dermal Armor/Trauma Shielding",
+  "name": "Dermal Armor/Trauma Shielding",
+  "category": "Body",
+  "description": "Add +1 to user's Trauma Target. Consult the permitted CWN rules reference for activation, limits, and special interactions.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Dermal Armor-Trauma Shielding.yml",
+  "automationLevel": "combat-enhancements-handler",
+  "maintenanceRequired": true,
+  "system": {
+    "cost": 100000,
+    "strain": 1,
+    "tl": 4,
+    "type": "Body",
+    "concealment": "Medical",
+    "effect": "Add +1 to user's Trauma Target",
+    "complication": "",
+    "disabled": false
+  }
+}

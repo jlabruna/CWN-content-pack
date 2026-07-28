@@ -1,0 +1,20 @@
+{
+  "sourceKey": "viper-sting",
+  "sourceName": "Viper Sting",
+  "name": "Viper Sting",
+  "category": "Body",
+  "description": "Hidden drug injection system. Consult the permitted CWN rules reference for activation, limits, and special interactions.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Viper Sting.yml",
+  "automationLevel": "combat-enhancements-handler",
+  "maintenanceRequired": true,
+  "system": {
+    "cost": 25000,
+    "strain": 0.5,
+    "tl": 4,
+    "type": "Body",
+    "concealment": "Medical",
+    "effect": "Hidden drug injection system",
+    "complication": "",
+    "disabled": false
+  }
+}

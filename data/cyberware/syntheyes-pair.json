@@ -1,0 +1,20 @@
+{
+  "sourceKey": "syntheyes-pair",
+  "sourceName": "Syntheyes (pair)",
+  "name": "Syntheyes (pair)",
+  "category": "Sensory",
+  "description": "Lifelike artificial eyes. Consult the permitted CWN rules reference for activation, limits, and special interactions.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Syntheyes (pair).yml",
+  "automationLevel": "manual",
+  "maintenanceRequired": true,
+  "system": {
+    "cost": 25000,
+    "strain": 0.25,
+    "tl": 4,
+    "type": "Sensory",
+    "concealment": "Medical",
+    "effect": "Lifelike artificial eyes",
+    "complication": "",
+    "disabled": false
+  }
+}

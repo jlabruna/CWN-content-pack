@@ -1,0 +1,20 @@
+{
+  "sourceKey": "hemosynthetic-filter-system",
+  "sourceName": "Hemosynthetic Filter System",
+  "name": "Hemosynthetic Filter System",
+  "category": "Body",
+  "description": "Immune to normal disease/toxin. Consult the permitted CWN rules reference for activation, limits, and special interactions.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Hemosynthetic Filter System.yml",
+  "automationLevel": "contextual",
+  "maintenanceRequired": true,
+  "system": {
+    "cost": 25000,
+    "strain": 1,
+    "tl": 4,
+    "type": "Body",
+    "concealment": "Medical",
+    "effect": "Immune to normal disease/toxin",
+    "complication": "",
+    "disabled": false
+  }
+}

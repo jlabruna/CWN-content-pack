@@ -1,0 +1,20 @@
+{
+  "sourceKey": "skillplug-wiring",
+  "sourceName": "Skillplug Wiring",
+  "name": "Skillplug Wiring",
+  "category": "Nerve",
+  "description": "Boost skillplug max to level-3. Consult the permitted CWN rules reference for activation, limits, and special interactions.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Skillplug Wiring.yml",
+  "automationLevel": "combat-enhancements-handler",
+  "maintenanceRequired": true,
+  "system": {
+    "cost": 50000,
+    "strain": 1,
+    "tl": 4,
+    "type": "Nerve",
+    "concealment": "Medical",
+    "effect": "Boost skillplug max to level-3",
+    "complication": "",
+    "disabled": false
+  }
+}

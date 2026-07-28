@@ -1,0 +1,20 @@
+{
+  "sourceKey": "therapeutic-control-dampers",
+  "sourceName": "Therapeutic Control Dampers",
+  "name": "Therapeutic Control Dampers",
+  "category": "Body",
+  "description": "Suppress an implant side-effect. Consult the permitted CWN rules reference for activation, limits, and special interactions.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Therapeutic Control Dampers.yml",
+  "automationLevel": "description-only-for-now",
+  "maintenanceRequired": true,
+  "system": {
+    "cost": 25000,
+    "strain": 1,
+    "tl": 4,
+    "type": "Body",
+    "concealment": "Medical",
+    "effect": "Suppress an implant side-effect",
+    "complication": "",
+    "disabled": false
+  }
+}

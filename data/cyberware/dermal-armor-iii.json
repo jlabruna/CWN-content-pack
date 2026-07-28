@@ -1,0 +1,20 @@
+{
+  "sourceKey": "dermal-armor-iii",
+  "sourceName": "Dermal Armor III",
+  "name": "Dermal Armor III",
+  "category": "Skin",
+  "description": "As II, but AC 20 and +2 TT. Consult the permitted CWN rules reference for activation, limits, and special interactions.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Dermal Armor III.yml",
+  "automationLevel": "combat-enhancements-handler",
+  "maintenanceRequired": true,
+  "system": {
+    "cost": 200000,
+    "strain": 3,
+    "tl": 4,
+    "type": "Skin",
+    "concealment": "Sight",
+    "effect": "As II, but AC 20 and +2 TT",
+    "complication": "",
+    "disabled": false
+  }
+}

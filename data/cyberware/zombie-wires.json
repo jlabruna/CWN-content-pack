@@ -1,0 +1,20 @@
+{
+  "sourceKey": "zombie-wires",
+  "sourceName": "Zombie Wires",
+  "name": "Zombie Wires",
+  "category": "Nerve",
+  "description": "Keep acting at zero HP. Consult the permitted CWN rules reference for activation, limits, and special interactions.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Zombie Wires.yml",
+  "automationLevel": "combat-enhancements-handler",
+  "maintenanceRequired": true,
+  "system": {
+    "cost": 60000,
+    "strain": 2,
+    "tl": 4,
+    "type": "Nerve",
+    "concealment": "Medical",
+    "effect": "Keep acting at zero HP",
+    "complication": "",
+    "disabled": false
+  }
+}

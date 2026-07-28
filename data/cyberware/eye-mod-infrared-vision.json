@@ -1,0 +1,20 @@
+{
+  "sourceKey": "eye-mod-infrared-vision",
+  "sourceName": "Eye Mod/Infrared Vision",
+  "name": "Eye Mod/Infrared Vision",
+  "category": "Sensory",
+  "description": "See heat patterns in the area. Consult the permitted CWN rules reference for activation, limits, and special interactions.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Eye Mod-Infrared Vision.yml",
+  "automationLevel": "contextual",
+  "maintenanceRequired": true,
+  "system": {
+    "cost": 5000,
+    "strain": 0.5,
+    "tl": 4,
+    "type": "Sensory",
+    "concealment": "Medical",
+    "effect": "See heat patterns in the area",
+    "complication": "",
+    "disabled": false
+  }
+}

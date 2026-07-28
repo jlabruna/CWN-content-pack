@@ -1,0 +1,20 @@
+{
+  "sourceKey": "sensory-recorder",
+  "sourceName": "Sensory Recorder",
+  "name": "Sensory Recorder",
+  "category": "Sensory",
+  "description": "Record 3 hours of sense input. Consult the permitted CWN rules reference for activation, limits, and special interactions.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Sensory Recorder.yml",
+  "automationLevel": "manual",
+  "maintenanceRequired": true,
+  "system": {
+    "cost": 10000,
+    "strain": 0.5,
+    "tl": 4,
+    "type": "Sensory",
+    "concealment": "Medical",
+    "effect": "Record 3 hours of sense input",
+    "complication": "",
+    "disabled": false
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "sourceKey": "ear-mod-positional-detection",
+  "sourceName": "Ear Mod/Positional Detection",
+  "name": "Ear Mod/Positional Detection",
+  "category": "Sensory",
+  "description": "Map all sound positions nearby. Consult the permitted CWN rules reference for activation, limits, and special interactions.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Ear Mod-Positional Detection.yml",
+  "automationLevel": "contextual",
+  "maintenanceRequired": true,
+  "system": {
+    "cost": 15000,
+    "strain": 0.5,
+    "tl": 4,
+    "type": "Sensory",
+    "concealment": "Medical",
+    "effect": "Map all sound positions nearby",
+    "complication": "",
+    "disabled": false
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "sourceKey": "skillplug-mental-2",
+  "sourceName": "Skillplug Mental 2",
+  "name": "Skillplug Mental 2",
+  "category": "Head",
+  "description": "Level-2 mental skill. Consult the permitted CWN rules reference for activation, limits, and special interactions.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Skillplug Mental 2.yml",
+  "automationLevel": "manual",
+  "maintenanceRequired": true,
+  "system": {
+    "cost": 50000,
+    "strain": 0,
+    "tl": 4,
+    "type": "Head",
+    "concealment": "Touch",
+    "effect": "Level-2 mental skill",
+    "complication": "",
+    "disabled": false
+  }
+}

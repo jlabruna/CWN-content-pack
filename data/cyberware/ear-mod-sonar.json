@@ -1,0 +1,20 @@
+{
+  "sourceKey": "ear-mod-sonar",
+  "sourceName": "Ear Mod/Sonar",
+  "name": "Ear Mod/Sonar",
+  "category": "Sensory",
+  "description": "Sense surrounds as if visually. Consult the permitted CWN rules reference for activation, limits, and special interactions.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Ear Mod-Sonar.yml",
+  "automationLevel": "contextual",
+  "maintenanceRequired": true,
+  "system": {
+    "cost": 20000,
+    "strain": 0.5,
+    "tl": 4,
+    "type": "Sensory",
+    "concealment": "Medical",
+    "effect": "Sense surrounds as if visually",
+    "complication": "",
+    "disabled": false
+  }
+}

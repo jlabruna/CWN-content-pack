@@ -1,0 +1,20 @@
+{
+  "sourceKey": "medical-support-readout",
+  "sourceName": "Medical Support Readout",
+  "name": "Medical Support Readout",
+  "category": "Body",
+  "description": "Gain +2 to Heal checks on you. Consult the permitted CWN rules reference for activation, limits, and special interactions.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Medical Support Readout.yml",
+  "automationLevel": "contextual",
+  "maintenanceRequired": true,
+  "system": {
+    "cost": 10000,
+    "strain": 0.25,
+    "tl": 4,
+    "type": "Body",
+    "concealment": "Medical",
+    "effect": "Gain +2 to Heal checks on you",
+    "complication": "",
+    "disabled": false
+  }
+}

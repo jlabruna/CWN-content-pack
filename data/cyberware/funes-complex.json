@@ -1,0 +1,20 @@
+{
+  "sourceKey": "funes-complex",
+  "sourceName": "Funes Complex",
+  "name": "Funes Complex",
+  "category": "Head",
+  "description": "Gain eidetic memory. Consult the permitted CWN rules reference for activation, limits, and special interactions.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Funes Complex.yml",
+  "automationLevel": "manual",
+  "maintenanceRequired": true,
+  "system": {
+    "cost": 40000,
+    "strain": 1,
+    "tl": 4,
+    "type": "Head",
+    "concealment": "Medical",
+    "effect": "Gain eidetic memory",
+    "complication": "",
+    "disabled": false
+  }
+}

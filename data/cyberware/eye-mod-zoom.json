@@ -1,0 +1,20 @@
+{
+  "sourceKey": "eye-mod-zoom",
+  "sourceName": "Eye Mod/Zoom",
+  "name": "Eye Mod/Zoom",
+  "category": "Sensory",
+  "description": "500m telescopic vision. Consult the permitted CWN rules reference for activation, limits, and special interactions.",
+  "provenance": "CWN SRD via SWNR 2.3.0 cwn-items/Eye Mod-Zoom.yml",
+  "automationLevel": "contextual",
+  "maintenanceRequired": true,
+  "system": {
+    "cost": 10000,
+    "strain": 0.5,
+    "tl": 4,
+    "type": "Sensory",
+    "concealment": "Medical",
+    "effect": "500m telescopic vision",
+    "complication": "",
+    "disabled": false
+  }
+}
