@@ -533,6 +533,17 @@ const expectedDroneNames = Object.freeze({
   "sui-hummingbird": "Sui Hummingbird",
   "sui-kraken": "Sui Kraken"
 });
+const expectedDroneScales = Object.freeze({
+  "bantech-roach": 0.7,
+  "bantech-sunfish": 0.7,
+  "kessler-kerberos": 0.9,
+  "lem-robotics-pitbull": 0.8,
+  "namu-javelin": 0.8,
+  "namu-shrike": 1,
+  "shintetsu-mouse": 0.6,
+  "sui-hummingbird": 0.6,
+  "sui-kraken": 0.9
+});
 const dronePack = loadedPacks.get("cwn-drones");
 const droneKeys = new Set();
 const droneTokenHashes = new Set();
@@ -589,6 +600,10 @@ for (const actor of dronePack.items) {
     || actor.prototypeToken?.displayName !== 30
     || actor.prototypeToken?.disposition !== 1
     || actor.prototypeToken?.sight?.enabled !== true
+    || actor.prototypeToken?.width !== 1
+    || actor.prototypeToken?.height !== 1
+    || actor.prototypeToken?.texture?.scaleX !== expectedDroneScales[sourceKey]
+    || actor.prototypeToken?.texture?.scaleY !== expectedDroneScales[sourceKey]
   ) {
     throw new Error(`Drone "${actor.name}" has invalid artwork or prototype-token defaults.`);
   }

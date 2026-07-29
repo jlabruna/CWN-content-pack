@@ -101,8 +101,8 @@ for (const [index, source] of sources.entries()) {
         offsetX: 0,
         offsetY: 0,
         fit: "contain",
-        scaleX: 1,
-        scaleY: 1,
+        scaleX: source.tokenScale,
+        scaleY: source.tokenScale,
         rotation: 0,
         tint: "#ffffff",
         alphaThreshold: 0.75
@@ -189,6 +189,12 @@ for (const actor of compiledActors) {
   }
   if (actor.prototypeToken?.sight?.enabled !== true || actor.prototypeToken?.disposition !== 1) {
     throw new Error(`Drone "${actor.name}" has invalid prototype-token defaults.`);
+  }
+  if (
+    actor.prototypeToken?.texture?.scaleX !== actor.prototypeToken?.texture?.scaleY
+    || !(actor.prototypeToken.texture.scaleX >= 0.6 && actor.prototypeToken.texture.scaleX <= 1)
+  ) {
+    throw new Error(`Drone "${actor.name}" has an invalid prototype-token scale.`);
   }
 }
 console.log(`Built and verified ${actorCount} native SWNR drone Actors.`);
