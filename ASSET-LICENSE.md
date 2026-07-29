@@ -9,7 +9,13 @@ This includes the Harbour City Stories weapon and armor icon collections in
 ammunition icon collection in `assets/icons/ammunition/`, and the Common
 Operator Gear icon collection in
 `assets/icons/gear/common-operator-gear/`, and the cyberware icon collection in
-`assets/icons/cyberware/`.
+`assets/icons/cyberware/`, and the drone token collection in
+`assets/tokens/drones/`.
+
+The nine drone tokens were created specifically for this module using original
+AI-generated drone illustrations, then locally cut out, framed, color-accented,
+and exported as transparent 512px WebP assets. They do not incorporate
+third-party game artwork, logos, or extracted source images.
 
 The MIT license in `LICENSE` applies to the module's software and documentation;
 it does not automatically grant rights to artwork or other media assets.

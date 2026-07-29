@@ -102,3 +102,31 @@ Do not claim Foundry runtime success until these checks have been completed.
       remains unchanged.
 - [ ] Monthly Bus Pass and Smartphone Service Plan still behave as ordinary
       native SWNR Items when Combat Enhancements is absent.
+
+## CWN Drones v0.7.0
+
+- [ ] **CWN Drones** appears in Compendium Packs and contains exactly nine
+      Actors.
+- [ ] Confirm the nine names are BanTech Roach, BanTech Sunfish, Kessler
+      Kerberos, Lem Robotics Pitbull, NAMU Javelin, NAMU Shrike, Shintetsu
+      Mouse, Sui Hummingbird, and Sui Kraken.
+- [ ] Open each Actor and confirm it uses the native SWNR Drone sheet.
+- [ ] Confirm each Actor has a distinct circular gunmetal-framed token with
+      transparent corners and no caption or nameplate inside the image.
+- [ ] Confirm all descriptions are non-empty and no Actor contains optional
+      equipment, weapons, fittings, or Active Effects.
+- [ ] Spot-check Mouse: Cost 500, AC 13, Trauma Target 6, HP 1, Fittings 0,
+      Speed 5, Ground, Hardpoints 0, Encumbrance 1.
+- [ ] Spot-check Pitbull: Cost 5,000, AC 15, Trauma Target 8, HP 15, Fittings
+      5, Speed 20, Ground, Hardpoints 1, Encumbrance 5.
+- [ ] Spot-check Shrike: Cost 25,000, AC 18, Trauma Target 8, HP 20, Fittings
+      6, Speed 30, Flying, Hardpoints 2, nonportable Encumbrance 99.
+- [ ] Drag every drone to a Scene and confirm its token uses only the model
+      name, such as `Roach` rather than `BanTech Roach`.
+- [ ] Hover each token as the GM and as a player; confirm its name appears.
+- [ ] Confirm newly placed tokens are Friendly and have token vision enabled.
+- [ ] Confirm each placed token uses the same artwork as its compendium Actor.
+- [ ] Modify an imported or world Actor copy and confirm the compendium source
+      remains unchanged.
+- [ ] Restart the world and confirm the compendium, Actors, prototype settings,
+      and token artwork still load without red Content Pack console errors.

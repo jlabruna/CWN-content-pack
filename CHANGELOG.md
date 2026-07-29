@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.7.0
+
+- Added a new **CWN Drones** Actor compendium containing nine native SWNR drone
+  Actors.
+- Added BanTech Roach, BanTech Sunfish, Kessler Kerberos, Lem Robotics
+  Pitbull, NAMU Javelin, NAMU Shrike, Shintetsu Mouse, Sui Hummingbird, and Sui
+  Kraken with their approved cost, defensive, capacity, movement, hardpoint,
+  and portability values.
+- Added nine distinct original 512px WebP drone tokens with transparent
+  corners, a shared segmented gunmetal frame, and manufacturer accent colors.
+- Configured model-only prototype-token names, Hovered by Anyone name display,
+  Friendly disposition, and enabled token vision.
+- Added deterministic Actor IDs, strict nine-Actor source and compiled-pack
+  validation, artwork validation, deterministic rebuild coverage, release
+  staging checks, and ZIP assertions.
+- Kept all drone Actors free of optional equipment and Active Effects.
+
 ## 0.6.0
 
 - Added the complete 88-item **CWN Cyberware** catalogue as a native SWNR Item

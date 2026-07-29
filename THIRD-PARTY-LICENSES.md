@@ -18,9 +18,9 @@ included in this module.
 
 ## Asset attributions
 
-No third-party media assets are included in version 0.6.0. Weapon, armor,
-ammunition, Common Operator Gear, and cyberware icons are original module
-artwork.
+No third-party media assets are included in version 0.7.0. Weapon, armor,
+ammunition, Common Operator Gear, and cyberware icons, together with all nine
+drone tokens, are original module artwork.
 
 The Common Operator Gear descriptions and table values were checked against CWN
 SRD material distributed by the SWNR 2.3.0 `cwn-items` source pack. Backpack and
@@ -32,3 +32,8 @@ material distributed by the SWNR 2.3.0 `cwn-items` source pack. The Content Pack
 adds only schema normalization, provenance and interoperability metadata,
 automation-audit classifications, deterministic identifiers, and original
 icons.
+
+The drone mechanics were checked against the native SWNR 2.3.x drone Actor
+schema and permitted CWN rules data. Drone descriptions and token artwork are
+original Content Pack material; no SWNR artwork or non-SRD descriptive text is
+redistributed.

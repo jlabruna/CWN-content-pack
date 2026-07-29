@@ -3,7 +3,7 @@
 An independent Foundry VTT v13 content and icon pack for **Cities Without
 Number** games running on the **Systems Without Number Redux (SWNR)** system.
 
-## Version 0.6.0
+## Version 0.7.0
 
 The content pack includes:
 
@@ -26,6 +26,10 @@ The content pack includes:
 - 88 distinct original transparent-background cyberware SVG icons.
 - Audited automation classifications and neutral recurring-maintenance metadata
   on every cyberware Item.
+- A nine-Actor **CWN Drones** compendium using the native SWNR drone Actor
+  schema.
+- Nine distinct original 512px WebP drone tokens with transparent corners and
+  a shared segmented gunmetal frame.
 - Recurring-service metadata on Monthly Bus Pass and Smartphone Service Plan
   for optional use by CWN Combat Enhancements.
 - Native SWNR containers for Backpack (capacity 6) and Gear Harness (capacity
@@ -47,9 +51,23 @@ campaign.
    - **CWN Ammunition & Reloads**
    - **CWN Common Operator Gear**
    - **CWN Cyberware**
-4. Drag selected Items onto an actor or import them into World Items.
+   - **CWN Drones**
+4. Drag selected Items or Actors into the world, or import them selectively.
 
 No World Items are created automatically.
+
+## Native SWNR drones
+
+**CWN Drones** contains BanTech Roach, BanTech Sunfish, Kessler Kerberos, Lem
+Robotics Pitbull, NAMU Javelin, NAMU Shrike, Shintetsu Mouse, Sui Hummingbird,
+and Sui Kraken. They are native SWNR `drone` Actors with their cost, AC, Trauma
+Target, HP, fittings, speed, movement type, hardpoints, and portability encoded
+in the corresponding system fields.
+
+The Actors contain no optional fittings, weapons, or other equipment. Their
+prototype tokens use the model name only, display that name when hovered by
+any user, have Friendly disposition, and have token vision enabled. See
+[DRONE-CATALOGUE.md](DRONE-CATALOGUE.md) for the exact catalogue values.
 
 ## Cyberware and recurring expenses
 
