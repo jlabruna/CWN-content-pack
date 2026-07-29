@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.7.1
+
+- Added model-specific visible token scales while retaining a consistent 1 x 1
+  grid footprint: Mouse and Hummingbird 0.6; Roach and Sunfish 0.7; Pitbull and
+  Javelin 0.8; Kerberos and Kraken 0.9; Shrike 1.0.
+- Added deterministic build and content validation for every drone's exact
+  horizontal and vertical texture scale.
+
 ## 0.7.0
 
 - Added a new **CWN Drones** Actor compendium containing nine native SWNR drone

@@ -3,7 +3,7 @@
 An independent Foundry VTT v13 content and icon pack for **Cities Without
 Number** games running on the **Systems Without Number Redux (SWNR)** system.
 
-## Version 0.7.0
+## Version 0.7.1
 
 The content pack includes:
 
@@ -68,6 +68,9 @@ The Actors contain no optional fittings, weapons, or other equipment. Their
 prototype tokens use the model name only, display that name when hovered by
 any user, have Friendly disposition, and have token vision enabled. See
 [DRONE-CATALOGUE.md](DRONE-CATALOGUE.md) for the exact catalogue values.
+
+Version 0.7.1 adds model-specific visible token scales from 0.6 to 1.0 while
+retaining the existing 1 x 1 grid footprint for movement and targeting.
 
 ## Cyberware and recurring expenses
 

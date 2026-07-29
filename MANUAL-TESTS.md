@@ -103,7 +103,7 @@ Do not claim Foundry runtime success until these checks have been completed.
 - [ ] Monthly Bus Pass and Smartphone Service Plan still behave as ordinary
       native SWNR Items when Combat Enhancements is absent.
 
-## CWN Drones v0.7.0
+## CWN Drones v0.7.x
 
 - [ ] **CWN Drones** appears in Compendium Packs and contains exactly nine
       Actors.
@@ -125,6 +125,10 @@ Do not claim Foundry runtime success until these checks have been completed.
       name, such as `Roach` rather than `BanTech Roach`.
 - [ ] Hover each token as the GM and as a player; confirm its name appears.
 - [ ] Confirm newly placed tokens are Friendly and have token vision enabled.
+- [ ] Confirm every token retains a 1 x 1 grid footprint while its visible
+      artwork uses these scales: Mouse 0.6, Hummingbird 0.6, Roach 0.7,
+      Sunfish 0.7, Pitbull 0.8, Javelin 0.8, Kerberos 0.9, Kraken 0.9, and
+      Shrike 1.0.
 - [ ] Confirm each placed token uses the same artwork as its compendium Actor.
 - [ ] Modify an imported or world Actor copy and confirm the compendium source
       remains unchanged.
