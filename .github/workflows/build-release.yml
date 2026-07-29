@@ -58,6 +58,9 @@ jobs:
       - name: Build cyberware compendium
         run: node tools/build-cyberware-compendium.mjs
 
+      - name: Build drone compendium
+        run: node tools/build-drone-compendium.mjs
+
       - name: Validate generated content
         run: node tools/validate-content.mjs
 
@@ -84,10 +87,12 @@ jobs:
           unzip -Z1 "$ZIP" | grep -q "^packs/cwn-ammunition/"
           unzip -Z1 "$ZIP" | grep -q "^packs/cwn-common-operator-gear/"
           unzip -Z1 "$ZIP" | grep -q "^packs/cwn-cyberware/"
+          unzip -Z1 "$ZIP" | grep -q "^packs/cwn-drones/"
           test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/ammunition/.*\.svg$')" -eq 14
           test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/gear/common-operator-gear/.*\.svg$')" -eq 27
           test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/cyberware/.*\.svg$')" -eq 88
-          echo "Release ZIP contains all five declared packs and all expected icon assets."
+          test "$(unzip -Z1 "$ZIP" | grep -c '^assets/tokens/drones/.*\.webp$')" -eq 9
+          echo "Release ZIP contains all six declared packs and all expected icon and token assets."
 
       - name: Upload workflow artifact
         uses: actions/upload-artifact@v4
