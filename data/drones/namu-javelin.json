@@ -12,5 +12,6 @@
   "speed": 20,
   "moveType": "fly",
   "hardpoints": 1,
-  "encumbrance": 6
+  "encumbrance": 6,
+  "tokenScale": 0.8
 }

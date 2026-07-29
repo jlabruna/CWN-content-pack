@@ -12,5 +12,6 @@
   "speed": 15,
   "moveType": "swim",
   "hardpoints": 2,
-  "encumbrance": 99
+  "encumbrance": 99,
+  "tokenScale": 0.9
 }

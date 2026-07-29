@@ -12,5 +12,6 @@
   "speed": 5,
   "moveType": "ground",
   "hardpoints": 0,
-  "encumbrance": 1
+  "encumbrance": 1,
+  "tokenScale": 0.6
 }
