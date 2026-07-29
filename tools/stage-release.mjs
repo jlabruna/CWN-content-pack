@@ -14,7 +14,8 @@ const expectedPackCounts = Object.freeze({
   "harbour-city-stories-armor": { type: "armor", count: 14 },
   "cwn-ammunition": { type: "item", count: 14 },
   "cwn-common-operator-gear": { type: "item", count: 27 },
-  "cwn-cyberware": { type: "cyberware", count: 88 }
+  "cwn-cyberware": { type: "cyberware", count: 88 },
+  "cwn-drones": { type: "drone", count: 9 }
 });
 
 const expectedDownload =
@@ -44,6 +45,7 @@ for (const filename of [
   "COMMON-OPERATOR-GEAR-CATALOGUE.md",
   "CYBERWARE-CATALOGUE.md",
   "CYBERWARE-AUDIT.md",
+  "DRONE-CATALOGUE.md",
   "MANUAL-TESTS.md"
 ]) {
   await fs.copyFile(path.join(moduleRoot, filename), path.join(stagedModule, filename));
@@ -102,6 +104,12 @@ const stagedCyberwareIcons = await fs.readdir(
 if (stagedCyberwareIcons.filter((name) => name.endsWith(".svg")).length !== 88) {
   throw new Error("Staged release must contain exactly 88 cyberware SVG icons.");
 }
+const stagedDroneTokens = await fs.readdir(
+  path.join(stagedModule, "assets", "tokens", "drones")
+);
+if (stagedDroneTokens.filter((name) => name.endsWith(".webp")).length !== 9) {
+  throw new Error("Staged release must contain exactly nine drone WebP tokens.");
+}
 
 await fs.copyFile(
   path.join(moduleRoot, "module.json"),
@@ -139,6 +147,7 @@ for (const filename of [
   "COMMON-OPERATOR-GEAR-CATALOGUE.md",
   "CYBERWARE-CATALOGUE.md",
   "CYBERWARE-AUDIT.md",
+  "DRONE-CATALOGUE.md",
   "MANUAL-TESTS.md"
 ]) {
   await fs.copyFile(path.join(moduleRoot, filename), path.join(githubUpload, filename));
