@@ -1,0 +1,16 @@
+{
+  "sourceKey": "sui-hummingbird",
+  "name": "Sui Hummingbird",
+  "manufacturer": "Sui",
+  "model": "Hummingbird",
+  "description": "A tiny highly portable flyer suited to quiet observation, with only limited space for added systems.",
+  "cost": 2000,
+  "ac": 15,
+  "traumaTarget": 6,
+  "hp": 5,
+  "fittings": 2,
+  "speed": 10,
+  "moveType": "fly",
+  "hardpoints": 0,
+  "encumbrance": 3
+}

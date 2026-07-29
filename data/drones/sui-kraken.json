@@ -1,0 +1,16 @@
+{
+  "sourceKey": "sui-kraken",
+  "name": "Sui Kraken",
+  "manufacturer": "Sui",
+  "model": "Kraken",
+  "description": "A vehicle-portable aquatic operations drone that weighs over one hundred kilograms when fully loaded.",
+  "cost": 10000,
+  "ac": 16,
+  "traumaTarget": 8,
+  "hp": 20,
+  "fittings": 5,
+  "speed": 15,
+  "moveType": "swim",
+  "hardpoints": 2,
+  "encumbrance": 99
+}

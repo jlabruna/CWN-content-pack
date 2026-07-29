@@ -1,0 +1,16 @@
+{
+  "sourceKey": "shintetsu-mouse",
+  "name": "Shintetsu Mouse",
+  "manufacturer": "Shintetsu",
+  "model": "Mouse",
+  "description": "A fist-sized low-cost wheeled sensor drone made for discreet scouting, with no expansion capacity.",
+  "cost": 500,
+  "ac": 13,
+  "traumaTarget": 6,
+  "hp": 1,
+  "fittings": 0,
+  "speed": 5,
+  "moveType": "ground",
+  "hardpoints": 0,
+  "encumbrance": 1
+}

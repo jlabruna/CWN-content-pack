@@ -1,0 +1,16 @@
+{
+  "sourceKey": "bantech-roach",
+  "name": "BanTech Roach",
+  "manufacturer": "BanTech",
+  "model": "Roach",
+  "description": "A compact wheeled utility drone built for dependable ground reconnaissance and light field support.",
+  "cost": 1000,
+  "ac": 13,
+  "traumaTarget": 6,
+  "hp": 8,
+  "fittings": 3,
+  "speed": 10,
+  "moveType": "ground",
+  "hardpoints": 0,
+  "encumbrance": 3
+}

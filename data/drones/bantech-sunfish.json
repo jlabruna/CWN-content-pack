@@ -1,0 +1,16 @@
+{
+  "sourceKey": "bantech-sunfish",
+  "name": "BanTech Sunfish",
+  "manufacturer": "BanTech",
+  "model": "Sunfish",
+  "description": "A streamlined aquatic drone designed to inspect submerged structures and patrol waterways.",
+  "cost": 1000,
+  "ac": 15,
+  "traumaTarget": 6,
+  "hp": 8,
+  "fittings": 3,
+  "speed": 10,
+  "moveType": "swim",
+  "hardpoints": 0,
+  "encumbrance": 3
+}

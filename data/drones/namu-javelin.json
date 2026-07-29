@@ -1,0 +1,16 @@
+{
+  "sourceKey": "namu-javelin",
+  "name": "NAMU Javelin",
+  "manufacturer": "NAMU",
+  "model": "Javelin",
+  "description": "A sturdy portable flying workhorse able to carry a substantial equipment load into the field.",
+  "cost": 10000,
+  "ac": 16,
+  "traumaTarget": 6,
+  "hp": 12,
+  "fittings": 5,
+  "speed": 20,
+  "moveType": "fly",
+  "hardpoints": 1,
+  "encumbrance": 6
+}

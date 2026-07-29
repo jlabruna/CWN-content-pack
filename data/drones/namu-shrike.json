@@ -1,0 +1,16 @@
+{
+  "sourceKey": "namu-shrike",
+  "name": "NAMU Shrike",
+  "manufacturer": "NAMU",
+  "model": "Shrike",
+  "description": "A three-meter military combat drone with vector wings, high speed, and a heavy mission payload.",
+  "cost": 25000,
+  "ac": 18,
+  "traumaTarget": 8,
+  "hp": 20,
+  "fittings": 6,
+  "speed": 30,
+  "moveType": "fly",
+  "hardpoints": 2,
+  "encumbrance": 99
+}
