@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.7.2
+
+- Standardized the nine drone catalogue names under the established Harbour
+  City manufacturers and model codes: Ironbark Mouse, Blackhound BH-10 Roach,
+  ShinTech ST-14 Hummingbird, Ironbark Sunfish, Helix HX-35 Pitbull, Helix
+  HX-40 Javelin, Titan TD-66 Kraken, Titan TD-70 Kerberos, and ShinTech ST-90
+  Shrike.
+- Renamed the matching catalogue source and token asset paths for consistent
+  branding while preserving the original WebP artwork bytes.
+- Preserved all nine established Actor IDs, mechanics, prices, prototype-token
+  scales, pack structure, and folder relationships.
+- Expanded validation to assert every approved display name, manufacturer,
+  model code, Actor ID, token path, scale, and mechanical value.
+
 ## 0.7.1
 
 - Added model-specific visible token scales while retaining a consistent 1 x 1
@@ -12,10 +26,8 @@
 
 - Added a new **CWN Drones** Actor compendium containing nine native SWNR drone
   Actors.
-- Added BanTech Roach, BanTech Sunfish, Kessler Kerberos, Lem Robotics
-  Pitbull, NAMU Javelin, NAMU Shrike, Shintetsu Mouse, Sui Hummingbird, and Sui
-  Kraken with their approved cost, defensive, capacity, movement, hardpoint,
-  and portability values.
+- Added nine catalogue drones with their approved cost, defensive, capacity,
+  movement, hardpoint, and portability values.
 - Added nine distinct original 512px WebP drone tokens with transparent
   corners, a shared segmented gunmetal frame, and manufacturer accent colors.
 - Configured model-only prototype-token names, Hovered by Anyone name display,

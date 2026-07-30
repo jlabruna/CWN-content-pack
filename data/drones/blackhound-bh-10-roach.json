@@ -1,8 +1,9 @@
 {
-  "sourceKey": "bantech-roach",
-  "name": "BanTech Roach",
-  "manufacturer": "BanTech",
-  "model": "Roach",
+  "sourceKey": "blackhound-bh-10-roach",
+  "actorId": "R42145e262e8d20d",
+  "name": "Blackhound BH-10 Roach",
+  "manufacturer": "Blackhound",
+  "model": "BH-10 Roach",
   "description": "A compact wheeled utility drone built for dependable ground reconnaissance and light field support.",
   "cost": 1000,
   "ac": 13,

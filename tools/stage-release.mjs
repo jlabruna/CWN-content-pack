@@ -107,8 +107,23 @@ if (stagedCyberwareIcons.filter((name) => name.endsWith(".svg")).length !== 88) 
 const stagedDroneTokens = await fs.readdir(
   path.join(stagedModule, "assets", "tokens", "drones")
 );
-if (stagedDroneTokens.filter((name) => name.endsWith(".webp")).length !== 9) {
-  throw new Error("Staged release must contain exactly nine drone WebP tokens.");
+const expectedDroneTokens = [
+  "blackhound-bh-10-roach.webp",
+  "helix-hx-35-pitbull.webp",
+  "helix-hx-40-javelin.webp",
+  "ironbark-mouse.webp",
+  "ironbark-sunfish.webp",
+  "shintech-st-14-hummingbird.webp",
+  "shintech-st-90-shrike.webp",
+  "titan-td-66-kraken.webp",
+  "titan-td-70-kerberos.webp"
+].sort();
+const sortedDroneTokens = stagedDroneTokens.filter((name) => name.endsWith(".webp")).sort();
+if (
+  sortedDroneTokens.length !== expectedDroneTokens.length
+  || expectedDroneTokens.some((name, index) => sortedDroneTokens[index] !== name)
+) {
+  throw new Error("Staged release must contain the exact nine branded drone WebP tokens.");
 }
 
 await fs.copyFile(

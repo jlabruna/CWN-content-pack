@@ -103,13 +103,15 @@ Do not claim Foundry runtime success until these checks have been completed.
 - [ ] Monthly Bus Pass and Smartphone Service Plan still behave as ordinary
       native SWNR Items when Combat Enhancements is absent.
 
-## CWN Drones v0.7.x
+## CWN Drones v0.7.2
 
 - [ ] **CWN Drones** appears in Compendium Packs and contains exactly nine
       Actors.
-- [ ] Confirm the nine names are BanTech Roach, BanTech Sunfish, Kessler
-      Kerberos, Lem Robotics Pitbull, NAMU Javelin, NAMU Shrike, Shintetsu
-      Mouse, Sui Hummingbird, and Sui Kraken.
+- [ ] Confirm the nine names are Ironbark Mouse, Blackhound BH-10 Roach,
+      ShinTech ST-14 Hummingbird, Ironbark Sunfish, Helix HX-35 Pitbull, Helix
+      HX-40 Javelin, Titan TD-66 Kraken, Titan TD-70 Kerberos, and ShinTech
+      ST-90 Shrike.
+- [ ] Confirm none of the superseded catalogue names appears in the compendium.
 - [ ] Open each Actor and confirm it uses the native SWNR Drone sheet.
 - [ ] Confirm each Actor has a distinct circular gunmetal-framed token with
       transparent corners and no caption or nameplate inside the image.
@@ -122,7 +124,7 @@ Do not claim Foundry runtime success until these checks have been completed.
 - [ ] Spot-check Shrike: Cost 25,000, AC 18, Trauma Target 8, HP 20, Fittings
       6, Speed 30, Flying, Hardpoints 2, nonportable Encumbrance 99.
 - [ ] Drag every drone to a Scene and confirm its token uses only the model
-      name, such as `Roach` rather than `BanTech Roach`.
+      name, such as `BH-10 Roach` rather than `Blackhound BH-10 Roach`.
 - [ ] Hover each token as the GM and as a player; confirm its name appears.
 - [ ] Confirm newly placed tokens are Friendly and have token vision enabled.
 - [ ] Confirm every token retains a 1 x 1 grid footprint while its visible
@@ -132,5 +134,7 @@ Do not claim Foundry runtime success until these checks have been completed.
 - [ ] Confirm each placed token uses the same artwork as its compendium Actor.
 - [ ] Modify an imported or world Actor copy and confirm the compendium source
       remains unchanged.
+- [ ] If a world contains a copy imported before v0.7.2, confirm that independent
+      copy retains its previous name and data.
 - [ ] Restart the world and confirm the compendium, Actors, prototype settings,
       and token artwork still load without red Content Pack console errors.

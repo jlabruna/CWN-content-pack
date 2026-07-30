@@ -1,8 +1,9 @@
 {
-  "sourceKey": "lem-robotics-pitbull",
-  "name": "Lem Robotics Pitbull",
-  "manufacturer": "Lem Robotics",
-  "model": "Pitbull",
+  "sourceKey": "helix-hx-35-pitbull",
+  "actorId": "R5ee1bd110c6ed67",
+  "name": "Helix HX-35 Pitbull",
+  "manufacturer": "Helix",
+  "model": "HX-35 Pitbull",
   "description": "A widely sold wheeled patrol drone used for perimeter work by governments and corporate security.",
   "cost": 5000,
   "ac": 15,

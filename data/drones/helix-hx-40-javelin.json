@@ -1,8 +1,9 @@
 {
-  "sourceKey": "namu-javelin",
-  "name": "NAMU Javelin",
-  "manufacturer": "NAMU",
-  "model": "Javelin",
+  "sourceKey": "helix-hx-40-javelin",
+  "actorId": "R2f54fecacb361cf",
+  "name": "Helix HX-40 Javelin",
+  "manufacturer": "Helix",
+  "model": "HX-40 Javelin",
   "description": "A sturdy portable flying workhorse able to carry a substantial equipment load into the field.",
   "cost": 10000,
   "ac": 16,

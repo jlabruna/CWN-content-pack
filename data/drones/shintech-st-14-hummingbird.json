@@ -1,8 +1,9 @@
 {
-  "sourceKey": "sui-hummingbird",
-  "name": "Sui Hummingbird",
-  "manufacturer": "Sui",
-  "model": "Hummingbird",
+  "sourceKey": "shintech-st-14-hummingbird",
+  "actorId": "R2cfbbf8f5bbbdbd",
+  "name": "ShinTech ST-14 Hummingbird",
+  "manufacturer": "ShinTech",
+  "model": "ST-14 Hummingbird",
   "description": "A tiny highly portable flyer suited to quiet observation, with only limited space for added systems.",
   "cost": 2000,
   "ac": 15,

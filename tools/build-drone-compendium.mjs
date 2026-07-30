@@ -1,4 +1,3 @@
-import crypto from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { createRequire } from "node:module";
@@ -11,8 +10,6 @@ const { compilePack, extractPack } = await import("@foundryvtt/foundryvtt-cli");
 
 export const DRONE_PACK_NAME = "cwn-drones";
 export const EXPECTED_DRONE_COUNT = 9;
-export const droneId = (sourceKey) =>
-  `R${crypto.createHash("sha256").update(`cwn-drone:${sourceKey}`).digest("hex")}`.slice(0, 16);
 
 const dataRoot = path.join(moduleRoot, "data", "drones");
 const sourcePack = path.join(moduleRoot, "src", "packs", DRONE_PACK_NAME);
@@ -40,13 +37,23 @@ for (const filename of (await fs.readdir(dataRoot)).filter((name) => name.endsWi
 if (sources.length !== EXPECTED_DRONE_COUNT) {
   throw new Error(`Expected ${EXPECTED_DRONE_COUNT} drone sources, found ${sources.length}.`);
 }
+const actorIds = new Set();
+for (const source of sources) {
+  if (!/^[A-Za-z0-9]{16}$/.test(source.actorId ?? "")) {
+    throw new Error(`Drone "${source.name}" has invalid preserved Actor ID "${source.actorId ?? ""}".`);
+  }
+  if (actorIds.has(source.actorId)) {
+    throw new Error(`Duplicate preserved drone Actor ID "${source.actorId}".`);
+  }
+  actorIds.add(source.actorId);
+}
 
 await fs.rm(sourcePack, { recursive: true, force: true });
 await fs.rm(outputPack, { recursive: true, force: true });
 await fs.mkdir(sourcePack, { recursive: true });
 
 for (const [index, source] of sources.entries()) {
-  const id = droneId(source.sourceKey);
+  const id = source.actorId;
   const tokenPath = `modules/cwn-content-pack/assets/tokens/drones/${source.sourceKey}.webp`;
   const actor = {
     name: source.name,

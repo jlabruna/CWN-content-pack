@@ -1,7 +1,8 @@
 {
-  "sourceKey": "shintetsu-mouse",
-  "name": "Shintetsu Mouse",
-  "manufacturer": "Shintetsu",
+  "sourceKey": "ironbark-mouse",
+  "actorId": "R78ef1dfc7782e88",
+  "name": "Ironbark Mouse",
+  "manufacturer": "Ironbark",
   "model": "Mouse",
   "description": "A fist-sized low-cost wheeled sensor drone made for discreet scouting, with no expansion capacity.",
   "cost": 500,

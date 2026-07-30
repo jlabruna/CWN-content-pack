@@ -3,7 +3,7 @@
 An independent Foundry VTT v13 content and icon pack for **Cities Without
 Number** games running on the **Systems Without Number Redux (SWNR)** system.
 
-## Version 0.7.1
+## Version 0.7.2
 
 The content pack includes:
 
@@ -58,11 +58,12 @@ No World Items are created automatically.
 
 ## Native SWNR drones
 
-**CWN Drones** contains BanTech Roach, BanTech Sunfish, Kessler Kerberos, Lem
-Robotics Pitbull, NAMU Javelin, NAMU Shrike, Shintetsu Mouse, Sui Hummingbird,
-and Sui Kraken. They are native SWNR `drone` Actors with their cost, AC, Trauma
-Target, HP, fittings, speed, movement type, hardpoints, and portability encoded
-in the corresponding system fields.
+**CWN Drones** contains Ironbark Mouse, Blackhound BH-10 Roach, ShinTech ST-14
+Hummingbird, Ironbark Sunfish, Helix HX-35 Pitbull, Helix HX-40 Javelin, Titan
+TD-66 Kraken, Titan TD-70 Kerberos, and ShinTech ST-90 Shrike. They are native
+SWNR `drone` Actors with their cost, AC, Trauma Target, HP, fittings, speed,
+movement type, hardpoints, and portability encoded in the corresponding system
+fields.
 
 The Actors contain no optional fittings, weapons, or other equipment. Their
 prototype tokens use the model name only, display that name when hovered by
@@ -71,6 +72,9 @@ any user, have Friendly disposition, and have token vision enabled. See
 
 Version 0.7.1 adds model-specific visible token scales from 0.6 to 1.0 while
 retaining the existing 1 x 1 grid footprint for movement and targeting.
+Version 0.7.2 standardizes the catalogue under the established Harbour City
+manufacturers and model codes without changing mechanics, prices, token scales,
+Actor IDs, or artwork.
 
 ## Cyberware and recurring expenses
 

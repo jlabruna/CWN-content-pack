@@ -1,7 +1,8 @@
 {
-  "sourceKey": "bantech-sunfish",
-  "name": "BanTech Sunfish",
-  "manufacturer": "BanTech",
+  "sourceKey": "ironbark-sunfish",
+  "actorId": "Rea6ae80977efd63",
+  "name": "Ironbark Sunfish",
+  "manufacturer": "Ironbark",
   "model": "Sunfish",
   "description": "A streamlined aquatic drone designed to inspect submerged structures and patrol waterways.",
   "cost": 1000,

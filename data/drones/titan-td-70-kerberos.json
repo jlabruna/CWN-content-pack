@@ -1,8 +1,9 @@
 {
-  "sourceKey": "kessler-kerberos",
-  "name": "Kessler Kerberos",
-  "manufacturer": "Kessler",
-  "model": "Kerberos",
+  "sourceKey": "titan-td-70-kerberos",
+  "actorId": "R79af13e4415614d",
+  "name": "Titan TD-70 Kerberos",
+  "manufacturer": "Titan",
+  "model": "TD-70 Kerberos",
   "description": "A large armored motorized-tricycle patrol platform built to serve as a durable heavy gun drone.",
   "cost": 15000,
   "ac": 18,

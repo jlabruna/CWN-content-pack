@@ -1,8 +1,9 @@
 {
-  "sourceKey": "namu-shrike",
-  "name": "NAMU Shrike",
-  "manufacturer": "NAMU",
-  "model": "Shrike",
+  "sourceKey": "shintech-st-90-shrike",
+  "actorId": "Rc33b716df8ce944",
+  "name": "ShinTech ST-90 Shrike",
+  "manufacturer": "ShinTech",
+  "model": "ST-90 Shrike",
   "description": "A three-meter military combat drone with vector wings, high speed, and a heavy mission payload.",
   "cost": 25000,
   "ac": 18,

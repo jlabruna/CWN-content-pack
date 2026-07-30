@@ -512,38 +512,80 @@ if (cyberwareKeys.size !== 88) {
 }
 
 const expectedDrones = Object.freeze({
-  "bantech-roach": [1000, 13, 6, 8, 3, 10, "ground", 0, 3],
-  "bantech-sunfish": [1000, 15, 6, 8, 3, 10, "swim", 0, 3],
-  "kessler-kerberos": [15000, 18, 8, 25, 6, 20, "ground", 3, 99],
-  "lem-robotics-pitbull": [5000, 15, 8, 15, 5, 20, "ground", 1, 5],
-  "namu-javelin": [10000, 16, 6, 12, 5, 20, "fly", 1, 6],
-  "namu-shrike": [25000, 18, 8, 20, 6, 30, "fly", 2, 99],
-  "shintetsu-mouse": [500, 13, 6, 1, 0, 5, "ground", 0, 1],
-  "sui-hummingbird": [2000, 15, 6, 5, 2, 10, "fly", 0, 3],
-  "sui-kraken": [10000, 16, 8, 20, 5, 15, "swim", 2, 99]
+  "blackhound-bh-10-roach": [1000, 13, 6, 8, 3, 10, "ground", 0, 3],
+  "ironbark-sunfish": [1000, 15, 6, 8, 3, 10, "swim", 0, 3],
+  "titan-td-70-kerberos": [15000, 18, 8, 25, 6, 20, "ground", 3, 99],
+  "helix-hx-35-pitbull": [5000, 15, 8, 15, 5, 20, "ground", 1, 5],
+  "helix-hx-40-javelin": [10000, 16, 6, 12, 5, 20, "fly", 1, 6],
+  "shintech-st-90-shrike": [25000, 18, 8, 20, 6, 30, "fly", 2, 99],
+  "ironbark-mouse": [500, 13, 6, 1, 0, 5, "ground", 0, 1],
+  "shintech-st-14-hummingbird": [2000, 15, 6, 5, 2, 10, "fly", 0, 3],
+  "titan-td-66-kraken": [10000, 16, 8, 20, 5, 15, "swim", 2, 99]
 });
-const expectedDroneNames = Object.freeze({
-  "bantech-roach": "BanTech Roach",
-  "bantech-sunfish": "BanTech Sunfish",
-  "kessler-kerberos": "Kessler Kerberos",
-  "lem-robotics-pitbull": "Lem Robotics Pitbull",
-  "namu-javelin": "NAMU Javelin",
-  "namu-shrike": "NAMU Shrike",
-  "shintetsu-mouse": "Shintetsu Mouse",
-  "sui-hummingbird": "Sui Hummingbird",
-  "sui-kraken": "Sui Kraken"
+const expectedDroneIdentity = Object.freeze({
+  "blackhound-bh-10-roach": [
+    "Blackhound BH-10 Roach", "Blackhound", "BH-10 Roach", "R42145e262e8d20d"
+  ],
+  "ironbark-sunfish": [
+    "Ironbark Sunfish", "Ironbark", "Sunfish", "Rea6ae80977efd63"
+  ],
+  "titan-td-70-kerberos": [
+    "Titan TD-70 Kerberos", "Titan", "TD-70 Kerberos", "R79af13e4415614d"
+  ],
+  "helix-hx-35-pitbull": [
+    "Helix HX-35 Pitbull", "Helix", "HX-35 Pitbull", "R5ee1bd110c6ed67"
+  ],
+  "helix-hx-40-javelin": [
+    "Helix HX-40 Javelin", "Helix", "HX-40 Javelin", "R2f54fecacb361cf"
+  ],
+  "shintech-st-90-shrike": [
+    "ShinTech ST-90 Shrike", "ShinTech", "ST-90 Shrike", "Rc33b716df8ce944"
+  ],
+  "ironbark-mouse": [
+    "Ironbark Mouse", "Ironbark", "Mouse", "R78ef1dfc7782e88"
+  ],
+  "shintech-st-14-hummingbird": [
+    "ShinTech ST-14 Hummingbird", "ShinTech", "ST-14 Hummingbird", "R2cfbbf8f5bbbdbd"
+  ],
+  "titan-td-66-kraken": [
+    "Titan TD-66 Kraken", "Titan", "TD-66 Kraken", "Rbbca4ae08806107"
+  ]
 });
 const expectedDroneScales = Object.freeze({
-  "bantech-roach": 0.7,
-  "bantech-sunfish": 0.7,
-  "kessler-kerberos": 0.9,
-  "lem-robotics-pitbull": 0.8,
-  "namu-javelin": 0.8,
-  "namu-shrike": 1,
-  "shintetsu-mouse": 0.6,
-  "sui-hummingbird": 0.6,
-  "sui-kraken": 0.9
+  "blackhound-bh-10-roach": 0.7,
+  "ironbark-sunfish": 0.7,
+  "titan-td-70-kerberos": 0.9,
+  "helix-hx-35-pitbull": 0.8,
+  "helix-hx-40-javelin": 0.8,
+  "shintech-st-90-shrike": 1,
+  "ironbark-mouse": 0.6,
+  "shintech-st-14-hummingbird": 0.6,
+  "titan-td-66-kraken": 0.9
 });
+const droneSourceRoot = path.join(moduleRoot, "data", "drones");
+const droneSourceFiles = (await fs.readdir(droneSourceRoot))
+  .filter((name) => name.endsWith(".json"))
+  .sort();
+if (droneSourceFiles.length !== Object.keys(expectedDrones).length) {
+  throw new Error(`Drone source directory contains ${droneSourceFiles.length} entries, expected nine.`);
+}
+for (const filename of droneSourceFiles) {
+  const source = JSON.parse(await fs.readFile(path.join(droneSourceRoot, filename), "utf8"));
+  const identity = expectedDroneIdentity[source.sourceKey];
+  if (
+    filename !== `${source.sourceKey}.json`
+    || !identity
+    || source.name !== identity[0]
+    || source.manufacturer !== identity[1]
+    || source.model !== identity[2]
+    || source.actorId !== identity[3]
+  ) {
+    throw new Error(`Drone source "${filename}" has invalid identity metadata.`);
+  }
+  if (/\b(?:Shintetsu|BanTech|Sui|Lem Robotics|NAMU|Kessler)\b/i.test(JSON.stringify(source))) {
+    throw new Error(`Drone source "${filename}" retains a superseded manufacturer name.`);
+  }
+}
 const dronePack = loadedPacks.get("cwn-drones");
 const droneKeys = new Set();
 const droneTokenHashes = new Set();
@@ -551,11 +593,13 @@ for (const actor of dronePack.items) {
   const flags = getProperty(actor, `flags.${CONTENT_PACK_FLAG_SCOPE}`);
   const sourceKey = flags?.catalogueKey;
   const expected = expectedDrones[sourceKey];
-  if (!expected || droneKeys.has(sourceKey) || actor.name !== expectedDroneNames[sourceKey]) {
+  const identity = expectedDroneIdentity[sourceKey];
+  if (!expected || !identity || droneKeys.has(sourceKey) || actor.name !== identity[0]) {
     throw new Error(`Drone "${actor.name}" has an invalid or duplicate catalogue key.`);
   }
   droneKeys.add(sourceKey);
   const [cost, ac, traumaTarget, hp, fittings, speed, moveType, hardpoints, enc] = expected;
+  const [, manufacturer, model, actorId] = identity;
   if (
     actor.type !== "drone"
     || actor.system?.cost !== cost
@@ -571,7 +615,9 @@ for (const actor of dronePack.items) {
     || actor.system?.hardpoints?.value !== hardpoints
     || actor.system?.enc !== enc
     || actor.system?.model !== "custom"
-    || actor.system?.customModel !== flags?.model
+    || actor.system?.customModel !== model
+    || flags?.manufacturer !== manufacturer
+    || flags?.model !== model
     || typeof actor.system?.description !== "string"
     || actor.system.description.trim() === ""
   ) {
@@ -585,18 +631,14 @@ for (const actor of dronePack.items) {
   ) {
     throw new Error(`Drone "${actor.name}" must not include optional equipment or Active Effects.`);
   }
-  const deterministicId = `R${crypto
-    .createHash("sha256")
-    .update(`cwn-drone:${sourceKey}`)
-    .digest("hex")}`.slice(0, 16);
-  if (actor._id !== deterministicId) {
-    throw new Error(`Drone "${actor.name}" has a non-deterministic Actor ID.`);
+  if (actor._id !== actorId) {
+    throw new Error(`Drone "${actor.name}" did not preserve its established Actor ID.`);
   }
   const expectedTokenPath = `modules/cwn-content-pack/assets/tokens/drones/${sourceKey}.webp`;
   if (
     actor.img !== expectedTokenPath
     || actor.prototypeToken?.texture?.src !== expectedTokenPath
-    || actor.prototypeToken?.name !== flags?.model
+    || actor.prototypeToken?.name !== model
     || actor.prototypeToken?.displayName !== 30
     || actor.prototypeToken?.disposition !== 1
     || actor.prototypeToken?.sight?.enabled !== true

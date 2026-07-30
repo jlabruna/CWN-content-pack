@@ -1,8 +1,9 @@
 {
-  "sourceKey": "sui-kraken",
-  "name": "Sui Kraken",
-  "manufacturer": "Sui",
-  "model": "Kraken",
+  "sourceKey": "titan-td-66-kraken",
+  "actorId": "Rbbca4ae08806107",
+  "name": "Titan TD-66 Kraken",
+  "manufacturer": "Titan",
+  "model": "TD-66 Kraken",
   "description": "A vehicle-portable aquatic operations drone that weighs over one hundred kilograms when fully loaded.",
   "cost": 10000,
   "ac": 16,

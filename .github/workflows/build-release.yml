@@ -92,6 +92,19 @@ jobs:
           test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/gear/common-operator-gear/.*\.svg$')" -eq 27
           test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/cyberware/.*\.svg$')" -eq 88
           test "$(unzip -Z1 "$ZIP" | grep -c '^assets/tokens/drones/.*\.webp$')" -eq 9
+          for TOKEN in \
+            blackhound-bh-10-roach \
+            helix-hx-35-pitbull \
+            helix-hx-40-javelin \
+            ironbark-mouse \
+            ironbark-sunfish \
+            shintech-st-14-hummingbird \
+            shintech-st-90-shrike \
+            titan-td-66-kraken \
+            titan-td-70-kerberos
+          do
+            unzip -Z1 "$ZIP" | grep -qx "assets/tokens/drones/${TOKEN}.webp"
+          done
           echo "Release ZIP contains all six declared packs and all expected icon and token assets."
 
       - name: Upload workflow artifact
