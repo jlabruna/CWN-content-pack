@@ -7,6 +7,7 @@ const moduleRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), ".
 const releaseRoot = path.join(moduleRoot, "release");
 const stagedModule = path.join(releaseRoot, "cwn-content-pack");
 const githubUpload = path.join(releaseRoot, "github-upload");
+const githubPatchUpload = path.join(releaseRoot, "github-upload-v0.7.3-patch");
 const githubDotfilesUpload = path.join(releaseRoot, "github-dotfiles-upload");
 const manifest = JSON.parse(await fs.readFile(path.join(moduleRoot, "module.json"), "utf8"));
 const expectedPackCounts = Object.freeze({
@@ -182,8 +183,49 @@ await fs.copyFile(
   path.join(githubDotfilesUpload, ".gitignore")
 );
 
+// The V0.7.3 compatibility patch changes no source art or catalogue JSON. This
+// compact browser-upload bundle stays below GitHub's 100-file upload limit;
+// the Action rebuilds every generated pack from these updated build sources.
+await fs.rm(githubPatchUpload, { recursive: true, force: true });
+for (const directory of ["scripts", "tools"]) {
+  await fs.mkdir(path.join(githubPatchUpload, directory), { recursive: true });
+}
+for (const filename of [
+  "CHANGELOG.md",
+  "CYBERWARE-AUDIT.md",
+  "CYBERWARE-CATALOGUE.md",
+  "MANUAL-TESTS.md",
+  "README.md",
+  "module.json",
+  "package.json"
+]) {
+  await fs.copyFile(path.join(moduleRoot, filename), path.join(githubPatchUpload, filename));
+}
+await fs.copyFile(
+  path.join(moduleRoot, "scripts", "weapon-catalogue.mjs"),
+  path.join(githubPatchUpload, "scripts", "weapon-catalogue.mjs")
+);
+for (const filename of [
+  "build-ammunition-compendium.mjs",
+  "build-armor-compendium.mjs",
+  "build-common-operator-gear-compendium.mjs",
+  "build-cyberware-compendium.mjs",
+  "build-drone-compendium.mjs",
+  "build-weapon-compendium.mjs",
+  "generate-cyberware-docs.mjs",
+  "stage-release.mjs",
+  "validate-content.mjs",
+  "verify-deterministic-build.mjs"
+]) {
+  await fs.copyFile(
+    path.join(moduleRoot, "tools", filename),
+    path.join(githubPatchUpload, "tools", filename)
+  );
+}
+
 console.log(
   `Staged CWN Content Pack ${manifest.version} at ${stagedModule} `
   + `and browser-upload sources at ${githubUpload}. `
+  + `The compact V0.7.3 patch upload is at ${githubPatchUpload}. `
   + `Hidden browser-upload paths are also at ${githubDotfilesUpload}.`
 );

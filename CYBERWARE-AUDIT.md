@@ -1,7 +1,7 @@
 # CWN Cyberware Automation Audit
 
 All 88 catalogue entries were audited against the SWNR 2.3.x Cyberware schema
-and the current Foundry VTT v13 runtime. Native Cyberware fields are preserved,
+and the current Foundry VTT v14 runtime. Native Cyberware fields are preserved,
 but no speculative Active Effects are embedded. SWNR itself presently automates
 installed Strain; most catalogue effects require context, activation decisions,
 targeting, duration, stacking, or rules adjudication that the native schema does

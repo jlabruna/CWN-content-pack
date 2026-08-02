@@ -99,7 +99,7 @@ const cleanStats = {
   exportSource: null,
   coreVersion: "13.351",
   systemId: "swnr",
-  systemVersion: "2.3.0"
+  systemVersion: "2.3.1"
 };
 
 const escapeHtml = (value) =>

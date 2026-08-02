@@ -5,7 +5,7 @@ import {
 
 /**
  * Harbour City Stories weapon catalogue installer
- * Foundry VTT v13 / Systems Without Number Redux v2.3.0
+ * Foundry VTT v14 / Systems Without Number Redux v2.3.1
  *
  * Installed and updated through the CWN Content & Icon Pack settings menu.
  *
@@ -37,9 +37,9 @@ export async function installWeaponCatalogue() {
     );
   }
 
-  if (game.system.version !== "2.3.0") {
+  if (game.system.version !== "2.3.1") {
     ui.notifications.warn(
-      `This macro was prepared for SWNR 2.3.0. You are running ${game.system.version}; native base-item cloning will reduce compatibility risk.`
+      `This macro was prepared for SWNR 2.3.1. You are running ${game.system.version}; native base-item cloning will reduce compatibility risk.`
     );
   }
 

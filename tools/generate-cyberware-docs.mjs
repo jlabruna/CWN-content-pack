@@ -45,7 +45,12 @@ Cyberware copied from the compendium becomes an independent actor or World Item.
 Later content-pack updates do not silently alter those copies.
 `;
 
-const groups = Map.groupBy(sources, (item) => item.automationLevel);
+const groups = new Map();
+for (const item of sources) {
+  const group = groups.get(item.automationLevel) ?? [];
+  group.push(item);
+  groups.set(item.automationLevel, group);
+}
 const groupSection = (key, title, explanation) => {
   const names = (groups.get(key) ?? []).map((item) => `- ${item.name}`).join("\n") || "- None";
   return `## ${title}\n\n${explanation}\n\n${names}\n`;
@@ -53,7 +58,7 @@ const groupSection = (key, title, explanation) => {
 const audit = `# CWN Cyberware Automation Audit
 
 All 88 catalogue entries were audited against the SWNR 2.3.x Cyberware schema
-and the current Foundry VTT v13 runtime. Native Cyberware fields are preserved,
+and the current Foundry VTT v14 runtime. Native Cyberware fields are preserved,
 but no speculative Active Effects are embedded. SWNR itself presently automates
 installed Strain; most catalogue effects require context, activation decisions,
 targeting, duration, stacking, or rules adjudication that the native schema does

@@ -12,6 +12,23 @@ const { extractPack } = await import("@foundryvtt/foundryvtt-cli");
 const moduleRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const manifest = JSON.parse(await fs.readFile(path.join(moduleRoot, "module.json"), "utf8"));
 
+if (manifest.version !== "0.7.3") {
+  throw new Error(`Expected module version 0.7.3 but found ${manifest.version}.`);
+}
+if (manifest.compatibility?.verified !== "14.365") {
+  throw new Error("module.json must be verified for Foundry VTT 14.365.");
+}
+if (manifest.compatibility?.maximum !== undefined) {
+  throw new Error("module.json must not cap installation at Foundry VTT 13.");
+}
+const swnrRelationship = manifest.relationships?.systems?.find(({ id }) => id === "swnr");
+if (
+  swnrRelationship?.compatibility?.minimum !== "2.3.1"
+  || swnrRelationship?.compatibility?.verified !== "2.3.1"
+) {
+  throw new Error("module.json must require and verify SWNR 2.3.1.");
+}
+
 const expectedPacks = Object.freeze({
   "harbour-city-stories-weapons": { documentType: "Item", itemType: "weapon", count: 64 },
   "harbour-city-stories-armor": { documentType: "Item", itemType: "armor", count: 14, folderCount: 3 },

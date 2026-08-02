@@ -1,9 +1,10 @@
 # CWN Content & Icon Pack
 
-An independent Foundry VTT v13 content and icon pack for **Cities Without
-Number** games running on the **Systems Without Number Redux (SWNR)** system.
+An independent Foundry VTT content and icon pack for **Cities Without Number**
+games running on **Systems Without Number Redux (SWNR) 2.3.1**, verified for
+Foundry VTT 14.365.
 
-## Version 0.7.2
+## Version 0.7.3
 
 The content pack includes:
 
@@ -76,6 +77,9 @@ Version 0.7.2 standardizes the catalogue under the established Harbour City
 manufacturers and model codes without changing mechanics, prices, token scales,
 Actor IDs, or artwork.
 
+Version 0.7.3 retains that catalogue unchanged while rebuilding and validating
+all six compendia for SWNR 2.3.1 and allowing installation on Foundry VTT 14.
+
 ## Cyberware and recurring expenses
 
 The cyberware catalogue uses the native SWNR 2.3.x Cyberware schema for cost,
@@ -85,7 +89,7 @@ does not add runtime automation or speculative Active Effects.
 
 Every cyberware Item has an audited automation classification and a neutral
 maintenance contract under `flags["cwn-content-pack"]`. CWN Combat Enhancements
-v0.13.0 can use this metadata to calculate optional monthly cyberware upkeep.
+v0.13.1 can use this metadata to calculate optional monthly cyberware upkeep.
 Disabled cyberware remains installed and therefore still incurs upkeep unless a
 GM explicitly disables its maintenance override.
 

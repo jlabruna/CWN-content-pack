@@ -89,7 +89,7 @@ globalThis.ui = {
 };
 globalThis.game = {
   user: { isGM: true },
-  system: { id: "swnr", version: "2.3.0" },
+  system: { id: "swnr", version: "2.3.1" },
   modules: new Map([["cwn-content-pack", { active: true }]]),
   items: baseItems,
   packs: [],
@@ -125,7 +125,7 @@ const cleanStats = {
   exportSource: null,
   coreVersion: "13.351",
   systemId: "swnr",
-  systemVersion: "2.3.0"
+  systemVersion: "2.3.1"
 };
 
 for (const [index, folder] of folders.entries()) {

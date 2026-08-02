@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.7.3
+
+- Verified the content pack against Foundry VTT 14.365 and SWNR 2.3.1.
+- Removed the obsolete Foundry V13 maximum compatibility cap.
+- Updated every compendium build to stamp SWNR 2.3.1 metadata while preserving
+  all content, deterministic IDs, folder relationships, icons, and token art.
+- Updated the release workflow to build against the SWNR 2.3.1 tag and reject
+  release tags that do not match `module.json`.
+- Added manifest compatibility assertions to content validation.
+
 ## 0.7.2
 
 - Standardized the nine drone catalogue names under the established Harbour

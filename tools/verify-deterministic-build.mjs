@@ -8,7 +8,7 @@ const { extractPack } = await import("@foundryvtt/foundryvtt-cli");
 const moduleRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const systemRoot = process.argv[2] ? path.resolve(process.argv[2]) : null;
 if (!systemRoot) {
-  throw new Error("Pass the SWNR v2.3.x repository path to verify-deterministic-build.mjs.");
+  throw new Error("Pass the SWNR 2.3.1 repository path to verify-deterministic-build.mjs.");
 }
 
 const packNames = [
