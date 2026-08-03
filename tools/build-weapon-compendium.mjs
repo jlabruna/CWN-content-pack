@@ -165,6 +165,15 @@ for (const [index, item] of createdItems.entries()) {
     item,
     `flags.${CONTENT_PACK_FLAG_SCOPE}.weaponFamily`
   );
+  const generatedNativeSkill = getProperty(
+    item,
+    "flags.harbour-city-stories.nativeSkill",
+  );
+  if (generatedNativeSkill !== rollContract.skill) {
+    throw new Error(
+      `Weapon "${item.name}" must declare native skill "${rollContract.skill}".`,
+    );
+  }
   if (baseContract.reloadable && generatedFamily !== baseContract.weaponFamily) {
     throw new Error(
       `Reloadable weapon "${item.name}" must have family `

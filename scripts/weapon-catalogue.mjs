@@ -1596,6 +1596,7 @@ export async function installWeaponCatalogue() {
           catalogueKey: weapon.key,
           installerVersion: INSTALLER_VERSION,
           baseWeapon: weapon.base,
+          nativeSkill: rollContract.skill,
           category: weapon.category,
           manufacturer: manufacturerData[weapon.manufacturer].name,
         },

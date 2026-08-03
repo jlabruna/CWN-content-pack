@@ -4,7 +4,7 @@ An independent Foundry VTT content and icon pack for **Cities Without Number**
 games running on **Systems Without Number Redux (SWNR) 2.3.1**, verified for
 Foundry VTT 14.365.
 
-## Version 0.7.4
+## Version 0.7.5
 
 The content pack includes:
 
@@ -82,10 +82,12 @@ Actor IDs, or artwork.
 Version 0.7.3 retains that catalogue unchanged while rebuilding and validating
 all six compendia for SWNR 2.3.1 and allowing installation on Foundry VTT 14.
 
-Version 0.7.4 explicitly applies each catalogue weapon's SWNR `stat`,
+Version 0.7.5 explicitly applies each catalogue weapon's SWNR `stat`,
 `secondStat`, `skill`, and `isMelee` values during generation. The portable
 `system.skill` value is `ask`: SWNR skill references are actor-owned IDs, so a
-static compendium cannot safely hard-code a Shoot or Stab Item ID. See
+static compendium cannot safely hard-code a Shoot or Stab Item ID. When CWN
+Combat Enhancements is active, its matching semantic metadata resolves to the
+receiving character's actor-owned Shoot or Stab Item after import. See
 [`WEAPON-ROLL-MAPPING.md`](WEAPON-ROLL-MAPPING.md) for the complete 64-item
 audit and intended native skills.
 

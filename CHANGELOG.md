@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.5
+
+- Preserved the v0.7.4 native weapon-field mapping and added the release
+  metadata required for CWN Combat Enhancements to resolve a freshly imported
+  character weapon's portable Shoot or Stab prompt to that actor's own Skill
+  Item.
+
 ## 0.7.4
 
 - Audited every one of the 64 Harbour City Stories weapons against the SWNR
@@ -13,6 +20,8 @@
 - Preserved SWNR's portable `system.skill: ask` setting because skill Item IDs
   are actor-owned; documented the intended Shoot and Stab selection for every
   native base group.
+- Added semantic native-skill metadata so Combat Enhancements can safely bind
+  an imported character weapon to that character's Shoot or Stab Skill Item.
 
 ## 0.7.3
 

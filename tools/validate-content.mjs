@@ -13,8 +13,8 @@ const { extractPack } = await import("@foundryvtt/foundryvtt-cli");
 const moduleRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const manifest = JSON.parse(await fs.readFile(path.join(moduleRoot, "module.json"), "utf8"));
 
-if (manifest.version !== "0.7.4") {
-  throw new Error(`Expected module version 0.7.4 but found ${manifest.version}.`);
+if (manifest.version !== "0.7.5") {
+  throw new Error(`Expected module version 0.7.5 but found ${manifest.version}.`);
 }
 if (manifest.compatibility?.verified !== "14.365") {
   throw new Error("module.json must be verified for Foundry VTT 14.365.");
@@ -156,6 +156,7 @@ for (const weapon of weapons) {
     weapon,
     `flags.${CONTENT_PACK_FLAG_SCOPE}.weaponFamily`
   );
+  const nativeSkill = getProperty(weapon, "flags.harbour-city-stories.nativeSkill");
   if (!sourceKey) {
     throw new Error(`Weapon "${weapon.name}" is missing its legacy catalogueKey.`);
   }
@@ -178,6 +179,11 @@ for (const weapon of weapons) {
   } else if (family !== undefined) {
     throw new Error(
       `Excluded weapon "${weapon.name}" unexpectedly has family "${family}".`
+    );
+  }
+  if (nativeSkill !== rollContract.skill) {
+    throw new Error(
+      `Weapon "${weapon.name}" must declare native skill "${rollContract.skill}".`,
     );
   }
   for (const [field, expected] of Object.entries({

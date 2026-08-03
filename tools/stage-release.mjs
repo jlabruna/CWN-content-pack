@@ -7,7 +7,7 @@ const moduleRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), ".
 const releaseRoot = path.join(moduleRoot, "release");
 const stagedModule = path.join(releaseRoot, "cwn-content-pack");
 const githubUpload = path.join(releaseRoot, "github-upload");
-const githubPatchUpload = path.join(releaseRoot, "github-upload-v0.7.4-patch");
+const githubPatchUpload = path.join(releaseRoot, "github-upload-v0.7.5-patch");
 const githubDotfilesUpload = path.join(releaseRoot, "github-dotfiles-upload");
 const manifest = JSON.parse(await fs.readFile(path.join(moduleRoot, "module.json"), "utf8"));
 const expectedPackCounts = Object.freeze({
@@ -184,7 +184,7 @@ await fs.copyFile(
   path.join(githubDotfilesUpload, ".gitignore")
 );
 
-// The V0.7.4 weapon-roll patch changes no source art or catalogue JSON. This
+// The V0.7.5 weapon-roll patch changes no source art or catalogue JSON. This
 // compact browser-upload bundle stays below GitHub's 100-file upload limit;
 // the Action rebuilds every generated pack from these updated build sources.
 await fs.rm(githubPatchUpload, { recursive: true, force: true });
@@ -232,6 +232,6 @@ for (const filename of [
 console.log(
   `Staged CWN Content Pack ${manifest.version} at ${stagedModule} `
   + `and browser-upload sources at ${githubUpload}. `
-  + `The compact V0.7.4 patch upload is at ${githubPatchUpload}. `
+  + `The compact V0.7.5 patch upload is at ${githubPatchUpload}. `
   + `Hidden browser-upload paths are also at ${githubDotfilesUpload}.`
 );
