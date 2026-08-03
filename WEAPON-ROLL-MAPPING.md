@@ -9,10 +9,11 @@ universal Shoot, Stab, or Punch ID. The listed skill is the native skill to
 select in SWNR's weapon-roll dialog. This avoids stale PC skill IDs on copied
 items and keeps a compendium entry portable between actors.
 
-Each record also carries `flags["harbour-city-stories"].nativeSkill`. When CWN
-Combat Enhancements is active, it uses that semantic value to resolve the
-matching Skill Item on a character after import, without ever writing a PC
-skill reference to an NPC weapon.
+Each record also carries `flags["harbour-city-stories"].nativeSkill` and
+`nativeStat`. When CWN Combat Enhancements is active, it uses those semantic
+values to resolve the matching Skill Item and restore the intended native Stat
+if SWNR imports a character copy as `Ask`, without ever writing PC roll data to
+an NPC weapon.
 
 | Native base weapon | Records | Native skill | `stat` / `secondStat` | `isMelee` |
 |---|---:|---|---|---:|

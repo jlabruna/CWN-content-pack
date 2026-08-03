@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.6
+
+- Added explicit semantic native-Stat metadata alongside Shoot/Stab metadata,
+  allowing Combat Enhancements to restore Dexterity, Strength, or Wisdom when
+  SWNR imports a portable character weapon with its Stat set to `Ask`.
+- Added build and content validation for the new metadata on all 64 weapons.
+
 ## 0.7.5
 
 - Preserved the v0.7.4 native weapon-field mapping and added the release

@@ -169,9 +169,18 @@ for (const [index, item] of createdItems.entries()) {
     item,
     "flags.harbour-city-stories.nativeSkill",
   );
+  const generatedNativeStat = getProperty(
+    item,
+    "flags.harbour-city-stories.nativeStat",
+  );
   if (generatedNativeSkill !== rollContract.skill) {
     throw new Error(
       `Weapon "${item.name}" must declare native skill "${rollContract.skill}".`,
+    );
+  }
+  if (generatedNativeStat !== rollContract.stat) {
+    throw new Error(
+      `Weapon "${item.name}" must declare native stat "${rollContract.stat}".`,
     );
   }
   if (baseContract.reloadable && generatedFamily !== baseContract.weaponFamily) {
