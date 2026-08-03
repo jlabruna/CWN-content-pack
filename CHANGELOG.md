@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.7.4
+
+- Audited every one of the 64 Harbour City Stories weapons against the SWNR
+  2.3.1 weapon schema.
+- Explicitly generate `system.stat`, `system.secondStat`, `system.skill`, and
+  `system.isMelee` for all catalogue weapons without changing mechanics,
+  descriptions, icons, flags, folders, deterministic IDs, or ammunition-family
+  metadata.
+- Added a documented base-weapon roll contract and strict source/build
+  validation for the mapping.
+- Preserved SWNR's portable `system.skill: ask` setting because skill Item IDs
+  are actor-owned; documented the intended Shoot and Stab selection for every
+  native base group.
+
 ## 0.7.3
 
 - Verified the content pack against Foundry VTT 14.365 and SWNR 2.3.1.

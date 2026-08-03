@@ -4,13 +4,15 @@ An independent Foundry VTT content and icon pack for **Cities Without Number**
 games running on **Systems Without Number Redux (SWNR) 2.3.1**, verified for
 Foundry VTT 14.365.
 
-## Version 0.7.3
+## Version 0.7.4
 
 The content pack includes:
 
 - The complete 64-item Harbour City Stories weapon catalogue in a native
   Foundry Item compendium.
 - Explicit Weapon Family metadata on every reloadable catalogue weapon.
+- Explicit native SWNR roll fields on every weapon, with a portable skill
+  prompt and documented Shoot/Stab mappings.
 - 46 colour-coded SVG weapon icons.
 - A 14-item Harbour City Stories armor catalogue in its own native Foundry
   Item compendium.
@@ -79,6 +81,13 @@ Actor IDs, or artwork.
 
 Version 0.7.3 retains that catalogue unchanged while rebuilding and validating
 all six compendia for SWNR 2.3.1 and allowing installation on Foundry VTT 14.
+
+Version 0.7.4 explicitly applies each catalogue weapon's SWNR `stat`,
+`secondStat`, `skill`, and `isMelee` values during generation. The portable
+`system.skill` value is `ask`: SWNR skill references are actor-owned IDs, so a
+static compendium cannot safely hard-code a Shoot or Stab Item ID. See
+[`WEAPON-ROLL-MAPPING.md`](WEAPON-ROLL-MAPPING.md) for the complete 64-item
+audit and intended native skills.
 
 ## Cyberware and recurring expenses
 

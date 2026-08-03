@@ -2,6 +2,10 @@ import {
   CONTENT_PACK_FLAG_SCOPE,
   contractForBaseWeapon
 } from "./weapon-family-contract.mjs";
+import {
+  applyWeaponRollContract,
+  weaponRollContractForBaseWeapon,
+} from "./weapon-roll-contract.mjs";
 
 /**
  * Harbour City Stories weapon catalogue installer
@@ -21,7 +25,7 @@ import {
 export async function installWeaponCatalogue() {
   "use strict";
 
-  const INSTALLER_VERSION = "2.1.0";
+  const INSTALLER_VERSION = "2.2.0";
   const FLAG_SCOPE = "harbour-city-stories";
   const ROOT_FOLDER_NAME = "Harbour City Stories Weapons";
   const ICON_MODULE_ID = "cwn-content-pack";
@@ -1573,6 +1577,7 @@ export async function installWeaponCatalogue() {
   for (const weapon of weapons) {
     try {
       const baseContract = contractForBaseWeapon(weapon.base);
+      const rollContract = weaponRollContractForBaseWeapon(weapon.base);
       const baseItem = baseItems.get(weapon.base);
       const source = foundry.utils.deepClone(baseItem.toObject());
       delete source._id;
@@ -1608,6 +1613,7 @@ export async function installWeaponCatalogue() {
 
       source.system.description = buildDescription(weapon);
       source.system.cost = weapon.cost;
+      applyWeaponRollContract(source.system, rollContract);
 
       if (weapon.overrides.ab !== undefined) {
         source.system.ab = weapon.overrides.ab;

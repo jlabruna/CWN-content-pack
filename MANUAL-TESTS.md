@@ -76,6 +76,13 @@ Do not claim Foundry runtime success until these checks have been completed.
 ## Regression
 
 - [ ] Harbour City Stories Weapons still contains exactly 64 weapons.
+- [ ] Open a Combat Rifle: confirm its native SWNR roll uses Dexterity and the
+      dialog offers the actor's Shoot skill without any stale skill warning.
+- [ ] Open an Ironbark Trailknife or another knife/sword: confirm it is marked
+      as a melee weapon and SWNR offers Strength/Dexterity and Stab.
+- [ ] Open a Spear: confirm it retains SWNR's thrown/ranged handling while its
+      roll still offers Strength/Dexterity and Stab.
+- [ ] Open a Mortar: confirm it retains SWNR's native Wisdom/Shoot mapping.
 - [ ] Harbour City Stories Armor still contains exactly 14 armor Items.
 - [ ] CWN Ammunition & Reloads still contains exactly 14 ammunition Items.
 - [ ] Existing weapon and armor deterministic IDs remain unchanged.

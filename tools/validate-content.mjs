@@ -7,13 +7,14 @@ import {
   FAMILY_SLUG_PATTERN,
   contractForBaseWeapon
 } from "../scripts/weapon-family-contract.mjs";
+import { weaponRollContractForBaseWeapon } from "../scripts/weapon-roll-contract.mjs";
 
 const { extractPack } = await import("@foundryvtt/foundryvtt-cli");
 const moduleRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const manifest = JSON.parse(await fs.readFile(path.join(moduleRoot, "module.json"), "utf8"));
 
-if (manifest.version !== "0.7.3") {
-  throw new Error(`Expected module version 0.7.3 but found ${manifest.version}.`);
+if (manifest.version !== "0.7.4") {
+  throw new Error(`Expected module version 0.7.4 but found ${manifest.version}.`);
 }
 if (manifest.compatibility?.verified !== "14.365") {
   throw new Error("module.json must be verified for Foundry VTT 14.365.");
@@ -150,6 +151,7 @@ for (const weapon of weapons) {
   const sourceKey = getProperty(weapon, "flags.harbour-city-stories.catalogueKey");
   const baseWeapon = getProperty(weapon, "flags.harbour-city-stories.baseWeapon");
   const contract = contractForBaseWeapon(baseWeapon);
+  const rollContract = weaponRollContractForBaseWeapon(baseWeapon);
   const family = getProperty(
     weapon,
     `flags.${CONTENT_PACK_FLAG_SCOPE}.weaponFamily`
@@ -177,6 +179,18 @@ for (const weapon of weapons) {
     throw new Error(
       `Excluded weapon "${weapon.name}" unexpectedly has family "${family}".`
     );
+  }
+  for (const [field, expected] of Object.entries({
+    stat: rollContract.stat,
+    secondStat: rollContract.secondStat,
+    skill: rollContract.systemSkill,
+    isMelee: rollContract.isMelee,
+  })) {
+    if (weapon.system?.[field] !== expected) {
+      throw new Error(
+        `Weapon "${weapon.name}" must use system.${field} "${expected}".`,
+      );
+    }
   }
 }
 if (reloadableWeaponCount !== expectedReloadableWeaponCount) {

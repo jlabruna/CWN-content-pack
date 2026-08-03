@@ -8,6 +8,7 @@ import {
   CONTENT_PACK_FLAG_SCOPE,
   contractForBaseWeapon
 } from "../scripts/weapon-family-contract.mjs";
+import { weaponRollContractForBaseWeapon } from "../scripts/weapon-roll-contract.mjs";
 
 const moduleRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const defaultSystemRoot = path.resolve(moduleRoot, "vendor", "swnr");
@@ -155,6 +156,7 @@ for (const [index, item] of createdItems.entries()) {
   const key = getProperty(item, "flags.harbour-city-stories.catalogueKey");
   const baseWeapon = getProperty(item, "flags.harbour-city-stories.baseWeapon");
   const baseContract = contractForBaseWeapon(baseWeapon);
+  const rollContract = weaponRollContractForBaseWeapon(baseWeapon);
   const id = stableId("W", key);
   assertFoundryId(id, `Weapon "${item.name}"`);
   weaponIdentityLines.push(`${key}:${id}`);
@@ -173,6 +175,19 @@ for (const [index, item] of createdItems.entries()) {
     throw new Error(
       `Excluded weapon "${item.name}" unexpectedly has family "${generatedFamily}".`
     );
+  }
+
+  for (const [field, expected] of Object.entries({
+    stat: rollContract.stat,
+    secondStat: rollContract.secondStat,
+    skill: rollContract.systemSkill,
+    isMelee: rollContract.isMelee,
+  })) {
+    if (item.system?.[field] !== expected) {
+      throw new Error(
+        `Weapon "${item.name}" has invalid system.${field}; expected "${expected}".`,
+      );
+    }
   }
 
   // Correct legacy installer property names to the SWNR 2.3 data schema.

@@ -1,7 +1,7 @@
 {
   "name": "cwn-content-pack",
   "private": true,
-  "version": "0.7.3",
+  "version": "0.7.4",
   "type": "module",
   "scripts": {
     "build:weapons": "node tools/build-weapon-compendium.mjs",
@@ -11,7 +11,7 @@
     "build:cyberware": "node tools/generate-cyberware-icons.mjs && node tools/generate-cyberware-docs.mjs && node tools/build-cyberware-compendium.mjs",
     "build:drones": "node tools/build-drone-compendium.mjs",
     "build": "npm run build:weapons && npm run build:armor && npm run build:ammunition && npm run build:gear && npm run build:cyberware && npm run build:drones",
-    "check:syntax": "node --check tools/build-common-operator-gear-compendium.mjs && node --check tools/generate-common-operator-gear-icons.mjs && node --check tools/build-cyberware-compendium.mjs && node --check tools/generate-cyberware-icons.mjs && node --check tools/generate-cyberware-docs.mjs && node --check tools/import-cyberware-sources.mjs && node --check tools/build-drone-compendium.mjs && node --check tools/validate-content.mjs && node --check tools/verify-deterministic-build.mjs && node --check tools/stage-release.mjs",
+    "check:syntax": "node --check scripts/weapon-catalogue.mjs && node --check scripts/weapon-roll-contract.mjs && node --check tools/build-weapon-compendium.mjs && node --check tools/build-common-operator-gear-compendium.mjs && node --check tools/generate-common-operator-gear-icons.mjs && node --check tools/build-cyberware-compendium.mjs && node --check tools/generate-cyberware-icons.mjs && node --check tools/generate-cyberware-docs.mjs && node --check tools/import-cyberware-sources.mjs && node --check tools/build-drone-compendium.mjs && node --check tools/validate-content.mjs && node --check tools/verify-deterministic-build.mjs && node --check tools/stage-release.mjs",
     "validate": "node tools/validate-content.mjs",
     "verify:deterministic": "node tools/verify-deterministic-build.mjs vendor/swnr",
     "verify": "npm run validate && npm run verify:deterministic",
