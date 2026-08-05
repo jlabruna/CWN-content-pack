@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.8.0
+
+- Renamed ShinTech to Valcour across the current manufacturer, weapon, drone,
+  perk, description, documentation, and asset-path data.
+- Renamed the two drones to Valcour VC-14 Hummingbird and Valcour VC-90 Shrike.
+- Renamed all eleven current ShinTech weapons with the VC model prefix; the six
+  Japanese-inspired model names are now Merlin, Sparrow, Swallow, Chevalier,
+  Regent, and Tempest.
+- Added Valcour's canonical boutique-manufacturer biography and updated product
+  descriptions to reflect its bespoke, registered, private-client identity.
+- Preserved the Premium Engineering perk's 80% authorised resale and licensed
+  armourer +1 mechanics while changing its visible manufacturer name.
+- Preserved all established weapon Item IDs, drone Actor IDs, folders,
+  mechanics, weapon families, ammunition data, token settings, scales, and
+  artwork bytes.
+- Added validation that rejects old current-product branding and confirms the
+  exact Valcour names, paths, identities, and unchanged mechanics.
+
 ## 0.7.6
 
 - Added explicit semantic native-Stat metadata alongside Shoot/Stab metadata,

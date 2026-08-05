@@ -4,7 +4,7 @@ An independent Foundry VTT content and icon pack for **Cities Without Number**
 games running on **Systems Without Number Redux (SWNR) 2.3.1**, verified for
 Foundry VTT 14.365.
 
-## Version 0.7.6
+## Version 0.8.0
 
 The content pack includes:
 
@@ -59,11 +59,60 @@ campaign.
 
 No World Items are created automatically.
 
+## Valcour
+
+Valcour does not manufacture equipment for ordinary customers. Its weapons,
+drones and autonomous systems are built for clients who expect every component
+to be selected, fitted and finished to a standard that mass production cannot
+economically reproduce. “Precision is not a specification. It is a promise
+made to the owner.” — Valcour private-client catalogue
+
+Valcour is a boutique luxury manufacturer producing bespoke firearms,
+precision blades, executive-security drones and high-end autonomous systems.
+It avoids mass infantry contracts and broad consumer markets, instead serving
+wealthy private buyers, elite security firms, senior corporate personnel and
+specialist operators.
+
+Production is concentrated in a small number of highly secure ateliers.
+Automated systems perform the initial machining and fabrication, but final
+assembly, balancing, calibration and finishing are completed by specialist
+armourers, drone technicians and materials engineers. Every product is
+individually inspected, authenticated and registered before the Valcour mark
+is applied.
+
+The company’s catalogue is deliberately narrow. Its firearms are known for
+exceptional balance and mechanical consistency, while its drones favour quiet
+movement, refined control response and elegant housings over overt military
+styling. Product names commonly draw on birds associated with speed, precision
+and grace.
+
+Valcour maintains a tightly controlled network of authorised dealers and
+licensed armourers. Authenticated equipment sold by its registered lawful
+owner retains exceptional resale value, while undocumented or illegally
+modified examples are treated like ordinary second-hand weapons. Licensed
+technicians are highly familiar with Valcour tolerances and can modify or
+repair its products with unusual reliability.
+
+In Harbour City, Valcour has no ordinary retail stores. It operates through an
+appointment-only showroom, a private service atelier and a handful of
+authorised specialists. Ownership of a genuine Valcour product is therefore
+both a practical advantage and a visible marker of status.
+
+“Commissioned for one owner. Built beyond compromise.” — Valcour advertising
+slogan
+
+Valcour weapons retain the existing **Premium Engineering** perk:
+authenticated Valcour weapons sold by their registered lawful owner through an
+authorised dealer retain 80% of their base weapon and ordinary modification
+value. Stolen, undocumented or illegally modified weapons use the normal rules
+for fencing loot. Licensed armourers gain a +1 bonus to checks made to modify
+or repair Valcour equipment due to its exceptional manufacturing consistency.
+
 ## Native SWNR drones
 
-**CWN Drones** contains Ironbark Mouse, Blackhound BH-10 Roach, ShinTech ST-14
+**CWN Drones** contains Ironbark Mouse, Blackhound BH-10 Roach, Valcour VC-14
 Hummingbird, Ironbark Sunfish, Helix HX-35 Pitbull, Helix HX-40 Javelin, Titan
-TD-66 Kraken, Titan TD-70 Kerberos, and ShinTech ST-90 Shrike. They are native
+TD-66 Kraken, Titan TD-70 Kerberos, and Valcour VC-90 Shrike. They are native
 SWNR `drone` Actors with their cost, AC, Trauma Target, HP, fittings, speed,
 movement type, hardpoints, and portability encoded in the corresponding system
 fields.
@@ -81,6 +130,12 @@ Actor IDs, or artwork.
 
 Version 0.7.3 retains that catalogue unchanged while rebuilding and validating
 all six compendia for SWNR 2.3.1 and allowing installation on Foundry VTT 14.
+
+Version 0.8.0 replaces ShinTech with **Valcour**, a boutique manufacturer of
+bespoke firearms, precision blades, executive-security drones, and autonomous
+systems. All renamed products retain their established deterministic IDs and
+mechanics. Existing world copies are independent snapshots and are not
+automatically renamed; import fresh Valcour copies where desired.
 
 Version 0.7.6 explicitly applies each catalogue weapon's SWNR `stat`,
 `secondStat`, `skill`, and `isMelee` values during generation. The portable

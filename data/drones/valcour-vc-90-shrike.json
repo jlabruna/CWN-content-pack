@@ -1,0 +1,18 @@
+{
+  "sourceKey": "valcour-vc-90-shrike",
+  "actorId": "Rc33b716df8ce944",
+  "name": "Valcour VC-90 Shrike",
+  "manufacturer": "Valcour",
+  "model": "VC-90 Shrike",
+  "description": "A three-meter high-performance combat drone built in limited commissions for elite security clients, with vector wings, exceptional speed, and a heavy mission payload.",
+  "cost": 25000,
+  "ac": 18,
+  "traumaTarget": 8,
+  "hp": 20,
+  "fittings": 6,
+  "speed": 30,
+  "moveType": "fly",
+  "hardpoints": 2,
+  "encumbrance": 99,
+  "tokenScale": 1.0
+}

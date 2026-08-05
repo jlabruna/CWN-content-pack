@@ -7,7 +7,8 @@ const moduleRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), ".
 const releaseRoot = path.join(moduleRoot, "release");
 const stagedModule = path.join(releaseRoot, "cwn-content-pack");
 const githubUpload = path.join(releaseRoot, "github-upload");
-const githubPatchUpload = path.join(releaseRoot, "github-upload-v0.7.6-patch");
+const githubPatchUpload = path.join(releaseRoot, "github-upload-v0.8.0-patch");
+const githubWorkflowUpload = path.join(releaseRoot, "github-workflow-v0.8.0");
 const githubDotfilesUpload = path.join(releaseRoot, "github-dotfiles-upload");
 const manifest = JSON.parse(await fs.readFile(path.join(moduleRoot, "module.json"), "utf8"));
 const expectedPackCounts = Object.freeze({
@@ -115,8 +116,8 @@ const expectedDroneTokens = [
   "helix-hx-40-javelin.webp",
   "ironbark-mouse.webp",
   "ironbark-sunfish.webp",
-  "shintech-st-14-hummingbird.webp",
-  "shintech-st-90-shrike.webp",
+  "valcour-vc-14-hummingbird.webp",
+  "valcour-vc-90-shrike.webp",
   "titan-td-66-kraken.webp",
   "titan-td-70-kerberos.webp"
 ].sort();
@@ -184,20 +185,17 @@ await fs.copyFile(
   path.join(githubDotfilesUpload, ".gitignore")
 );
 
-// The V0.7.6 weapon-roll patch changes no source art or catalogue JSON. This
-// compact browser-upload bundle stays below GitHub's 100-file upload limit;
-// the Action rebuilds every generated pack from these updated build sources.
+// This compact V0.8.0 browser-upload bundle stays below GitHub's 100-file
+// upload limit; the Action rebuilds every generated pack from these sources.
 await fs.rm(githubPatchUpload, { recursive: true, force: true });
 for (const directory of ["scripts", "tools"]) {
   await fs.mkdir(path.join(githubPatchUpload, directory), { recursive: true });
 }
 for (const filename of [
   "CHANGELOG.md",
-  "CYBERWARE-AUDIT.md",
-  "CYBERWARE-CATALOGUE.md",
+  "DRONE-CATALOGUE.md",
   "MANUAL-TESTS.md",
   "README.md",
-  "WEAPON-ROLL-MAPPING.md",
   "module.json",
   "package.json"
 ]) {
@@ -207,31 +205,56 @@ await fs.copyFile(
   path.join(moduleRoot, "scripts", "weapon-catalogue.mjs"),
   path.join(githubPatchUpload, "scripts", "weapon-catalogue.mjs")
 );
-await fs.copyFile(
-  path.join(moduleRoot, "scripts", "weapon-roll-contract.mjs"),
-  path.join(githubPatchUpload, "scripts", "weapon-roll-contract.mjs")
+for (const directory of [
+  ["assets", "icons", "weapons", "valcour"],
+  ["assets", "tokens", "drones"],
+  ["data", "drones"]
+]) {
+  await fs.mkdir(path.join(githubPatchUpload, ...directory), { recursive: true });
+}
+await fs.cp(
+  path.join(moduleRoot, "assets", "icons", "weapons", "valcour"),
+  path.join(githubPatchUpload, "assets", "icons", "weapons", "valcour"),
+  { recursive: true }
 );
 for (const filename of [
-  "build-ammunition-compendium.mjs",
-  "build-armor-compendium.mjs",
-  "build-common-operator-gear-compendium.mjs",
-  "build-cyberware-compendium.mjs",
-  "build-drone-compendium.mjs",
-  "build-weapon-compendium.mjs",
-  "generate-cyberware-docs.mjs",
-  "stage-release.mjs",
-  "validate-content.mjs",
-  "verify-deterministic-build.mjs"
+  "valcour-vc-14-hummingbird.webp",
+  "valcour-vc-90-shrike.webp"
 ]) {
+  await fs.copyFile(
+    path.join(moduleRoot, "assets", "tokens", "drones", filename),
+    path.join(githubPatchUpload, "assets", "tokens", "drones", filename)
+  );
+}
+for (const filename of [
+  "valcour-vc-14-hummingbird.json",
+  "valcour-vc-90-shrike.json"
+]) {
+  await fs.copyFile(
+    path.join(moduleRoot, "data", "drones", filename),
+    path.join(githubPatchUpload, "data", "drones", filename)
+  );
+}
+for (const filename of ["stage-release.mjs", "validate-content.mjs"]) {
   await fs.copyFile(
     path.join(moduleRoot, "tools", filename),
     path.join(githubPatchUpload, "tools", filename)
   );
 }
 
+// Windows Explorer can hide the repository's .github directory. This visible
+// one-file bundle is uploaded while already inside .github/workflows on GitHub.
+await fs.rm(githubWorkflowUpload, { recursive: true, force: true });
+await fs.mkdir(githubWorkflowUpload, { recursive: true });
+await fs.copyFile(
+  path.join(moduleRoot, ".github", "workflows", "build-release.yml"),
+  path.join(githubWorkflowUpload, "build-release.yml")
+);
+
 console.log(
   `Staged CWN Content Pack ${manifest.version} at ${stagedModule} `
   + `and browser-upload sources at ${githubUpload}. `
-  + `The compact V0.7.6 patch upload is at ${githubPatchUpload}. `
+  + `The compact V0.8.0 patch upload is at ${githubPatchUpload}. `
+  + `The visible workflow upload is at ${githubWorkflowUpload}. `
   + `Hidden browser-upload paths are also at ${githubDotfilesUpload}.`
 );

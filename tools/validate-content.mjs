@@ -13,8 +13,8 @@ const { extractPack } = await import("@foundryvtt/foundryvtt-cli");
 const moduleRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const manifest = JSON.parse(await fs.readFile(path.join(moduleRoot, "module.json"), "utf8"));
 
-if (manifest.version !== "0.7.6") {
-  throw new Error(`Expected module version 0.7.6 but found ${manifest.version}.`);
+if (manifest.version !== "0.8.0") {
+  throw new Error(`Expected module version 0.8.0 but found ${manifest.version}.`);
 }
 if (manifest.compatibility?.verified !== "14.365") {
   throw new Error("module.json must be verified for Foundry VTT 14.365.");
@@ -41,6 +41,28 @@ const expectedPacks = Object.freeze({
 const expectedWeaponIdentityDigest =
   "ea6b624ee9c9a8fa10fdca13971315ecb7cfd332643b952c7421a08f947b936b";
 const expectedReloadableWeaponCount = 52;
+const expectedValcourWeapons = Object.freeze({
+  "combat-rifle-shintech-kestrel": "VC-22 Kestrel",
+  "combat-rifle-shintech-falcon": "VC-37 Falcon",
+  "combat-rifle-shintech-peregrine": "VC-80 Peregrine",
+  "submachine-gun-shintech-kitsune": "VC-14 Merlin",
+  "light-pistol-shintech-suzume": "VC-5 Sparrow",
+  "light-pistol-shintech-tsubame": "VC-18 Swallow",
+  "heavy-pistol-shintech-ronin": "VC-6 Chevalier",
+  "heavy-pistol-shintech-daimyo": "VC-9 Regent",
+  "sniper-rifle-shintech-osprey": "VC-70 Osprey",
+  "sniper-rifle-shintech-gyrfalcon": "VC-99 Gyrfalcon",
+  "advanced-sword-shintech-raijin": "VC-55 Tempest"
+});
+const expectedValcourBiographySnippets = Object.freeze([
+  "Valcour does not manufacture equipment for ordinary customers",
+  "Valcour is a boutique luxury manufacturer",
+  "Production is concentrated in a small number of highly secure ateliers",
+  "catalogue is deliberately narrow",
+  "Valcour maintains a tightly controlled network",
+  "In Harbour City, Valcour has no ordinary retail stores",
+  "Commissioned for one owner. Built beyond compromise."
+]);
 
 const getProperty = (object, property) =>
   property.split(".").reduce((value, key) => value?.[key], object);
@@ -147,6 +169,7 @@ const weapons = loadedPacks.get("harbour-city-stories-weapons").items;
 const generatedWeaponFamilies = new Set();
 const weaponIdentityLines = [];
 let reloadableWeaponCount = 0;
+const foundValcourKeys = new Set();
 for (const weapon of weapons) {
   const sourceKey = getProperty(weapon, "flags.harbour-city-stories.catalogueKey");
   const baseWeapon = getProperty(weapon, "flags.harbour-city-stories.baseWeapon");
@@ -160,6 +183,30 @@ for (const weapon of weapons) {
   const nativeStat = getProperty(weapon, "flags.harbour-city-stories.nativeStat");
   if (!sourceKey) {
     throw new Error(`Weapon "${weapon.name}" is missing its legacy catalogueKey.`);
+  }
+  const expectedValcourName = expectedValcourWeapons[sourceKey];
+  if (expectedValcourName) {
+    foundValcourKeys.add(sourceKey);
+    const expectedIconPrefix = "modules/cwn-content-pack/assets/icons/weapons/valcour/";
+    if (
+      weapon.name !== expectedValcourName
+      || !weapon.img?.startsWith(expectedIconPrefix)
+      || !weapon.system?.description?.includes("<strong>Manufacturer:</strong> Valcour")
+      || !weapon.system.description.includes("<strong>Premium Engineering</strong>")
+      || !weapon.system.description.includes("retain <strong>80%</strong>")
+      || !weapon.system.description.includes("registered lawful owner")
+      || !weapon.system.description.includes("authorised dealer")
+      || !weapon.system.description.includes("Licensed armourers")
+      || !weapon.system.description.includes("<strong>+1 bonus</strong>")
+      || !weapon.system.description.includes("<h3>About Valcour</h3>")
+      || expectedValcourBiographySnippets.some(
+        (snippet) => !weapon.system.description.includes(snippet)
+      )
+      || /Shin\s*Tech|\bST-\d+\b|Kitsune|Suzume|Tsubame|Ronin|Daimyo|Raijin/i
+        .test(`${weapon.name}\n${weapon.img}\n${weapon.system.description}`)
+    ) {
+      throw new Error(`Valcour weapon "${weapon.name}" has invalid current branding or perk text.`);
+    }
   }
   weaponIdentityLines.push(`${sourceKey}:${weapon._id}`);
   if (contract.reloadable) {
@@ -204,6 +251,12 @@ for (const weapon of weapons) {
       );
     }
   }
+}
+if (
+  foundValcourKeys.size !== Object.keys(expectedValcourWeapons).length
+  || Object.keys(expectedValcourWeapons).some((key) => !foundValcourKeys.has(key))
+) {
+  throw new Error("Weapon compendium does not contain the exact eleven Valcour products.");
 }
 if (reloadableWeaponCount !== expectedReloadableWeaponCount) {
   throw new Error(
@@ -560,9 +613,9 @@ const expectedDrones = Object.freeze({
   "titan-td-70-kerberos": [15000, 18, 8, 25, 6, 20, "ground", 3, 99],
   "helix-hx-35-pitbull": [5000, 15, 8, 15, 5, 20, "ground", 1, 5],
   "helix-hx-40-javelin": [10000, 16, 6, 12, 5, 20, "fly", 1, 6],
-  "shintech-st-90-shrike": [25000, 18, 8, 20, 6, 30, "fly", 2, 99],
+  "valcour-vc-90-shrike": [25000, 18, 8, 20, 6, 30, "fly", 2, 99],
   "ironbark-mouse": [500, 13, 6, 1, 0, 5, "ground", 0, 1],
-  "shintech-st-14-hummingbird": [2000, 15, 6, 5, 2, 10, "fly", 0, 3],
+  "valcour-vc-14-hummingbird": [2000, 15, 6, 5, 2, 10, "fly", 0, 3],
   "titan-td-66-kraken": [10000, 16, 8, 20, 5, 15, "swim", 2, 99]
 });
 const expectedDroneIdentity = Object.freeze({
@@ -581,14 +634,14 @@ const expectedDroneIdentity = Object.freeze({
   "helix-hx-40-javelin": [
     "Helix HX-40 Javelin", "Helix", "HX-40 Javelin", "R2f54fecacb361cf"
   ],
-  "shintech-st-90-shrike": [
-    "ShinTech ST-90 Shrike", "ShinTech", "ST-90 Shrike", "Rc33b716df8ce944"
+  "valcour-vc-90-shrike": [
+    "Valcour VC-90 Shrike", "Valcour", "VC-90 Shrike", "Rc33b716df8ce944"
   ],
   "ironbark-mouse": [
     "Ironbark Mouse", "Ironbark", "Mouse", "R78ef1dfc7782e88"
   ],
-  "shintech-st-14-hummingbird": [
-    "ShinTech ST-14 Hummingbird", "ShinTech", "ST-14 Hummingbird", "R2cfbbf8f5bbbdbd"
+  "valcour-vc-14-hummingbird": [
+    "Valcour VC-14 Hummingbird", "Valcour", "VC-14 Hummingbird", "R2cfbbf8f5bbbdbd"
   ],
   "titan-td-66-kraken": [
     "Titan TD-66 Kraken", "Titan", "TD-66 Kraken", "Rbbca4ae08806107"
@@ -600,9 +653,9 @@ const expectedDroneScales = Object.freeze({
   "titan-td-70-kerberos": 0.9,
   "helix-hx-35-pitbull": 0.8,
   "helix-hx-40-javelin": 0.8,
-  "shintech-st-90-shrike": 1,
+  "valcour-vc-90-shrike": 1,
   "ironbark-mouse": 0.6,
-  "shintech-st-14-hummingbird": 0.6,
+  "valcour-vc-14-hummingbird": 0.6,
   "titan-td-66-kraken": 0.9
 });
 const droneSourceRoot = path.join(moduleRoot, "data", "drones");
@@ -624,6 +677,9 @@ for (const filename of droneSourceFiles) {
     || source.actorId !== identity[3]
   ) {
     throw new Error(`Drone source "${filename}" has invalid identity metadata.`);
+  }
+  if (/Shin\s*Tech|\bST-(?:14|90)\b/i.test(JSON.stringify(source))) {
+    throw new Error(`Drone source "${filename}" retains superseded ShinTech branding.`);
   }
   if (/\b(?:Shintetsu|BanTech|Sui|Lem Robotics|NAMU|Kessler)\b/i.test(JSON.stringify(source))) {
     throw new Error(`Drone source "${filename}" retains a superseded manufacturer name.`);
@@ -663,6 +719,9 @@ for (const actor of dronePack.items) {
     || flags?.model !== model
     || typeof actor.system?.description !== "string"
     || actor.system.description.trim() === ""
+    || /Shin\s*Tech|\bST-(?:14|90)\b/i.test(
+      `${actor.name}\n${actor.img}\n${actor.system.description}`
+    )
   ) {
     throw new Error(`Drone "${actor.name}" has invalid native SWNR fields.`);
   }

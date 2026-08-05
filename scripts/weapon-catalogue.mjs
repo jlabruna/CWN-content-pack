@@ -76,12 +76,21 @@ export async function installWeaponCatalogue() {
       perk:
         "Ignore the first point of Maintenance accumulated between services. Titan Industrial Defence weapons are engineered for extended deployments with minimal logistical support.",
     },
-    shintech: {
-      name: "ShinTech Systems",
-      slogan: "Because perfection leaves no witnesses.",
+    valcour: {
+      name: "Valcour",
+      slogan: "Commissioned for one owner. Built beyond compromise.",
       perkName: "Premium Engineering",
       perk:
-        "Authenticated ShinTech weapons sold by their registered lawful owner through an authorised dealer retain <strong>80%</strong> of their base weapon and ordinary modification value. Stolen, undocumented or illegally modified weapons use the normal rules for fencing loot. Licensed armourers gain a <strong>+1 bonus</strong> to checks made to modify or repair ShinTech equipment due to exceptional manufacturing consistency.",
+        "Authenticated Valcour weapons sold by their registered lawful owner through an authorised dealer retain <strong>80%</strong> of their base weapon and ordinary modification value. Stolen, undocumented or illegally modified weapons use the normal rules for fencing loot. Licensed armourers gain a <strong>+1 bonus</strong> to checks made to modify or repair Valcour equipment due to its exceptional manufacturing consistency.",
+      biography: [
+        "Valcour does not manufacture equipment for ordinary customers. Its weapons, drones and autonomous systems are built for clients who expect every component to be selected, fitted and finished to a standard that mass production cannot economically reproduce. “Precision is not a specification. It is a promise made to the owner.” — Valcour private-client catalogue",
+        "Valcour is a boutique luxury manufacturer producing bespoke firearms, precision blades, executive-security drones and high-end autonomous systems. It avoids mass infantry contracts and broad consumer markets, instead serving wealthy private buyers, elite security firms, senior corporate personnel and specialist operators.",
+        "Production is concentrated in a small number of highly secure ateliers. Automated systems perform the initial machining and fabrication, but final assembly, balancing, calibration and finishing are completed by specialist armourers, drone technicians and materials engineers. Every product is individually inspected, authenticated and registered before the Valcour mark is applied.",
+        "The company’s catalogue is deliberately narrow. Its firearms are known for exceptional balance and mechanical consistency, while its drones favour quiet movement, refined control response and elegant housings over overt military styling. Product names commonly draw on birds associated with speed, precision and grace.",
+        "Valcour maintains a tightly controlled network of authorised dealers and licensed armourers. Authenticated equipment sold by its registered lawful owner retains exceptional resale value, while undocumented or illegally modified examples are treated like ordinary second-hand weapons. Licensed technicians are highly familiar with Valcour tolerances and can modify or repair its products with unusual reliability.",
+        "In Harbour City, Valcour has no ordinary retail stores. It operates through an appointment-only showroom, a private service atelier and a handful of authorised specialists. Ownership of a genuine Valcour product is therefore both a practical advantage and a visible marker of status.",
+        "“Commissioned for one owner. Built beyond compromise.” — Valcour advertising slogan",
+      ],
     },
     ironbark: {
       name: "Ironbark Outdoor Industries",
@@ -207,6 +216,9 @@ export async function installWeaponCatalogue() {
     },
   });
 
+  // Catalogue keys are immutable deterministic-ID seeds. The eleven legacy
+  // keys containing "shintech" intentionally remain unchanged so this visible
+  // rebrand updates the existing Items instead of creating duplicate records.
   const weapons = [
     // -----------------------------------------------------------------------
     // Combat Rifles
@@ -364,23 +376,23 @@ export async function installWeaponCatalogue() {
       key: "combat-rifle-shintech-kestrel",
       family: "Combat Rifles",
       base: "Combat Rifle",
-      manufacturer: "shintech",
-      name: "ST-22 Kestrel",
+      manufacturer: "valcour",
+      name: "VC-22 Kestrel",
       cost: 7500,
       ab: 1,
       mods: ["Customized"],
       special: ["The +1 Attack Bonus from Customized applies only to the rifle's designated operator."],
       paragraphs: [
-        "The ST-22 Kestrel embodies ShinTech Systems' uncompromising approach to firearms design. Every rifle is hand-fitted using individually matched components, producing exceptional balance, flawless trigger characteristics and remarkable consistency.",
-        "Favoured by elite security professionals and discerning private clients, the Kestrel is built to disappear into the operator's hands, allowing instinct and training to take precedence over mechanical compromise.",
+        "The VC-22 Kestrel is commissioned around its registered owner's measurements and firing posture. Individually matched components are hand-fitted in a Valcour atelier, producing exceptional balance, a precise trigger and remarkable mechanical consistency.",
+        "Favoured by elite security professionals and discerning private clients, the Kestrel is built to disappear into the operator's hands. Its restrained finish signals authenticated craftsmanship without compromising field utility.",
       ],
     }),
     makeWeapon({
       key: "combat-rifle-shintech-falcon",
       family: "Combat Rifles",
       base: "Combat Rifle",
-      manufacturer: "shintech",
-      name: "ST-37 Falcon",
+      manufacturer: "valcour",
+      name: "VC-37 Falcon",
       cost: 32500,
       ab: 1,
       mods: ["Customized", "Stun Rounds"],
@@ -390,16 +402,16 @@ export async function installWeaponCatalogue() {
       ],
       slogan: "Precision. Without compromise.",
       paragraphs: [
-        "Developed for specialist law enforcement and executive protection teams, the ST-37 Falcon pairs ShinTech craftsmanship with an integrated Stun Rounds system.",
-        "It has become synonymous with hostage rescue, tactical intervention and high-risk arrest teams, reflecting ShinTech's belief that precision includes applying exactly the level of force a situation demands.",
+        "Commissioned for specialist law-enforcement and executive-protection teams, the VC-37 Falcon pairs Valcour's hand-finished precision with an integrated Stun Rounds system.",
+        "Authenticated Falcons are associated with hostage rescue, tactical intervention and high-risk arrest teams whose clients expect exact control over the force applied in every engagement.",
       ],
     }),
     makeWeapon({
       key: "combat-rifle-shintech-peregrine",
       family: "Combat Rifles",
       base: "Combat Rifle",
-      manufacturer: "shintech",
-      name: "ST-80 Peregrine",
+      manufacturer: "valcour",
+      name: "VC-80 Peregrine",
       cost: 307500,
       ab: 2,
       damage: "1d12+1",
@@ -410,8 +422,8 @@ export async function installWeaponCatalogue() {
       ],
       slogan: "Masterpiece. Perfected.",
       paragraphs: [
-        "The ST-80 Peregrine represents the pinnacle of ShinTech's craft. Its components are individually selected, polished and fitted before Predictive Guidance is added to complement rather than replace the operator's skill.",
-        "Produced only in limited numbers, the Peregrine is reserved for premier special operations units, corporate security teams and private clients for whom cost is secondary to excellence.",
+        "The VC-80 Peregrine represents the pinnacle of Valcour's firearm craft. Its components are individually selected, polished and fitted before Predictive Guidance is calibrated to complement rather than replace its registered operator's skill.",
+        "Produced only by commission, the Peregrine is reserved for premier specialist units, executive-security teams and private clients for whom authenticated performance matters more than cost.",
       ],
     }),
 
@@ -488,8 +500,8 @@ export async function installWeaponCatalogue() {
       key: "submachine-gun-shintech-kitsune",
       family: "Submachine Guns",
       base: "Submachine Gun",
-      manufacturer: "shintech",
-      name: "ST-14 Kitsune",
+      manufacturer: "valcour",
+      name: "VC-14 Merlin",
       cost: 32000,
       ab: 1,
       damage: "1d8-2",
@@ -503,8 +515,8 @@ export async function installWeaponCatalogue() {
       ],
       slogan: "Control, perfectly delivered.",
       paragraphs: [
-        "The ST-14 Kitsune is a precision less-lethal weapon developed for specialist police, executive protection and high-risk capture teams. Each weapon is fitted to its designated operator and factory-configured for ShinTech's proprietary Stun Rounds.",
-        "The Kitsune sacrifices range and raw lethality for controlled force delivered with exceptional accuracy. Its immaculate construction and restrained profile have made it the preferred weapon of clients who need hostile targets taken alive.",
+        "The VC-14 Merlin is a bespoke less-lethal weapon commissioned for specialist police, executive protection and high-risk capture teams. Each example is fitted to its registered operator and atelier-configured for Valcour Stun Rounds.",
+        "The Merlin sacrifices range and raw lethality for controlled force delivered with exceptional accuracy. Its immaculate construction and restrained profile have made it the preferred weapon of clients who need hostile targets taken alive.",
       ],
     }),
 
@@ -709,8 +721,8 @@ export async function installWeaponCatalogue() {
       key: "light-pistol-shintech-suzume",
       family: "Light Pistols",
       base: "Light Pistol",
-      manufacturer: "shintech",
-      name: "ST-5 Suzume",
+      manufacturer: "valcour",
+      name: "VC-5 Sparrow",
       cost: 5200,
       ab: 1,
       mods: ["Customized"],
@@ -719,16 +731,16 @@ export async function installWeaponCatalogue() {
       ],
       slogan: "Small form. Perfect balance.",
       paragraphs: [
-        "The ST-5 Suzume is ShinTech's refined interpretation of the everyday defensive pistol. Its individually matched components, immaculate trigger and carefully balanced frame make it exceptionally controllable despite its compact dimensions.",
-        "Popular with collectors, plain-clothes professionals and discerning civilians, the Suzume is factory-fitted to its designated owner. It is an understated sidearm for buyers who believe craftsmanship should be felt rather than advertised.",
+        "The VC-5 Sparrow is Valcour's refined interpretation of the compact defensive pistol. Individually matched components, a hand-finished trigger and a carefully balanced frame make it exceptionally controllable despite its dimensions.",
+        "Commissioned by collectors, plain-clothes professionals and discerning private clients, the Sparrow is fitted and registered to its designated owner. It is an understated sidearm for buyers who expect craftsmanship to be felt rather than advertised.",
       ],
     }),
     makeWeapon({
       key: "light-pistol-shintech-tsubame",
       family: "Light Pistols",
       base: "Light Pistol",
-      manufacturer: "shintech",
-      name: "ST-18 Tsubame",
+      manufacturer: "valcour",
+      name: "VC-18 Swallow",
       cost: 30200,
       ab: 1,
       damage: "1d6-2",
@@ -742,8 +754,8 @@ export async function installWeaponCatalogue() {
       ],
       slogan: "Restraint without hesitation.",
       paragraphs: [
-        "The ST-18 Tsubame is a compact less-lethal pistol designed for executive protection, plain-clothes police and medical security teams. Each weapon is fitted to its designated operator and engineered around ShinTech Stun Rounds for precise incapacitation at close range.",
-        "Its reduced range and stopping power are deliberate compromises in service of controlled force. The Tsubame is carried by professionals whose work demands that a dangerous subject be stopped quickly, cleanly and alive.",
+        "The VC-18 Swallow is a compact less-lethal pistol commissioned for executive protection, plain-clothes police and medical security teams. Each authenticated weapon is fitted to its registered operator and calibrated around Valcour Stun Rounds for precise incapacitation at close range.",
+        "Its reduced range and stopping power are deliberate compromises in service of controlled force. The Swallow is carried by professionals whose work demands that a dangerous subject be stopped quickly, cleanly and alive.",
       ],
     }),
 
@@ -832,23 +844,23 @@ export async function installWeaponCatalogue() {
       key: "heavy-pistol-shintech-ronin",
       family: "Heavy Pistols",
       base: "Heavy Pistol",
-      manufacturer: "shintech",
-      name: "ST-6 Ronin",
+      manufacturer: "valcour",
+      name: "VC-6 Chevalier",
       cost: 5200,
       ab: 1,
       mods: ["Customized"],
       special: ["The +1 Attack Bonus from Customized applies only to the weapon's designated operator."],
       paragraphs: [
-        "The ST-6 Ronin is a precision-crafted combat sidearm built for professionals who demand flawless performance. Every component is individually machined, hand-fitted and calibrated to its designated owner.",
-        "Favoured by specialist security and discerning private operators, the Ronin reflects ShinTech's belief that excellence comes from craftsmanship rather than mass production.",
+        "The VC-6 Chevalier is a precision-crafted combat sidearm commissioned for professionals who demand flawless performance. Every component is individually machined, hand-fitted and calibrated to its registered owner.",
+        "Favoured by specialist security personnel and discerning private operators, the Chevalier reflects Valcour's preference for controlled production, authenticated provenance and exceptional consistency.",
       ],
     }),
     makeWeapon({
       key: "heavy-pistol-shintech-daimyo",
       family: "Heavy Pistols",
       base: "Heavy Pistol",
-      manufacturer: "shintech",
-      name: "ST-9 Daimyo",
+      manufacturer: "valcour",
+      name: "VC-9 Regent",
       cost: 305200,
       ab: 2,
       damage: "1d8+1",
@@ -858,8 +870,8 @@ export async function installWeaponCatalogue() {
         "Predictive Guidance requires a compatible Gunlink or Cranial Jack. When connected, it grants +1 Attack Bonus and +1 Damage.",
       ],
       paragraphs: [
-        "The ST-9 Daimyo is ShinTech's flagship combat pistol, combining master craftsmanship with advanced predictive targeting. It pairs exquisite mechanical precision with guidance systems that enhance performance without compromising handling.",
-        "Produced in limited numbers, the Daimyo is carried by elite bodyguards, executives and specialist operatives who demand uncompromising quality.",
+        "The VC-9 Regent is Valcour's flagship combat pistol, combining master craftsmanship with individually calibrated predictive targeting. It pairs exceptional mechanical precision with guidance systems that enhance performance without compromising handling.",
+        "Produced only in limited commissions, the Regent is carried by elite bodyguards, senior executives and specialist operatives who require authenticated quality and authorised long-term support.",
       ],
     }),
     makeWeapon({
@@ -960,8 +972,8 @@ export async function installWeaponCatalogue() {
       key: "sniper-rifle-shintech-osprey",
       family: "Sniper Rifles",
       base: "Sniper Rifle",
-      manufacturer: "shintech",
-      name: "ST-70 Osprey",
+      manufacturer: "valcour",
+      name: "VC-70 Osprey",
       cost: 8000,
       ab: 1,
       mods: ["Customized"],
@@ -971,7 +983,7 @@ export async function installWeaponCatalogue() {
       ],
       slogan: "Precision begins with the shooter.",
       paragraphs: [
-        "The ST-70 Osprey is a bespoke precision rifle assembled around the measurements, posture and shooting habits of its designated owner. ShinTech armourers individually fit the stock, trigger, action and optic alignment until the rifle settles naturally into the operator's prepared firing position.",
+        "The VC-70 Osprey is a bespoke precision rifle assembled around the measurements, posture and shooting habits of its registered owner. Valcour armourers individually fit the stock, trigger, action and optic alignment until the rifle settles naturally into the operator's prepared firing position.",
         "The Osprey contains little exotic technology. Its accuracy comes from exceptional materials, meticulous tolerances and the intimate fit between weapon and shooter, making it a favourite among professional marksmen who distrust unnecessary battlefield electronics.",
       ],
     }),
@@ -979,8 +991,8 @@ export async function installWeaponCatalogue() {
       key: "sniper-rifle-shintech-gyrfalcon",
       family: "Sniper Rifles",
       base: "Sniper Rifle",
-      manufacturer: "shintech",
-      name: "ST-99 Gyrfalcon",
+      manufacturer: "valcour",
+      name: "VC-99 Gyrfalcon",
       cost: 308000,
       ab: 2,
       damage: "2d8+1",
@@ -992,7 +1004,7 @@ export async function installWeaponCatalogue() {
       ],
       slogan: "One movement. One conclusion.",
       paragraphs: [
-        "The ST-99 Gyrfalcon is ShinTech's master-grade sniper rifle, beginning as a hand-fitted Osprey before receiving a Predictive Guidance system individually harmonised with both weapon and owner. The electronics do not replace the marksman's judgement; they model movement, recoil and atmospheric changes quickly enough to let craftsmanship and training operate at their absolute limit.",
+        "The VC-99 Gyrfalcon is Valcour's master-grade sniper rifle, beginning as a hand-fitted Osprey before receiving a Predictive Guidance system individually harmonised with both weapon and registered owner. The electronics do not replace the marksman's judgement; they model movement, recoil and atmospheric changes quickly enough to let craftsmanship and training operate at their absolute limit.",
         "Produced in tiny numbers for premier counter-terror units, state marksmen and extraordinarily wealthy professionals, the Gyrfalcon is as much a commissioned instrument as a manufactured firearm. Each example is documented, supported and valued as an individual work.",
       ],
     }),
@@ -1308,8 +1320,8 @@ export async function installWeaponCatalogue() {
       category: "Melee and Thrown Weapons",
       family: "Advanced Swords",
       base: "Advanced Sword",
-      manufacturer: "shintech",
-      name: "ST-55 Raijin",
+      manufacturer: "valcour",
+      name: "VC-55 Tempest",
       cost: 306000,
       ab: 2,
       damage: "1d10+1",
@@ -1321,8 +1333,8 @@ export async function installWeaponCatalogue() {
       ],
       slogan: "Perfection at the moment of contact.",
       paragraphs: [
-        "The ST-55 Raijin is ShinTech's signature weapon for corporate samurai, elite bodyguards and wealthy duelists who treat close combat as both profession and identity. Every blade is fitted to its designated owner before a Predictive Guidance core is tuned to their reach, posture and neural timing.",
-        "When connected to compatible cyberware, the Raijin analyses movement and collision geometry quickly enough to guide minute corrections throughout a strike. Its extraordinary price buys neither tradition nor ornament alone, but a precision combat system built around a single operator.",
+        "The VC-55 Tempest is Valcour's signature precision blade for elite bodyguards, specialist operators and wealthy duelists who treat close combat as both profession and identity. Every blade is hand-finished for its registered owner before a Predictive Guidance core is tuned to their reach, posture and neural timing.",
+        "When connected to compatible cyberware, the Tempest analyses movement and collision geometry quickly enough to guide minute corrections throughout a strike. Its extraordinary price buys a precision combat system commissioned around one operator and supported only through authorised Valcour specialists.",
       ],
     }),
     makeWeapon({
@@ -1401,7 +1413,7 @@ export async function installWeaponCatalogue() {
     const ordinaryValue = ordinaryBuildValue(weapon);
     const fenceMinimum = Math.floor(ordinaryValue * 0.1);
     const fenceMaximum = Math.floor(ordinaryValue * 0.25);
-    const legalRate = weapon.manufacturer === "shintech" ? 0.8 : 0.5;
+    const legalRate = weapon.manufacturer === "valcour" ? 0.8 : 0.5;
     const legalValue = Math.floor(ordinaryValue * legalRate);
     const salePrice = [
       "<h3>Sale Price</h3>",
@@ -1426,6 +1438,12 @@ export async function installWeaponCatalogue() {
             `<p><strong>${escapeHtml(manufacturer.perkName)}</strong><br>${manufacturer.perk}</p>`,
           ].join("")
         : "";
+    const manufacturerBiography = manufacturer.biography
+      ? [
+          "<h3>About Valcour</h3>",
+          ...manufacturer.biography.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`),
+        ].join("")
+      : "";
 
     return [
       `<p><strong>Manufacturer:</strong> ${escapeHtml(manufacturer.name)}</p>`,
@@ -1438,6 +1456,7 @@ export async function installWeaponCatalogue() {
       modList,
       specialRules,
       manufacturerPerk,
+      manufacturerBiography,
     ].join("");
   };
 

@@ -1,0 +1,18 @@
+{
+  "sourceKey": "valcour-vc-14-hummingbird",
+  "actorId": "R2cfbbf8f5bbbdbd",
+  "name": "Valcour VC-14 Hummingbird",
+  "manufacturer": "Valcour",
+  "model": "VC-14 Hummingbird",
+  "description": "A tiny, atelier-finished observation flyer commissioned for discreet private security. Its quiet movement and refined control response come at the cost of limited space for added systems.",
+  "cost": 2000,
+  "ac": 15,
+  "traumaTarget": 6,
+  "hp": 5,
+  "fittings": 2,
+  "speed": 10,
+  "moveType": "fly",
+  "hardpoints": 0,
+  "encumbrance": 3,
+  "tokenScale": 0.6
+}

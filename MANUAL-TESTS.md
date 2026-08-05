@@ -110,14 +110,31 @@ Do not claim Foundry runtime success until these checks have been completed.
 - [ ] Monthly Bus Pass and Smartphone Service Plan still behave as ordinary
       native SWNR Items when Combat Enhancements is absent.
 
-## CWN Drones v0.7.2
+## Valcour rebrand v0.8.0
+
+- [ ] Open representative Valcour weapons and confirm the manufacturer is
+      `Valcour` with no suffix.
+- [ ] Confirm the six-paragraph biography and advertising slogan render in the
+      weapon description.
+- [ ] Confirm **Premium Engineering** states 80% resale by the registered lawful
+      owner through an authorised dealer, normal fencing for stolen,
+      undocumented, or illegally modified weapons, and licensed armourer +1.
+- [ ] Confirm the eleven names are VC-22 Kestrel, VC-37 Falcon, VC-80 Peregrine,
+      VC-14 Merlin, VC-5 Sparrow, VC-18 Swallow, VC-6 Chevalier, VC-9 Regent,
+      VC-70 Osprey, VC-99 Gyrfalcon, and VC-55 Tempest.
+- [ ] Confirm no current compendium record displays ShinTech, an ST model code,
+      Kitsune, Suzume, Tsubame, Ronin, Daimyo, or Raijin.
+- [ ] Confirm Valcour weapons retain their prior damage, cost, range, Trauma,
+      modification, weapon-family, ammunition, and native roll fields.
+
+## CWN Drones v0.8.0
 
 - [ ] **CWN Drones** appears in Compendium Packs and contains exactly nine
       Actors.
 - [ ] Confirm the nine names are Ironbark Mouse, Blackhound BH-10 Roach,
-      ShinTech ST-14 Hummingbird, Ironbark Sunfish, Helix HX-35 Pitbull, Helix
-      HX-40 Javelin, Titan TD-66 Kraken, Titan TD-70 Kerberos, and ShinTech
-      ST-90 Shrike.
+      Valcour VC-14 Hummingbird, Ironbark Sunfish, Helix HX-35 Pitbull, Helix
+      HX-40 Javelin, Titan TD-66 Kraken, Titan TD-70 Kerberos, and Valcour
+      VC-90 Shrike.
 - [ ] Confirm none of the superseded catalogue names appears in the compendium.
 - [ ] Open each Actor and confirm it uses the native SWNR Drone sheet.
 - [ ] Confirm each Actor has a distinct circular gunmetal-framed token with
