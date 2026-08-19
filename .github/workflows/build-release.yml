@@ -31,6 +31,9 @@ jobs:
       - name: Install build dependencies
         run: npm install --ignore-scripts --no-audit --no-fund
 
+      - name: Generate requested weapon icons
+        run: node tools/generate-npc-weapon-icons.mjs
+
       - name: Build weapon compendium
         run: node tools/build-weapon-compendium.mjs vendor/swnr
 
@@ -92,7 +95,8 @@ jobs:
           unzip -Z1 "$ZIP" | grep -q "^packs/cwn-common-operator-gear/"
           unzip -Z1 "$ZIP" | grep -q "^packs/cwn-cyberware/"
           unzip -Z1 "$ZIP" | grep -q "^packs/cwn-drones/"
-          test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/ammunition/.*\.svg$')" -eq 14
+          test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/weapons/.*\.svg$')" -eq 55
+          test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/ammunition/.*\.svg$')" -eq 15
           test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/gear/common-operator-gear/.*\.svg$')" -eq 27
           test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/cyberware/.*\.svg$')" -eq 88
           test "$(unzip -Z1 "$ZIP" | grep -c '^assets/tokens/drones/.*\.webp$')" -eq 9
