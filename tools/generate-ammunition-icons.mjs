@@ -6,6 +6,14 @@ const moduleRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), ".
 const outputRoot = path.join(moduleRoot, "assets", "icons", "ammunition");
 
 const icons = {
+  arrows: {
+    label: "Arrows",
+    color: "#91bd63",
+    shape: `<path class="body" d="M151 143h210l-24 253H175z"/>
+      <path class="accent" d="M137 123h238l-14 58H151z"/>
+      <path class="detail" d="M183 181l14 207M225 181l8 207M287 181l-8 207M329 181l-14 207"/>
+      <path class="round" d="M177 152l-26-66 42 25 18-51 16 78zm66 0l-18-83 35 35 29-47 2 81zm72 0l11-82 26 47 39-31-24 66z"/>`
+  },
   "light-pistol-magazine": {
     label: "Light Pistol Magazine",
     color: "#5ee7ff",
@@ -142,4 +150,3 @@ for (const [sourceKey, icon] of Object.entries(icons)) {
 }
 
 console.log(`Generated ${Object.keys(icons).length} original ammunition SVG icons.`);
-

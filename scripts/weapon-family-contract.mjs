@@ -3,13 +3,14 @@ export const CONTENT_PACK_FLAG_SCOPE = "cwn-content-pack";
 export const FAMILY_SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 /**
- * Canonical platform classification for the 64-item Harbour City Stories
+ * Canonical platform classification for the 73-item Harbour City Stories
  * catalogue. Weapon families come from the authored base platform, never the
  * displayed manufacturer/model name.
  */
 export const WEAPON_BASE_CONTRACT = Object.freeze({
   "Light Pistol": Object.freeze({ weaponFamily: "light-pistol", reloadable: true }),
   "Heavy Pistol": Object.freeze({ weaponFamily: "heavy-pistol", reloadable: true }),
+  "Advanced Bow": Object.freeze({ weaponFamily: "bow", reloadable: true }),
   Rifle: Object.freeze({ weaponFamily: "rifle", reloadable: true }),
   "Combat Rifle": Object.freeze({ weaponFamily: "combat-rifle", reloadable: true }),
   "Submachine Gun": Object.freeze({ weaponFamily: "submachine-gun", reloadable: true }),
@@ -80,6 +81,11 @@ export const WEAPON_BASE_CONTRACT = Object.freeze({
     weaponFamily: null,
     reloadable: false,
     reason: "Melee weapon; no ammunition."
+  }),
+  "Big Club": Object.freeze({
+    weaponFamily: null,
+    reloadable: false,
+    reason: "Melee weapon; no ammunition."
   })
 });
 
@@ -106,4 +112,3 @@ export function contractForBaseWeapon(baseWeapon) {
   }
   return contract;
 }
-

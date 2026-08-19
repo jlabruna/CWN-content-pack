@@ -7,14 +7,14 @@ const moduleRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), ".
 const releaseRoot = path.join(moduleRoot, "release");
 const stagedModule = path.join(releaseRoot, "cwn-content-pack");
 const githubUpload = path.join(releaseRoot, "github-upload");
-const githubPatchUpload = path.join(releaseRoot, "github-upload-v0.8.0-patch");
-const githubWorkflowUpload = path.join(releaseRoot, "github-workflow-v0.8.0");
+const githubPatchUpload = path.join(releaseRoot, "github-upload-v0.9.0-patch");
+const githubWorkflowUpload = path.join(releaseRoot, "github-workflow-v0.9.0");
 const githubDotfilesUpload = path.join(releaseRoot, "github-dotfiles-upload");
 const manifest = JSON.parse(await fs.readFile(path.join(moduleRoot, "module.json"), "utf8"));
 const expectedPackCounts = Object.freeze({
-  "harbour-city-stories-weapons": { type: "weapon", count: 64 },
+  "harbour-city-stories-weapons": { type: "weapon", count: 73 },
   "harbour-city-stories-armor": { type: "armor", count: 14 },
-  "cwn-ammunition": { type: "item", count: 14 },
+  "cwn-ammunition": { type: "item", count: 15 },
   "cwn-common-operator-gear": { type: "item", count: 27 },
   "cwn-cyberware": { type: "cyberware", count: 88 },
   "cwn-drones": { type: "drone", count: 9 }
@@ -92,8 +92,8 @@ for (const pack of manifest.packs ?? []) {
 const stagedAmmunitionIcons = await fs.readdir(
   path.join(stagedModule, "assets", "icons", "ammunition")
 );
-if (stagedAmmunitionIcons.filter((name) => name.endsWith(".svg")).length !== 14) {
-  throw new Error("Staged release must contain exactly 14 ammunition SVG icons.");
+if (stagedAmmunitionIcons.filter((name) => name.endsWith(".svg")).length !== 15) {
+  throw new Error("Staged release must contain exactly 15 ammunition SVG icons.");
 }
 const stagedGearIcons = await fs.readdir(
   path.join(stagedModule, "assets", "icons", "gear", "common-operator-gear")
@@ -185,38 +185,52 @@ await fs.copyFile(
   path.join(githubDotfilesUpload, ".gitignore")
 );
 
-// This compact V0.8.0 browser-upload bundle stays below GitHub's 100-file
+// This compact V0.9.0 browser-upload bundle stays below GitHub's 100-file
 // upload limit; the Action rebuilds every generated pack from these sources.
 await fs.rm(githubPatchUpload, { recursive: true, force: true });
-for (const directory of ["scripts", "tools"]) {
-  await fs.mkdir(path.join(githubPatchUpload, directory), { recursive: true });
+for (const directory of [[".github", "workflows"], ["scripts"], ["tools"]]) {
+  await fs.mkdir(path.join(githubPatchUpload, ...directory), { recursive: true });
 }
+await fs.copyFile(
+  path.join(moduleRoot, ".github", "workflows", "build-release.yml"),
+  path.join(githubPatchUpload, ".github", "workflows", "build-release.yml")
+);
 for (const filename of [
+  "AMMUNITION-CATALOGUE.md",
   "CHANGELOG.md",
   "DRONE-CATALOGUE.md",
   "MANUAL-TESTS.md",
   "README.md",
+  "WEAPON-ROLL-MAPPING.md",
   "module.json",
   "package.json"
 ]) {
   await fs.copyFile(path.join(moduleRoot, filename), path.join(githubPatchUpload, filename));
 }
-await fs.copyFile(
-  path.join(moduleRoot, "scripts", "weapon-catalogue.mjs"),
-  path.join(githubPatchUpload, "scripts", "weapon-catalogue.mjs")
-);
 for (const directory of [
+  ["assets", "icons", "ammunition"],
+  ["assets", "icons", "weapons", "generic"],
+  ["assets", "icons", "weapons", "ironbark"],
   ["assets", "icons", "weapons", "valcour"],
   ["assets", "tokens", "drones"],
+  ["data", "ammunition"],
   ["data", "drones"]
 ]) {
   await fs.mkdir(path.join(githubPatchUpload, ...directory), { recursive: true });
 }
-await fs.cp(
-  path.join(moduleRoot, "assets", "icons", "weapons", "valcour"),
-  path.join(githubPatchUpload, "assets", "icons", "weapons", "valcour"),
-  { recursive: true }
-);
+for (const directory of [
+  ["assets", "icons", "ammunition"],
+  ["assets", "icons", "weapons", "generic"],
+  ["assets", "icons", "weapons", "ironbark"],
+  ["assets", "icons", "weapons", "valcour"],
+  ["data", "ammunition"]
+]) {
+  await fs.cp(
+    path.join(moduleRoot, ...directory),
+    path.join(githubPatchUpload, ...directory),
+    { recursive: true }
+  );
+}
 for (const filename of [
   "valcour-vc-14-hummingbird.webp",
   "valcour-vc-90-shrike.webp"
@@ -235,7 +249,25 @@ for (const filename of [
     path.join(githubPatchUpload, "data", "drones", filename)
   );
 }
-for (const filename of ["stage-release.mjs", "validate-content.mjs"]) {
+for (const filename of [
+  "weapon-catalogue-app.mjs",
+  "weapon-catalogue.mjs",
+  "weapon-family-contract.mjs",
+  "weapon-roll-contract.mjs"
+]) {
+  await fs.copyFile(
+    path.join(moduleRoot, "scripts", filename),
+    path.join(githubPatchUpload, "scripts", filename)
+  );
+}
+for (const filename of [
+  "build-ammunition-compendium.mjs",
+  "build-weapon-compendium.mjs",
+  "generate-ammunition-icons.mjs",
+  "generate-npc-weapon-icons.mjs",
+  "stage-release.mjs",
+  "validate-content.mjs"
+]) {
   await fs.copyFile(
     path.join(moduleRoot, "tools", filename),
     path.join(githubPatchUpload, "tools", filename)
@@ -254,7 +286,7 @@ await fs.copyFile(
 console.log(
   `Staged CWN Content Pack ${manifest.version} at ${stagedModule} `
   + `and browser-upload sources at ${githubUpload}. `
-  + `The compact V0.8.0 patch upload is at ${githubPatchUpload}. `
+  + `The compact V0.9.0 patch upload is at ${githubPatchUpload}. `
   + `The visible workflow upload is at ${githubWorkflowUpload}. `
   + `Hidden browser-upload paths are also at ${githubDotfilesUpload}.`
 );

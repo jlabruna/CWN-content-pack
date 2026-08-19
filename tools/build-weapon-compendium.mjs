@@ -23,8 +23,50 @@ const sourcePack = path.join(moduleRoot, "src", "packs", "harbour-city-stories-w
 const outputPack = path.join(moduleRoot, "packs", "harbour-city-stories-weapons");
 const verificationPack = path.join(moduleRoot, ".build", "verify-harbour-city-stories-weapons");
 const systemItems = path.join(systemRoot, "src", "packs", "cwn-items");
-const expectedWeaponIdentityDigest =
+const expectedLegacyWeaponIdentityDigest =
   "ea6b624ee9c9a8fa10fdca13971315ecb7cfd332643b952c7421a08f947b936b";
+const addedWeaponKeys = new Set([
+  "advanced-bow-ironbark-huntsman",
+  "knife-generic-broken-bottle",
+  "knife-generic-kitchen-knife",
+  "knife-generic-shiv",
+  "club-generic-wrench",
+  "club-generic-crowbar",
+  "club-generic-metal-pipe",
+  "club-generic-pool-cue",
+  "big-club-generic-sledgehammer"
+]);
+const expectedWeaponCount = 73;
+const legacyWeaponFolderIds = Object.freeze({
+  "Advanced Big Swords": "F8f33a086f3d59f9",
+  "Advanced Clubs": "Fe7db1a4cd4b8dd2",
+  "Advanced Knives": "F99620609dc97727",
+  "Advanced Swords": "F8e07c19b8e2e6f3",
+  "Anti-Materiel Rifles": "Fd12698dddd9aa30",
+  "Automatic Rifles": "F4888e4981e905cf",
+  "Big Swords": "Fe45b63da30a0a9c",
+  Clubs: "Fa790530948dd658",
+  "Combat Rifles": "F4c3512e583e380b",
+  "Combat Shotguns": "F05f133ab1b7e5d1",
+  Firearms: "F599b61097d459ff",
+  "Harbour City Stories Weapons": "Fddf51ee48f589f6",
+  "Heavy Machine Guns": "F8abb64edf07fe74",
+  "Heavy Pistols": "F9e2ca596d67b4e0",
+  "Heavy Weapons": "Fe50d39a6e304819",
+  Knives: "F9ad9130ddb49a42",
+  "Light Pistols": "F34bb03ac3451f11",
+  "Melee and Thrown Weapons": "F753a3237c32cd71",
+  Mortars: "Ff57222804d938c1",
+  Rifles: "F0d1c68f217de3b1",
+  "Rocket Launchers": "Fcc36dbbc8014027",
+  "Semi-Auto Shotguns": "F6f172ec64fd3ba0",
+  Shotguns: "Fd070ec32c0d4587",
+  "Sniper Rifles": "F485feaf01e418c5",
+  Spears: "Fa2e6e46110612d0",
+  "Submachine Guns": "Fe6c9023b0147bef",
+  Swords: "Fd9c0d95198a6e86",
+  "Taser Pistols": "Fe07696532b3def7"
+});
 
 const stableId = (prefix, value) => {
   // Foundry document IDs must be exactly 16 alphanumeric characters.
@@ -70,7 +112,6 @@ for (const filename of await fs.readdir(systemItems)) {
 
 const folders = [];
 const createdItems = [];
-let folderSequence = 0;
 
 globalThis.foundry = {
   utils: {
@@ -98,10 +139,10 @@ globalThis.game = {
 };
 globalThis.Folder = class {
   static async create(source) {
-    folderSequence += 1;
     const folder = {
       ...source,
-      id: stableId("F", `${folderSequence}:${source.name}:${source.folder ?? ""}`),
+      id: legacyWeaponFolderIds[source.name]
+        ?? stableId("F", `weapon-folder:${source.name}`),
       async update(change) {
         Object.assign(this, change);
       }
@@ -151,7 +192,7 @@ for (const [index, folder] of folders.entries()) {
   );
 }
 
-const weaponIdentityLines = [];
+const legacyWeaponIdentityLines = [];
 for (const [index, item] of createdItems.entries()) {
   const key = getProperty(item, "flags.harbour-city-stories.catalogueKey");
   const baseWeapon = getProperty(item, "flags.harbour-city-stories.baseWeapon");
@@ -159,7 +200,7 @@ for (const [index, item] of createdItems.entries()) {
   const rollContract = weaponRollContractForBaseWeapon(baseWeapon);
   const id = stableId("W", key);
   assertFoundryId(id, `Weapon "${item.name}"`);
-  weaponIdentityLines.push(`${key}:${id}`);
+  if (!addedWeaponKeys.has(key)) legacyWeaponIdentityLines.push(`${key}:${id}`);
 
   const generatedFamily = getProperty(
     item,
@@ -231,18 +272,20 @@ for (const [index, item] of createdItems.entries()) {
   );
 }
 
-if (createdItems.length !== 64) {
-  throw new Error(`Expected 64 weapons but generated ${createdItems.length}.`);
+if (createdItems.length !== expectedWeaponCount) {
+  throw new Error(
+    `Expected ${expectedWeaponCount} weapons but generated ${createdItems.length}.`
+  );
 }
 
-const weaponIdentityDigest = crypto
+const legacyWeaponIdentityDigest = crypto
   .createHash("sha256")
-  .update(weaponIdentityLines.sort().join("\n"))
+  .update(legacyWeaponIdentityLines.sort().join("\n"))
   .digest("hex");
-if (weaponIdentityDigest !== expectedWeaponIdentityDigest) {
+if (legacyWeaponIdentityDigest !== expectedLegacyWeaponIdentityDigest) {
   throw new Error(
-    "Deterministic weapon IDs changed unexpectedly. "
-    + `Expected ${expectedWeaponIdentityDigest}, found ${weaponIdentityDigest}.`
+    "Existing deterministic weapon IDs changed unexpectedly. "
+    + `Expected ${expectedLegacyWeaponIdentityDigest}, found ${legacyWeaponIdentityDigest}.`
   );
 }
 
@@ -258,9 +301,10 @@ await extractPack(outputPack, verificationPack, {
   }
 });
 await fs.rm(verificationPack, { recursive: true, force: true });
-if (compiledWeaponCount !== 64) {
+if (compiledWeaponCount !== expectedWeaponCount) {
   throw new Error(
-    `Weapon compendium verification failed: expected 64 items but found ${compiledWeaponCount}.`
+    `Weapon compendium verification failed: expected ${expectedWeaponCount} items but found `
+    + `${compiledWeaponCount}.`
   );
 }
 

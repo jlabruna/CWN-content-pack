@@ -18,6 +18,7 @@
 | `mortar-round` | Mortar Round | `mortar` | 1 | $50 | 0 |
 | `anti-materiel-rifle-magazine` | Anti-Materiel Rifle Magazine | `anti-materiel-rifle` | 5 | $5 | 0 |
 | `taser-pistol-charge-pack` | Taser Pistol Charge Pack | `taser-pistol` | 2 | $2 | 0 |
+| `arrows` | Arrows | `bow` | 20 | $20 | 0 |
 
 ## Exact Weapon Family mapping
 
@@ -37,6 +38,7 @@
 | Anti-Materiel Rifle | `anti-materiel-rifle` |
 | Heavy Machine Gun | `heavy-machine-gun` |
 | Mortar | `mortar` |
+| Advanced Bow | `bow` |
 
 The mapping is generated from the catalogue's canonical
 `flags["harbour-city-stories"].baseWeapon` value, never from the displayed
@@ -49,9 +51,8 @@ manufacturer/model name.
 - **Knife, Club, Sword, Big Sword, and advanced variants:** melee weapons with
   no ammunition.
 - **Spear:** melee/thrown weapon without a homogeneous reload Item.
-- **Grenade Launcher and Advanced Bow:** not present in the current 64-item
-  Harbour City Stories catalogue, so this release invents neither weapons nor
-  reload Items for them.
+- **Grenade Launcher:** not present in the current 73-item Harbour City Stories
+  catalogue, so this release invents neither a weapon nor a reload Item for it.
 - **Mines and demolition charges:** not weapon platforms in this catalogue and
   cannot be represented faithfully as homogeneous reload Items.
 
@@ -63,6 +64,12 @@ Number System Reference Document under CC0 1.0.
 Ordinary ammunition uses the $1-per-round rule where no special price is
 stated. Automatic Rifle, Heavy Machine Gun, and Mortar ammunition use their
 explicit prices.
+
+`Arrows` represents a 20-arrow quiver and therefore costs $20 at the ordinary
+$1-per-projectile rate. The source establishes the per-projectile price but not
+a quiver size; 20 is a documented Content Pack packaging convention. The
+shared `bow` family is intentionally generic so later arrow types can remain
+compatible with the same bow platform.
 
 The catalogue intentionally omits the ordinary empty-magazine shell price,
 empty objects, refill bookkeeping, and ammunition Encumbrance. Each imported

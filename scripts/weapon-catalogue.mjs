@@ -25,7 +25,7 @@ import {
 export async function installWeaponCatalogue() {
   "use strict";
 
-  const INSTALLER_VERSION = "2.2.0";
+  const INSTALLER_VERSION = "2.3.0";
   const FLAG_SCOPE = "harbour-city-stories";
   const ROOT_FOLDER_NAME = "Harbour City Stories Weapons";
   const ICON_MODULE_ID = "cwn-content-pack";
@@ -121,6 +121,7 @@ export async function installWeaponCatalogue() {
     "Combat Shotgun": 3000,
     "Light Pistol": 200,
     "Heavy Pistol": 200,
+    "Advanced Bow": 500,
     Shotgun: 200,
     "Semi-Auto Shotgun": 1000,
     Rifle: 1000,
@@ -139,6 +140,7 @@ export async function installWeaponCatalogue() {
     "Advanced Sword": 1000,
     "Advanced Big Sword": 2500,
     "Advanced Club": 500,
+    "Big Club": 100,
   });
 
   const ordinaryModCosts = Object.freeze({
@@ -170,7 +172,7 @@ export async function installWeaponCatalogue() {
       .replace(/^-|-$/g, "");
 
   const iconPathFor = (weapon) =>
-    `${ICON_MODULE_PATH}/${weapon.manufacturer}/${iconSlug(weapon.base)}.svg`;
+    `${ICON_MODULE_PATH}/${weapon.manufacturer}/${iconSlug(weapon.icon ?? weapon.base)}.svg`;
 
   const makeWeapon = ({
     key,
@@ -179,6 +181,7 @@ export async function installWeaponCatalogue() {
     base,
     manufacturer,
     name,
+    icon,
     cost,
     mods = [],
     special = [],
@@ -192,6 +195,7 @@ export async function installWeaponCatalogue() {
     rangeNormal,
     rangeMax,
     nonLethal,
+    twoHanded,
   }) => ({
     key,
     category,
@@ -199,6 +203,7 @@ export async function installWeaponCatalogue() {
     base,
     manufacturer,
     name,
+    icon,
     cost,
     mods,
     special,
@@ -213,6 +218,7 @@ export async function installWeaponCatalogue() {
       rangeNormal,
       rangeMax,
       nonLethal,
+      twoHanded,
     },
   });
 
@@ -1191,8 +1197,148 @@ export async function installWeaponCatalogue() {
     }),
 
     // -----------------------------------------------------------------------
+    // Bows
+    // -----------------------------------------------------------------------
+    makeWeapon({
+      key: "advanced-bow-ironbark-huntsman",
+      category: "Ranged Weapons",
+      family: "Bows",
+      base: "Advanced Bow",
+      manufacturer: "ironbark",
+      name: "Ironbark Huntsman",
+      icon: "huntsman-compound-bow",
+      cost: 500,
+      special: [
+        "Reload the bow with a Move action, or as an On Turn action if the user has at least Shoot-1.",
+      ],
+      slogan: "One clean shot beyond the city limits.",
+      paragraphs: [
+        "The Ironbark Huntsman is a modern compound hunting bow built for guides, back-country hunters and wilderness crews who value precision without the report or maintenance burden of a firearm. Weather-sealed cams, durable composite limbs and uncomplicated field adjustments keep it dependable through long journeys away from a workshop.",
+        "Ironbark markets the Huntsman as practical sporting equipment rather than a tactical weapon. Its rugged construction and balanced draw make it equally useful for hunting, target work and last-resort defence without granting any performance beyond the standard CWN Advanced Bow profile.",
+      ],
+    }),
+
+    // -----------------------------------------------------------------------
     // Melee and Thrown Weapons
     // -----------------------------------------------------------------------
+    makeWeapon({
+      key: "knife-generic-broken-bottle",
+      category: "Melee and Thrown Weapons",
+      family: "Knives",
+      base: "Knife",
+      manufacturer: "generic",
+      name: "Broken Bottle",
+      icon: "broken-bottle",
+      cost: 20,
+      slogan: "The argument already went too far.",
+      paragraphs: [
+        "A smashed glass bottle gripped by the neck and pressed into use as an improvised stabbing and slashing weapon. Its jagged edge is dangerous without providing any special advantage beyond the standard Knife profile.",
+      ],
+    }),
+    makeWeapon({
+      key: "knife-generic-kitchen-knife",
+      category: "Melee and Thrown Weapons",
+      family: "Knives",
+      base: "Knife",
+      manufacturer: "generic",
+      name: "Kitchen Knife",
+      icon: "kitchen-knife",
+      cost: 20,
+      slogan: "Ordinary steel, ugly purpose.",
+      paragraphs: [
+        "An ordinary heavy kitchen knife pressed into use as a weapon. Its broad working blade is made for food preparation, but remains entirely capable of stabbing or slashing at close quarters.",
+      ],
+    }),
+    makeWeapon({
+      key: "knife-generic-shiv",
+      category: "Melee and Thrown Weapons",
+      family: "Knives",
+      base: "Knife",
+      manufacturer: "generic",
+      name: "Shiv",
+      icon: "shiv",
+      cost: 20,
+      slogan: "Scrap, an edge, and intent.",
+      paragraphs: [
+        "A crude stabbing weapon assembled from sharpened scrap, a wrapped grip and whatever binding was available. It is ugly and improvised but uses the standard Knife profile without additional penalties or bonuses.",
+      ],
+    }),
+    makeWeapon({
+      key: "club-generic-wrench",
+      category: "Melee and Thrown Weapons",
+      family: "Clubs",
+      base: "Club",
+      manufacturer: "generic",
+      name: "Wrench",
+      icon: "wrench",
+      cost: 50,
+      slogan: "Workshop weight, street leverage.",
+      paragraphs: [
+        "A large, solid mechanic's wrench used as an improvised blunt weapon. Its weight and sturdy handle make it a natural last resort for workshop crews and maintenance workers caught in close combat.",
+      ],
+    }),
+    makeWeapon({
+      key: "club-generic-crowbar",
+      category: "Melee and Thrown Weapons",
+      family: "Clubs",
+      base: "Club",
+      manufacturer: "generic",
+      name: "Crowbar",
+      icon: "crowbar",
+      cost: 50,
+      slogan: "For doors, crates, and harder problems.",
+      paragraphs: [
+        "An ordinary heavy pry bar equally useful for forced entry and blunt-force violence. Its hooked end offers leverage, but the Item has no special combat mechanics beyond the standard Club profile.",
+      ],
+    }),
+    makeWeapon({
+      key: "club-generic-metal-pipe",
+      category: "Melee and Thrown Weapons",
+      family: "Clubs",
+      base: "Club",
+      manufacturer: "generic",
+      name: "Metal Pipe",
+      icon: "metal-pipe",
+      cost: 50,
+      slogan: "Heavy enough to make the point.",
+      paragraphs: [
+        "A length of heavy metal pipe being used as an improvised club. It is awkward as a tool and brutally straightforward as a close-combat weapon.",
+      ],
+    }),
+    makeWeapon({
+      key: "club-generic-pool-cue",
+      category: "Melee and Thrown Weapons",
+      family: "Clubs",
+      base: "Club",
+      manufacturer: "generic",
+      name: "Pool Cue",
+      icon: "pool-cue",
+      cost: 50,
+      slogan: "The game ended when the table flipped.",
+      paragraphs: [
+        "A sturdy pool cue used as an improvised weapon. Its length gives a brawler room to swing or jab, but it behaves exactly like a standard Club in combat.",
+      ],
+    }),
+    makeWeapon({
+      key: "big-club-generic-sledgehammer",
+      category: "Melee and Thrown Weapons",
+      family: "Big Clubs",
+      base: "Big Club",
+      manufacturer: "generic",
+      name: "Sledgehammer",
+      icon: "sledgehammer",
+      cost: 100,
+      special: [
+        "This is a two-handed weapon, making it impossible to have a Readied item in the wielder's off hand.",
+        "The weapon's damage is non-lethal unless the wielder deliberately chooses otherwise. Non-lethal hits do not roll the Trauma Die.",
+      ],
+      twoHanded: true,
+      slogan: "Built for concrete. Effective on everything softer.",
+      paragraphs: [
+        "A heavy industrial or demolition sledgehammer with a long handle and an oversized striking head. It demands both hands and a committed swing, using the standard Big Club profile.",
+      ],
+    }),
+
     makeWeapon({
       key: "knife-ironbark-trailknife",
       category: "Melee and Thrown Weapons",
@@ -1662,6 +1808,9 @@ export async function installWeaponCatalogue() {
       }
       if (weapon.overrides.nonLethal !== undefined) {
         source.system.nonLethal = weapon.overrides.nonLethal;
+      }
+      if (weapon.overrides.twoHanded !== undefined) {
+        source.system.isTwoHanded = weapon.overrides.twoHanded;
       }
 
       let existing = existingByKey.get(weapon.key);

@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.9.0
+
+- Added eight generic NPC weapons: Broken Bottle, Kitchen Knife, Shiv, Wrench,
+  Crowbar, Metal Pipe, Pool Cue, and Sledgehammer.
+- Added the Ironbark Huntsman compound bow using the canonical CWN Advanced Bow
+  profile and a reusable `bow` weapon family.
+- Added Arrows as a 20-projectile, $20 physical ammunition Item compatible with
+  the bow family.
+- Added ten dedicated SVG icons: one for every new weapon and one for Arrows.
+- Preserved all 64 legacy weapon Item IDs and all 28 legacy weapon folder IDs;
+  new Items and folders use deterministic IDs.
+- Expanded build, validation, documentation, and manual tests for 73 weapons,
+  15 ammunition Items, the new weapon profiles, resale values, and icons.
+
 ## 0.8.0
 
 - Renamed ShinTech to Valcour across the current manufacturer, weapon, drone,

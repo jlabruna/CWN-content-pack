@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Arrows</title>
+  <defs>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#566574"/><stop offset=".45" stop-color="#202b35"/>
+      <stop offset="1" stop-color="#090d12"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      .body{fill:url(#metal);stroke:#91bd63;stroke-width:8;stroke-linejoin:round}
+      .accent{fill:#0b1118;stroke:#91bd63;stroke-width:7;stroke-linejoin:round}
+      .detail{fill:none;stroke:#91bd63;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;opacity:.82}
+      .round{fill:#1c2630;stroke:#91bd63;stroke-width:6;stroke-linejoin:round}
+    </style>
+  </defs>
+  <path d="M72 56h368l16 16v368l-16 16H72l-16-16V72z" fill="none" stroke="#91bd63" stroke-width="7" opacity=".75"/>
+  <path d="M94 76h324M436 96v320M418 436H94M76 416V96" fill="none" stroke="#91bd63" stroke-width="2" opacity=".45"/>
+  <g filter="url(#glow)"><path class="body" d="M151 143h210l-24 253H175z"/>
+      <path class="accent" d="M137 123h238l-14 58H151z"/>
+      <path class="detail" d="M183 181l14 207M225 181l8 207M287 181l-8 207M329 181l-14 207"/>
+      <path class="round" d="M177 152l-26-66 42 25 18-51 16 78zm66 0l-18-83 35 35 29-47 2 81zm72 0l11-82 26 47 39-31-24 66z"/></g>
+</svg>

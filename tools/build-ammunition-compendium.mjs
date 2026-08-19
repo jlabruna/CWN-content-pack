@@ -19,7 +19,7 @@ const iconRoot = path.join(moduleRoot, "assets", "icons", "ammunition");
 const sourcePack = path.join(moduleRoot, "src", "packs", "cwn-ammunition");
 const outputPack = path.join(moduleRoot, "packs", "cwn-ammunition");
 const verificationPack = path.join(moduleRoot, ".build", "verify-cwn-ammunition");
-const expectedItemCount = 14;
+const expectedItemCount = 15;
 
 const folderDefinitions = Object.freeze({
   magazines: Object.freeze({ name: "Magazines", sort: 100000 }),
@@ -187,6 +187,18 @@ const validateSources = async (sources) => {
     if (typeof source.provenance !== "string" || source.provenance.trim() === "") {
       throw new Error(`Ammunition source "${source.sourceKey}" lacks provenance.`);
     }
+    if (
+      source.abstraction !== undefined
+      && (typeof source.abstraction !== "string" || source.abstraction.trim() === "")
+    ) {
+      throw new Error(`Ammunition source "${source.sourceKey}" has invalid abstraction text.`);
+    }
+    if (
+      source.includeSalePrice !== undefined
+      && typeof source.includeSalePrice !== "boolean"
+    ) {
+      throw new Error(`Ammunition source "${source.sourceKey}" has invalid sale-price metadata.`);
+    }
 
     const id = stableId("U", `ammunition:${source.sourceKey}`);
     assertFoundryId(id, `Ammunition "${source.name}"`);
@@ -231,6 +243,19 @@ for (const [folderKey, folder] of Object.entries(folderDefinitions)) {
 
 for (const [index, source] of sources.entries()) {
   const id = stableId("U", `ammunition:${source.sourceKey}`);
+  const formatCredits = (value) => `${Math.floor(value).toLocaleString("en-US")}&cent;`;
+  const salePrice = source.includeSalePrice
+    ? [
+        "<h3>Sale Price</h3>",
+        `<p><strong>Fence:</strong> ${formatCredits(source.system.cost * 0.1)}`
+          + `&ndash;${formatCredits(source.system.cost * 0.25)} `
+          + `<em>(10&ndash;25% of ${formatCredits(source.system.cost)})</em><br>`,
+        `<strong>Legally Owned:</strong> ${formatCredits(source.system.cost * 0.5)} `
+          + `<em>(50% of ${formatCredits(source.system.cost)})</em></p>`
+      ].join("")
+    : "";
+  const abstraction = source.abstraction
+    ?? "Cost covers ammunition only; empty magazines, refill bookkeeping, and ammunition Encumbrance are omitted.";
   const item = {
     name: source.name,
     type: "item",
@@ -247,8 +272,8 @@ for (const [index, source] of sources.entries()) {
       cost: source.system.cost,
       description:
         `<p>${source.description}</p>`
-        + "<p><em>Gameplay abstraction: cost covers ammunition only; "
-        + "empty magazines, refill bookkeeping, and ammunition Encumbrance are omitted.</em></p>",
+        + salePrice
+        + `<p><em>Gameplay abstraction: ${abstraction}</em></p>`,
       encumbrance: 0,
       noEncReadied: false,
       favorite: false,

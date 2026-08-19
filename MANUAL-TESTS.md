@@ -1,6 +1,6 @@
 # Foundry VTT 14.365 / SWNR 2.3.1 manual test checklist
 
-Use CWN Content & Icon Pack 0.7.3 in a disposable Foundry V14 world running
+Use CWN Content & Icon Pack 0.8.0 in a disposable Foundry V14 world running
 SWNR 2.3.1. Tests marked as Combat Enhancements integration require CWN Combat
 Enhancements 0.13.1.
 
@@ -8,7 +8,7 @@ Do not claim Foundry runtime success until these checks have been completed.
 
 ## Compendium and independence
 
-- [ ] **CWN Ammunition & Reloads** appears and contains exactly 14 Items in four
+- [ ] **CWN Ammunition & Reloads** appears and contains exactly 15 Items in four
       folders.
 - [ ] **CWN Common Operator Gear** appears and contains exactly 27 Items in
       five folders.
@@ -75,7 +75,15 @@ Do not claim Foundry runtime success until these checks have been completed.
 
 ## Regression
 
-- [ ] Harbour City Stories Weapons still contains exactly 64 weapons.
+- [ ] Harbour City Stories Weapons contains exactly 73 weapons.
+- [ ] Confirm Broken Bottle, Kitchen Knife, and Shiv use the Knife profile;
+      Wrench, Crowbar, Metal Pipe, and Pool Cue use the Club profile; and
+      Sledgehammer uses the two-handed Big Club profile.
+- [ ] Confirm all nine added weapons have distinct, readable SVG icons and the
+      original 64 weapon Item IDs remain unchanged.
+- [ ] Open Ironbark Huntsman: confirm Damage 1d8, Range 30/200, Cost 500,
+      Encumbrance 2, magazine 1, Trauma 1d8+1/x3, Dex/Shoot handling, and its
+      Move-action reload (or On Turn with Shoot-1) description.
 - [ ] Open a Combat Rifle: confirm its native SWNR roll uses Dexterity and the
       dialog offers the actor's Shoot skill without any stale skill warning.
 - [ ] Open an Ironbark Trailknife or another knife/sword: confirm it is marked
@@ -84,7 +92,11 @@ Do not claim Foundry runtime success until these checks have been completed.
       roll still offers Strength/Dexterity and Stab.
 - [ ] Open a Mortar: confirm it retains SWNR's native Wisdom/Shoot mapping.
 - [ ] Harbour City Stories Armor still contains exactly 14 armor Items.
-- [ ] CWN Ammunition & Reloads still contains exactly 14 ammunition Items.
+- [ ] CWN Ammunition & Reloads contains exactly 15 ammunition Items.
+- [ ] Import Arrows: confirm Cost 20, Uses 20/20, Encumbrance 0, and its
+      dedicated quiver icon.
+- [ ] With Combat Enhancements active, confirm Arrows appears for Ironbark
+      Huntsman through the shared `bow` family and does not appear for firearms.
 - [ ] Existing weapon and armor deterministic IDs remain unchanged.
 - [ ] Weapon and armor icons still render.
 - [ ] No red console errors identify CWN Content Pack or CWN Combat

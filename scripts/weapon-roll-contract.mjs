@@ -34,13 +34,14 @@ const meleeStrength = Object.freeze({
 });
 
 /**
- * Every native base weapon used by the 64-record Harbour City Stories source.
+ * Every native base weapon used by the 73-record Harbour City Stories source.
  * Mortar intentionally retains SWNR's native Wisdom/Shoot configuration, and
  * Spear intentionally remains non-melee to preserve SWNR's thrown-weapon
  * handling while still using Stab with Strength or Dexterity.
  */
 export const WEAPON_ROLL_CONTRACTS = Object.freeze({
   "Anti-Materiel Rifle": firearm,
+  "Advanced Bow": firearm,
   "Automatic Rifle": firearm,
   "Combat Rifle": firearm,
   "Combat Shotgun": firearm,
@@ -74,6 +75,7 @@ export const WEAPON_ROLL_CONTRACTS = Object.freeze({
   Sword: meleeFinesse,
   "Advanced Big Sword": meleeStrength,
   "Advanced Club": meleeStrength,
+  "Big Club": meleeStrength,
   "Big Sword": meleeStrength,
   Club: meleeStrength,
 });

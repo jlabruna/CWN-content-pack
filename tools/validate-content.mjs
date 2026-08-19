@@ -13,8 +13,8 @@ const { extractPack } = await import("@foundryvtt/foundryvtt-cli");
 const moduleRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const manifest = JSON.parse(await fs.readFile(path.join(moduleRoot, "module.json"), "utf8"));
 
-if (manifest.version !== "0.8.0") {
-  throw new Error(`Expected module version 0.8.0 but found ${manifest.version}.`);
+if (manifest.version !== "0.9.0") {
+  throw new Error(`Expected module version 0.9.0 but found ${manifest.version}.`);
 }
 if (manifest.compatibility?.verified !== "14.365") {
   throw new Error("module.json must be verified for Foundry VTT 14.365.");
@@ -31,16 +31,126 @@ if (
 }
 
 const expectedPacks = Object.freeze({
-  "harbour-city-stories-weapons": { documentType: "Item", itemType: "weapon", count: 64 },
+  "harbour-city-stories-weapons": { documentType: "Item", itemType: "weapon", count: 73 },
   "harbour-city-stories-armor": { documentType: "Item", itemType: "armor", count: 14, folderCount: 3 },
-  "cwn-ammunition": { documentType: "Item", itemType: "item", count: 14, folderCount: 4 },
+  "cwn-ammunition": { documentType: "Item", itemType: "item", count: 15, folderCount: 4 },
   "cwn-common-operator-gear": { documentType: "Item", itemType: "item", count: 27, folderCount: 5 },
   "cwn-cyberware": { documentType: "Item", itemType: "cyberware", count: 88, folderCount: 8 },
   "cwn-drones": { documentType: "Actor", itemType: "drone", count: 9, folderCount: 0 }
 });
-const expectedWeaponIdentityDigest =
+const expectedLegacyWeaponIdentityDigest =
   "ea6b624ee9c9a8fa10fdca13971315ecb7cfd332643b952c7421a08f947b936b";
-const expectedReloadableWeaponCount = 52;
+const expectedReloadableWeaponCount = 53;
+const expectedWeaponFolderIds = Object.freeze({
+  "Advanced Big Swords": "F8f33a086f3d59f9",
+  "Advanced Clubs": "Fe7db1a4cd4b8dd2",
+  "Advanced Knives": "F99620609dc97727",
+  "Advanced Swords": "F8e07c19b8e2e6f3",
+  "Anti-Materiel Rifles": "Fd12698dddd9aa30",
+  "Automatic Rifles": "F4888e4981e905cf",
+  "Big Clubs": "F5071c17ce5e5759",
+  "Big Swords": "Fe45b63da30a0a9c",
+  "Bows": "Fc269b63c39c3ae3",
+  "Clubs": "Fa790530948dd658",
+  "Combat Rifles": "F4c3512e583e380b",
+  "Combat Shotguns": "F05f133ab1b7e5d1",
+  "Firearms": "F599b61097d459ff",
+  "Harbour City Stories Weapons": "Fddf51ee48f589f6",
+  "Heavy Machine Guns": "F8abb64edf07fe74",
+  "Heavy Pistols": "F9e2ca596d67b4e0",
+  "Heavy Weapons": "Fe50d39a6e304819",
+  "Knives": "F9ad9130ddb49a42",
+  "Light Pistols": "F34bb03ac3451f11",
+  "Melee and Thrown Weapons": "F753a3237c32cd71",
+  "Mortars": "Ff57222804d938c1",
+  "Ranged Weapons": "F25fa6216971061b",
+  "Rifles": "F0d1c68f217de3b1",
+  "Rocket Launchers": "Fcc36dbbc8014027",
+  "Semi-Auto Shotguns": "F6f172ec64fd3ba0",
+  "Shotguns": "Fd070ec32c0d4587",
+  "Sniper Rifles": "F485feaf01e418c5",
+  "Spears": "Fa2e6e46110612d0",
+  "Submachine Guns": "Fe6c9023b0147bef",
+  "Swords": "Fd9c0d95198a6e86",
+  "Taser Pistols": "Fe07696532b3def7"
+});
+const expectedNewWeapons = Object.freeze({
+  "advanced-bow-ironbark-huntsman": Object.freeze({
+    name: "Ironbark Huntsman",
+    base: "Advanced Bow",
+    manufacturer: "Ironbark Outdoor Industries",
+    cost: 500,
+    id: "W46cae20c5757681",
+    img: "modules/cwn-content-pack/assets/icons/weapons/ironbark/huntsman-compound-bow.svg"
+  }),
+  "knife-generic-broken-bottle": Object.freeze({
+    name: "Broken Bottle", base: "Knife", manufacturer: "Various Manufacturers", cost: 20,
+    id: "Wc8e876791c1af4b",
+    img: "modules/cwn-content-pack/assets/icons/weapons/generic/broken-bottle.svg"
+  }),
+  "knife-generic-kitchen-knife": Object.freeze({
+    name: "Kitchen Knife", base: "Knife", manufacturer: "Various Manufacturers", cost: 20,
+    id: "W1c2bf1541baa254",
+    img: "modules/cwn-content-pack/assets/icons/weapons/generic/kitchen-knife.svg"
+  }),
+  "knife-generic-shiv": Object.freeze({
+    name: "Shiv", base: "Knife", manufacturer: "Various Manufacturers", cost: 20,
+    id: "Wa91b567701f0b7b",
+    img: "modules/cwn-content-pack/assets/icons/weapons/generic/shiv.svg"
+  }),
+  "club-generic-wrench": Object.freeze({
+    name: "Wrench", base: "Club", manufacturer: "Various Manufacturers", cost: 50,
+    id: "W7d4762e4dd0abf2",
+    img: "modules/cwn-content-pack/assets/icons/weapons/generic/wrench.svg"
+  }),
+  "club-generic-crowbar": Object.freeze({
+    name: "Crowbar", base: "Club", manufacturer: "Various Manufacturers", cost: 50,
+    id: "W5d8da2aa7a0af82",
+    img: "modules/cwn-content-pack/assets/icons/weapons/generic/crowbar.svg"
+  }),
+  "club-generic-metal-pipe": Object.freeze({
+    name: "Metal Pipe", base: "Club", manufacturer: "Various Manufacturers", cost: 50,
+    id: "Wda403bf7fe5e455",
+    img: "modules/cwn-content-pack/assets/icons/weapons/generic/metal-pipe.svg"
+  }),
+  "club-generic-pool-cue": Object.freeze({
+    name: "Pool Cue", base: "Club", manufacturer: "Various Manufacturers", cost: 50,
+    id: "W3720edf3d024fb2",
+    img: "modules/cwn-content-pack/assets/icons/weapons/generic/pool-cue.svg"
+  }),
+  "big-club-generic-sledgehammer": Object.freeze({
+    name: "Sledgehammer", base: "Big Club", manufacturer: "Various Manufacturers", cost: 100,
+    id: "W85bd585c0bae7da",
+    img: "modules/cwn-content-pack/assets/icons/weapons/generic/sledgehammer.svg"
+  })
+});
+const expectedProfileFields = Object.freeze({
+  Knife: Object.freeze({
+    "system.damage": "1d4", "system.encumbrance": 1, "system.shock.dmg": 1,
+    "system.shock.ac": 15, "system.trauma.die": "1d6", "system.trauma.rating": 3,
+    "system.range.normal": 10, "system.range.max": 20, "system.isNonLethal": false,
+    "system.isTwoHanded": false, "system.ammo.type": "none", "system.ammo.max": 0
+  }),
+  Club: Object.freeze({
+    "system.damage": "1d4", "system.encumbrance": 1, "system.shock.dmg": 1,
+    "system.shock.ac": 18, "system.trauma.die": "1d6", "system.trauma.rating": 2,
+    "system.range.normal": 10, "system.range.max": 20, "system.isNonLethal": true,
+    "system.isTwoHanded": false, "system.ammo.type": "none", "system.ammo.max": 0
+  }),
+  "Big Club": Object.freeze({
+    "system.damage": "1d10", "system.encumbrance": 2, "system.shock.dmg": 2,
+    "system.shock.ac": 18, "system.trauma.die": "1d8", "system.trauma.rating": 3,
+    "system.range.normal": 0, "system.range.max": 0, "system.isNonLethal": true,
+    "system.isTwoHanded": true, "system.ammo.type": "none", "system.ammo.max": 0
+  }),
+  "Advanced Bow": Object.freeze({
+    "system.damage": "1d8", "system.encumbrance": 2, "system.shock.dmg": 0,
+    "system.shock.ac": 0, "system.trauma.die": "1d8+1", "system.trauma.rating": 3,
+    "system.range.normal": 30, "system.range.max": 200, "system.isNonLethal": false,
+    "system.isTwoHanded": false, "system.ammo.type": "special", "system.ammo.max": 1,
+    "system.ammo.value": 1, "system.ammo.burst": false, "system.ammo.suppress": false
+  })
+});
 const expectedValcourWeapons = Object.freeze({
   "combat-rifle-shintech-kestrel": "VC-22 Kestrel",
   "combat-rifle-shintech-falcon": "VC-37 Falcon",
@@ -166,8 +276,16 @@ for (const [packName, expected] of Object.entries(expectedPacks)) {
 }
 
 const weapons = loadedPacks.get("harbour-city-stories-weapons").items;
+const weaponFolders = loadedPacks.get("harbour-city-stories-weapons").folders;
+if (
+  weaponFolders.length !== Object.keys(expectedWeaponFolderIds).length
+  || weaponFolders.some((folder) => expectedWeaponFolderIds[folder.name] !== folder._id)
+) {
+  throw new Error("Weapon compendium folder names or deterministic IDs changed unexpectedly.");
+}
 const generatedWeaponFamilies = new Set();
-const weaponIdentityLines = [];
+const legacyWeaponIdentityLines = [];
+const foundNewWeaponKeys = new Set();
 let reloadableWeaponCount = 0;
 const foundValcourKeys = new Set();
 for (const weapon of weapons) {
@@ -208,7 +326,37 @@ for (const weapon of weapons) {
       throw new Error(`Valcour weapon "${weapon.name}" has invalid current branding or perk text.`);
     }
   }
-  weaponIdentityLines.push(`${sourceKey}:${weapon._id}`);
+  const expectedNewWeapon = expectedNewWeapons[sourceKey];
+  if (expectedNewWeapon) {
+    foundNewWeaponKeys.add(sourceKey);
+    if (
+      weapon.name !== expectedNewWeapon.name
+      || baseWeapon !== expectedNewWeapon.base
+      || weapon.system?.cost !== expectedNewWeapon.cost
+      || weapon._id !== expectedNewWeapon.id
+      || weapon.img !== expectedNewWeapon.img
+      || getProperty(weapon, "flags.harbour-city-stories.manufacturer")
+        !== expectedNewWeapon.manufacturer
+      || typeof weapon.system?.description !== "string"
+      || weapon.system.description.trim() === ""
+      || !weapon.system.description.includes("<h3>Sale Price</h3>")
+    ) {
+      throw new Error(`New weapon "${weapon.name}" has invalid identity or catalogue metadata.`);
+    }
+    for (const [field, expectedValue] of Object.entries(expectedProfileFields[baseWeapon])) {
+      if (getProperty(weapon, field) !== expectedValue) {
+        throw new Error(
+          `New weapon "${weapon.name}" must use ${baseWeapon} ${field} "${expectedValue}".`
+        );
+      }
+    }
+    const icon = await fs.readFile(moduleAssetPath(weapon.img), "utf8");
+    if (!/<svg\b/.test(icon) || !/viewBox="0 0 512 512"/.test(icon)) {
+      throw new Error(`New weapon "${weapon.name}" has an invalid square SVG icon.`);
+    }
+  } else {
+    legacyWeaponIdentityLines.push(`${sourceKey}:${weapon._id}`);
+  }
   if (contract.reloadable) {
     reloadableWeaponCount += 1;
     if (family !== contract.weaponFamily || !FAMILY_SLUG_PATTERN.test(family)) {
@@ -258,23 +406,30 @@ if (
 ) {
   throw new Error("Weapon compendium does not contain the exact eleven Valcour products.");
 }
+if (
+  foundNewWeaponKeys.size !== Object.keys(expectedNewWeapons).length
+  || Object.keys(expectedNewWeapons).some((key) => !foundNewWeaponKeys.has(key))
+) {
+  throw new Error("Weapon compendium does not contain the exact nine requested new weapons.");
+}
 if (reloadableWeaponCount !== expectedReloadableWeaponCount) {
   throw new Error(
     `Expected ${expectedReloadableWeaponCount} reloadable weapons but found `
     + `${reloadableWeaponCount}.`
   );
 }
-const weaponIdentityDigest = crypto
+const legacyWeaponIdentityDigest = crypto
   .createHash("sha256")
-  .update(weaponIdentityLines.sort().join("\n"))
+  .update(legacyWeaponIdentityLines.sort().join("\n"))
   .digest("hex");
-if (weaponIdentityDigest !== expectedWeaponIdentityDigest) {
-  throw new Error("Generated deterministic weapon IDs changed unexpectedly.");
+if (legacyWeaponIdentityDigest !== expectedLegacyWeaponIdentityDigest) {
+  throw new Error("Existing deterministic weapon IDs changed unexpectedly.");
 }
 
 const ammunition = loadedPacks.get("cwn-ammunition").items;
 const ammunitionIconPaths = new Set();
 const ammunitionIds = new Set();
+let arrowsItem;
 for (const item of ammunition) {
   if (item.type !== "item") {
     throw new Error(`Ammunition "${item.name}" must have type "item".`);
@@ -332,6 +487,7 @@ for (const item of ammunition) {
     throw new Error(`Duplicate ammunition icon path "${item.img}".`);
   }
   ammunitionIconPaths.add(item.img);
+  if (item.name === "Arrows") arrowsItem = item;
 
   const iconPath = moduleAssetPath(item.img);
   const icon = await fs.readFile(iconPath, "utf8");
@@ -341,6 +497,19 @@ for (const item of ammunition) {
   if (/<rect\b[^>]*\bfill=(?!["']none["'])/i.test(icon)) {
     throw new Error(`Ammunition "${item.name}" icon has a non-transparent background.`);
   }
+}
+if (
+  !arrowsItem
+  || arrowsItem._id !== "Ueb717a02f4bf354"
+  || arrowsItem.system?.cost !== 20
+  || arrowsItem.system?.uses?.value !== 20
+  || arrowsItem.system?.uses?.max !== 20
+  || arrowsItem.system?.uses?.ammo !== "special"
+  || getProperty(arrowsItem, `flags.${CONTENT_PACK_FLAG_SCOPE}.magazineFamily`) !== "bow"
+  || !arrowsItem.system?.description?.includes("<strong>Fence:</strong> 2&cent;&ndash;5&cent;")
+  || !arrowsItem.system.description.includes("<strong>Legally Owned:</strong> 10&cent;")
+) {
+  throw new Error("Arrows ammunition has invalid quantity, pricing, family, or sale metadata.");
 }
 
 const expectedGear = Object.freeze({
@@ -789,7 +958,7 @@ if (
 }
 
 console.log(
-  "Validated 64 weapons (52 reloadable), 14 armor items, 14 ammunition items, "
+  "Validated 73 weapons (53 reloadable), 14 armor items, 15 ammunition items, "
   + "27 Common Operator Gear items, 88 cyberware items, and nine drone Actors; all deterministic IDs, "
   + "folder relationships, icons, metadata, and SWNR fields are valid."
 );

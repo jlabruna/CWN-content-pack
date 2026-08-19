@@ -4,22 +4,23 @@ An independent Foundry VTT content and icon pack for **Cities Without Number**
 games running on **Systems Without Number Redux (SWNR) 2.3.1**, verified for
 Foundry VTT 14.365.
 
-## Version 0.8.0
+## Version 0.9.0
 
 The content pack includes:
 
-- The complete 64-item Harbour City Stories weapon catalogue in a native
+- A 73-item Harbour City Stories weapon catalogue in a native
   Foundry Item compendium.
 - Explicit Weapon Family metadata on every reloadable catalogue weapon.
 - Explicit native SWNR roll fields on every weapon, with a portable skill
   prompt and documented Shoot/Stab mappings.
-- 46 colour-coded SVG weapon icons.
+- 55 colour-coded SVG weapon icons.
 - A 14-item Harbour City Stories armor catalogue in its own native Foundry
   Item compendium.
 - 14 original armor icons.
-- A 14-item **CWN Ammunition & Reloads** compendium containing preconfigured
-  physical magazines, shells, ammunition boxes, rounds, and charge packs.
-- 14 original transparent-background ammunition SVG icons.
+- A 15-item **CWN Ammunition & Reloads** compendium containing preconfigured
+  physical magazines, shells, ammunition boxes, rounds, charge packs, and
+  arrows.
+- 15 original transparent-background ammunition SVG icons.
 - A 27-item **CWN Common Operator Gear** compendium organized into Protective
   Gear, Carry and Clothing, Tools and Field Gear, Electronics, and Services and
   Supplies.
@@ -144,7 +145,7 @@ static compendium cannot safely hard-code a Shoot or Stab Item ID. When CWN
 Combat Enhancements is active, its semantic Skill and Stat metadata resolves
 the receiving character's actor-owned Shoot or Stab Item and restores the
 intended native Stat if SWNR imports it as `Ask`. See
-[`WEAPON-ROLL-MAPPING.md`](WEAPON-ROLL-MAPPING.md) for the complete 64-item
+[`WEAPON-ROLL-MAPPING.md`](WEAPON-ROLL-MAPPING.md) for the complete 73-item
 audit and intended native skills.
 
 ## Cyberware and recurring expenses
@@ -219,6 +220,10 @@ stated. Automatic Rifle, Heavy Machine Gun, and Mortar ammunition use their
 explicit special prices. Rocket Launchers are disposable and deliberately have
 no reload Item or Weapon Family flag.
 
+Arrows are packaged as a 20-arrow quiver for $20. The rulebook prices ordinary
+ammunition per projectile but does not prescribe a quiver size, so the bundle
+size is an explicit Content Pack packaging convention.
+
 See [AMMUNITION-CATALOGUE.md](AMMUNITION-CATALOGUE.md) for the exact manifest,
 family mapping, costs, capacities, and exclusions.
 
@@ -249,7 +254,7 @@ transparent background.
 
 ## Compatibility
 
-- Foundry Virtual Tabletop v13
+- Foundry Virtual Tabletop 13.345 or later, verified against 14.365
 - Systems Without Number Redux 2.3.x
 - Optional integration with CWN Combat Enhancements v0.10.4
 

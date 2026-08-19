@@ -1,0 +1,15 @@
+{
+  "sourceKey": "arrows",
+  "name": "Arrows",
+  "folderKey": "shells-and-rounds",
+  "img": "modules/cwn-content-pack/assets/icons/ammunition/arrows.svg",
+  "magazineFamily": "bow",
+  "description": "A quiver of standard arrows suitable for weapons in the Bow ammunition family. Uses track the individual arrows remaining.",
+  "abstraction": "A quiver holds 20 arrows. CWN prices ordinary ammunition at 1 credit per projectile and assigns no Encumbrance to any reasonable amount.",
+  "includeSalePrice": true,
+  "system": {
+    "cost": 20,
+    "uses": { "value": 20, "max": 20, "ammo": "special" }
+  },
+  "provenance": "CWN rulebook ordinary-ammunition baseline: 20 arrows at 1 credit per projectile; Advanced Bow reloads one arrow at a time. The 20-arrow quiver is a catalogue packaging convention because CWN specifies no arrow bundle size."
+}
