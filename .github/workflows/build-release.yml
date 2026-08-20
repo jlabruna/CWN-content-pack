@@ -95,15 +95,16 @@ jobs:
           unzip -Z1 "$ZIP" | grep -q "^packs/cwn-common-operator-gear/"
           unzip -Z1 "$ZIP" | grep -q "^packs/cwn-cyberware/"
           unzip -Z1 "$ZIP" | grep -q "^packs/cwn-drones/"
-          test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/weapons/.*\.svg$')" -eq 55
+          test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/weapons/.*\.svg$')" -eq 56
           test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/ammunition/.*\.svg$')" -eq 15
           test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/gear/common-operator-gear/.*\.svg$')" -eq 27
           test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/cyberware/.*\.svg$')" -eq 88
-          test "$(unzip -Z1 "$ZIP" | grep -c '^assets/tokens/drones/.*\.webp$')" -eq 9
+          test "$(unzip -Z1 "$ZIP" | grep -c '^assets/tokens/drones/.*\.webp$')" -eq 10
           for TOKEN in \
             blackhound-bh-10-roach \
             helix-hx-35-pitbull \
             helix-hx-40-javelin \
+            helix-hx-47-vector \
             ironbark-mouse \
             ironbark-sunfish \
             valcour-vc-14-hummingbird \
