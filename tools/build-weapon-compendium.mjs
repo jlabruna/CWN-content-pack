@@ -34,9 +34,10 @@ const addedWeaponKeys = new Set([
   "club-generic-crowbar",
   "club-generic-metal-pipe",
   "club-generic-pool-cue",
-  "big-club-generic-sledgehammer"
+  "big-club-generic-sledgehammer",
+  "advanced-sword-helix-hx-47-vector"
 ]);
-const expectedWeaponCount = 73;
+const expectedWeaponCount = 74;
 const legacyWeaponFolderIds = Object.freeze({
   "Advanced Big Swords": "F8f33a086f3d59f9",
   "Advanced Clubs": "Fe7db1a4cd4b8dd2",

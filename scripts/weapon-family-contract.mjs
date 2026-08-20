@@ -3,7 +3,7 @@ export const CONTENT_PACK_FLAG_SCOPE = "cwn-content-pack";
 export const FAMILY_SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 /**
- * Canonical platform classification for the 73-item Harbour City Stories
+ * Canonical platform classification for the 74-item Harbour City Stories
  * catalogue. Weapon families come from the authored base platform, never the
  * displayed manufacturer/model name.
  */

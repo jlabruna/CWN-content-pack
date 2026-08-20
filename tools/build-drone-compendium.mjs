@@ -9,12 +9,16 @@ const YAML = moduleRequire("yaml");
 const { compilePack, extractPack } = await import("@foundryvtt/foundryvtt-cli");
 
 export const DRONE_PACK_NAME = "cwn-drones";
-export const EXPECTED_DRONE_COUNT = 9;
+export const EXPECTED_DRONE_COUNT = 10;
 
 const dataRoot = path.join(moduleRoot, "data", "drones");
 const sourcePack = path.join(moduleRoot, "src", "packs", DRONE_PACK_NAME);
 const outputPack = path.join(moduleRoot, "packs", DRONE_PACK_NAME);
 const verifyPack = path.join(moduleRoot, ".build", `verify-${DRONE_PACK_NAME}`);
+const systemRoot = process.argv[2]
+  ? path.resolve(process.argv[2])
+  : path.join(moduleRoot, "vendor", "swnr");
+const systemItems = path.join(systemRoot, "src", "packs", "cwn-items");
 const stats = {
   compendiumSource: null,
   duplicateSource: null,
@@ -27,6 +31,34 @@ const escapeHtml = (value) => String(value)
   .replaceAll("&", "&amp;")
   .replaceAll("<", "&lt;")
   .replaceAll(">", "&gt;");
+
+const buildDroneDescription = (source) => {
+  if (!source.descriptionParagraphs && !source.specialRules) {
+    return `<p>${escapeHtml(source.description)}</p>`;
+  }
+  const paragraphs = (source.descriptionParagraphs ?? [])
+    .map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`)
+    .join("");
+  const rules = (source.specialRules ?? []).length
+    ? `<h3>Special Rules</h3><ul>${source.specialRules
+      .map((rule) => `<li>${escapeHtml(rule)}</li>`)
+      .join("")}</ul>`
+    : "";
+  return `${paragraphs}${rules}`;
+};
+
+let nativeAdvancedSword;
+for (const filename of await fs.readdir(systemItems)) {
+  if (!filename.endsWith(".yml")) continue;
+  const candidate = YAML.parse(await fs.readFile(path.join(systemItems, filename), "utf8"));
+  if (candidate?.type === "weapon" && candidate?.name === "Advanced Sword") {
+    nativeAdvancedSword = candidate;
+    break;
+  }
+}
+if (!nativeAdvancedSword) {
+  throw new Error(`Could not locate the native SWNR Advanced Sword under ${systemItems}.`);
+}
 
 const sources = [];
 for (const filename of (await fs.readdir(dataRoot)).filter((name) => name.endsWith(".json")).sort()) {
@@ -55,6 +87,39 @@ await fs.mkdir(sourcePack, { recursive: true });
 for (const [index, source] of sources.entries()) {
   const id = source.actorId;
   const tokenPath = `modules/cwn-content-pack/assets/tokens/drones/${source.sourceKey}.webp`;
+  const items = [];
+  if (source.integralAttack) {
+    const attack = structuredClone(nativeAdvancedSword);
+    attack.name = source.integralAttack.name;
+    attack.img = "modules/cwn-content-pack/assets/icons/weapons/helix/hx-47-vector.svg";
+    attack.folder = null;
+    attack.flags = {
+      "cwn-content-pack": {
+        integralWeapon: true,
+        baseWeapon: source.integralAttack.baseWeapon,
+        modificationPolicy: "none",
+        samePhysicalObjectKey: source.samePhysicalObjectKey
+      },
+      "harbour-city-stories": {
+        baseWeapon: source.integralAttack.baseWeapon,
+        nativeSkill: "Stab",
+        nativeStat: "str"
+      }
+    };
+    attack.system.description = "<p>An inseparable HX-47 Vector chassis attack. It uses the canonical Advanced Sword damage and Trauma profile, but drone-mode strikes inflict no Shock.</p>";
+    attack.system.cost = 0;
+    attack.system.encumbrance = 0;
+    attack.system.shock = { dmg: 0, ac: 0 };
+    attack.system.location = "readied";
+    attack.effects = [];
+    attack.ownership = { default: 0 };
+    attack._id = source.integralAttack.itemId;
+    attack.sort = 0;
+    attack._stats = stats;
+    attack._key = `!actors.items!${id}.${attack._id}`;
+    items.push(attack);
+  }
+
   const actor = {
     name: source.name,
     type: "drone",
@@ -66,13 +131,19 @@ for (const [index, source] of sources.entries()) {
         manufacturer: source.manufacturer,
         model: source.model,
         portable: source.encumbrance < 99,
+        modificationPolicy: source.modificationPolicy ?? "standard",
+        samePhysicalObjectKey: source.samePhysicalObjectKey ?? null,
+        controlMode: source.integralAttack ? "direct-only" : "standard",
+        noTouchWeb: source.integralAttack
+          ? { integral: true, automaticallyArmed: true, damage: "2d6", nonLethal: true, discharges: 5 }
+          : null,
         provenance: "Original CWN Content Pack catalogue entry and token artwork."
       }
     },
     system: {
       ac: source.ac,
       cost: source.cost,
-      description: `<p>${escapeHtml(source.description)}</p>`,
+      description: buildDroneDescription(source),
       enc: source.encumbrance,
       fittings: { max: source.fittings, value: source.fittings },
       health: { max: source.hp, value: source.hp },
@@ -92,7 +163,7 @@ for (const [index, source] of sources.entries()) {
       customModel: source.model
     },
     effects: [],
-    items: [],
+    items,
     prototypeToken: {
       name: source.model,
       displayName: 30,
@@ -191,8 +262,23 @@ if (actorCount !== EXPECTED_DRONE_COUNT) {
   throw new Error(`Compiled drone count mismatch: expected ${EXPECTED_DRONE_COUNT}, found ${actorCount}.`);
 }
 for (const actor of compiledActors) {
-  if (actor.items?.length || actor.effects?.length) {
-    throw new Error(`Drone "${actor.name}" unexpectedly contains Items or Active Effects.`);
+  const isVector = actor.flags?.["cwn-content-pack"]?.catalogueKey === "helix-hx-47-vector";
+  if ((!isVector && actor.items?.length) || (isVector && actor.items?.length !== 1) || actor.effects?.length) {
+    throw new Error(`Drone "${actor.name}" has invalid embedded Items or Active Effects.`);
+  }
+  if (isVector) {
+    const attack = actor.items[0];
+    if (
+      attack.name !== "Integral Advanced Sword"
+      || attack.system?.damage !== "1d10"
+      || attack.system?.trauma?.die !== "1d8"
+      || attack.system?.trauma?.rating !== 3
+      || attack.system?.shock?.dmg !== 0
+      || attack.system?.shock?.ac !== 0
+      || attack.system?.encumbrance !== 0
+    ) {
+      throw new Error("HX-47 Vector integral attack does not match its approved profile.");
+    }
   }
   if (actor.prototypeToken?.sight?.enabled !== true || actor.prototypeToken?.disposition !== 1) {
     throw new Error(`Drone "${actor.name}" has invalid prototype-token defaults.`);

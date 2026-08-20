@@ -6,7 +6,8 @@ const moduleRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), ".
 
 const palettes = Object.freeze({
   generic: Object.freeze({ primary: "#596675", accent: "#c2ccd6", wood: "#4d3a2b" }),
-  ironbark: Object.freeze({ primary: "#376f35", accent: "#91bd63", wood: "#9a704a" })
+  ironbark: Object.freeze({ primary: "#376f35", accent: "#91bd63", wood: "#9a704a" }),
+  helix: Object.freeze({ primary: "#477f28", accent: "#a6f24a", wood: "#202a20" })
 });
 
 const icons = Object.freeze({
@@ -88,6 +89,20 @@ const icons = Object.freeze({
       <path class="accent" d="M235 223h69v66h-69z"/>
       <path class="arrow" d="M97 248h314v16H97zM411 232l44 24-44 24zM97 238l-34 18 34 18z"/>
       <path class="line" d="M187 104l-52 152 52 152"/>
+    </g>`
+  },
+  "helix/hx-47-vector": {
+    label: "Helix HX-47 Vector Flying Katana",
+    shape: `<g transform="rotate(42 256 256)">
+      <path class="blade" d="M239 43h34l22 279-39 59-39-59z"/>
+      <path class="edge" d="M270 64l11 251-25 43"/>
+      <path class="line" d="M247 82l-10 223 19 35"/>
+      <path class="accent" d="M177 309h158l18 34-18 26H177l-18-26z"/>
+      <circle class="body" cx="197" cy="339" r="31"/><circle class="body" cx="315" cy="339" r="31"/>
+      <circle class="linefill" cx="197" cy="339" r="16"/><circle class="linefill" cx="315" cy="339" r="16"/>
+      <path class="detail" d="M226 365h60l-8 109h-44z"/>
+      <path class="line" d="M232 388l47 22-48 20 45 21"/>
+      <circle class="bolt" cx="256" cy="346" r="8"/>
     </g>`
   }
 });

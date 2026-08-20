@@ -34,7 +34,7 @@ const meleeStrength = Object.freeze({
 });
 
 /**
- * Every native base weapon used by the 73-record Harbour City Stories source.
+ * Every native base weapon used by the 74-record Harbour City Stories source.
  * Mortar intentionally retains SWNR's native Wisdom/Shoot configuration, and
  * Spear intentionally remains non-melee to preserve SWNR's thrown-weapon
  * handling while still using Stab with Strength or Dexterity.

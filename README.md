@@ -4,16 +4,16 @@ An independent Foundry VTT content and icon pack for **Cities Without Number**
 games running on **Systems Without Number Redux (SWNR) 2.3.1**, verified for
 Foundry VTT 14.365.
 
-## Version 0.9.0
+## Version 0.9.1
 
 The content pack includes:
 
-- A 73-item Harbour City Stories weapon catalogue in a native
+- A 74-item Harbour City Stories weapon catalogue in a native
   Foundry Item compendium.
 - Explicit Weapon Family metadata on every reloadable catalogue weapon.
 - Explicit native SWNR roll fields on every weapon, with a portable skill
   prompt and documented Shoot/Stab mappings.
-- 55 colour-coded SVG weapon icons.
+- 56 colour-coded SVG weapon icons.
 - A 14-item Harbour City Stories armor catalogue in its own native Foundry
   Item compendium.
 - 14 original armor icons.
@@ -30,9 +30,9 @@ The content pack includes:
 - 88 distinct original transparent-background cyberware SVG icons.
 - Audited automation classifications and neutral recurring-maintenance metadata
   on every cyberware Item.
-- A nine-Actor **CWN Drones** compendium using the native SWNR drone Actor
+- A ten-Actor **CWN Drones** compendium using the native SWNR drone Actor
   schema.
-- Nine distinct original 512px WebP drone tokens with transparent corners and
+- Ten distinct original 512px WebP drone tokens with transparent corners and
   a shared segmented gunmetal frame.
 - Recurring-service metadata on Monthly Bus Pass and Smartphone Service Plan
   for optional use by CWN Combat Enhancements.
@@ -112,13 +112,16 @@ or repair Valcour equipment due to its exceptional manufacturing consistency.
 ## Native SWNR drones
 
 **CWN Drones** contains Ironbark Mouse, Blackhound BH-10 Roach, Valcour VC-14
-Hummingbird, Ironbark Sunfish, Helix HX-35 Pitbull, Helix HX-40 Javelin, Titan
+Hummingbird, Ironbark Sunfish, Helix HX-35 Pitbull, Helix HX-40 Javelin, Helix
+HX-47 Vector, Titan
 TD-66 Kraken, Titan TD-70 Kerberos, and Valcour VC-90 Shrike. They are native
 SWNR `drone` Actors with their cost, AC, Trauma Target, HP, fittings, speed,
 movement type, hardpoints, and portability encoded in the corresponding system
 fields.
 
-The Actors contain no optional fittings, weapons, or other equipment. Their
+Nine Actors contain no optional fittings, weapons, or other equipment. The
+HX-47 Vector is a closed chassis with one inseparable Advanced Sword-derived
+attack Item; it has zero fittings and zero hardpoints. Their
 prototype tokens use the model name only, display that name when hovered by
 any user, have Friendly disposition, and have token vision enabled. See
 [DRONE-CATALOGUE.md](DRONE-CATALOGUE.md) for the exact catalogue values.
@@ -145,7 +148,7 @@ static compendium cannot safely hard-code a Shoot or Stab Item ID. When CWN
 Combat Enhancements is active, its semantic Skill and Stat metadata resolves
 the receiving character's actor-owned Shoot or Stab Item and restores the
 intended native Stat if SWNR imports it as `Ask`. See
-[`WEAPON-ROLL-MAPPING.md`](WEAPON-ROLL-MAPPING.md) for the complete 73-item
+[`WEAPON-ROLL-MAPPING.md`](WEAPON-ROLL-MAPPING.md) for the complete 74-item
 audit and intended native skills.
 
 ## Cyberware and recurring expenses

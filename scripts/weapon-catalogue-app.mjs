@@ -1,7 +1,7 @@
 import { installWeaponCatalogue } from "./weapon-catalogue.mjs";
 
 const MODULE_ID = "cwn-content-pack";
-const EXPECTED_WEAPONS = 73;
+const EXPECTED_WEAPONS = 74;
 const FLAG_SCOPE = "harbour-city-stories";
 
 export class WeaponCatalogueApp extends foundry.applications.api.HandlebarsApplicationMixin(

@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.9.1
+
+- Added the HX-47 Vector as a 5,000-credit Helix Advanced Sword and as an
+  alternate native drone Actor representation of the same physical object.
+- Added the drone's closed-chassis statistics, directly controlled integral
+  Advanced Sword attack without Shock, manual five-discharge No Touch Web,
+  capture failsafe, and permanent fallback to an unmodifiable normal Advanced
+  Sword.
+- Added a dedicated generated Helix SVG inventory icon and a distinct original
+  transparent 512px WebP drone token.
+- Expanded deterministic build, validation, staging, documentation, and manual
+  tests to 74 weapons and ten drone Actors while preserving every established
+  Item ID, Actor ID, and folder ID.
+
 ## 0.9.0
 
 - Added eight generic NPC weapons: Broken Bottle, Kitchen Knife, Shiv, Wrench,

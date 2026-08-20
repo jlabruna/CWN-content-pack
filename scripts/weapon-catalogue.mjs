@@ -196,6 +196,8 @@ export async function installWeaponCatalogue() {
     rangeMax,
     nonLethal,
     twoHanded,
+    modificationPolicy,
+    samePhysicalObjectKey,
   }) => ({
     key,
     category,
@@ -209,6 +211,8 @@ export async function installWeaponCatalogue() {
     special,
     slogan,
     paragraphs,
+    modificationPolicy,
+    samePhysicalObjectKey,
     overrides: {
       ab,
       damage,
@@ -1462,6 +1466,29 @@ export async function installWeaponCatalogue() {
       ],
     }),
     makeWeapon({
+      key: "advanced-sword-helix-hx-47-vector",
+      category: "Melee and Thrown Weapons",
+      family: "Advanced Swords",
+      base: "Advanced Sword",
+      manufacturer: "helix",
+      name: "HX-47 Vector",
+      icon: "hx-47-vector",
+      cost: 5000,
+      modificationPolicy: "none",
+      samePhysicalObjectKey: "helix-hx-47-vector",
+      special: [
+        "Closed chassis: the HX-47 Vector cannot accept weapon modifications, drone fittings, hardpoints, or aftermarket upgrades.",
+        "The HX-47 Vector weapon Item and Helix HX-47 Vector drone Actor are alternate representations of one physical object. Use only the representation matching its current mode; importing both does not create two objects.",
+        "Deploying drone mode and assuming direct control use the normal CWN drone actions. The blade has no autonomous combat mode.",
+        "If the deployed drone is captured, its electronics permanently fry. Stop using the drone Actor and use this unmodifiable normal Advanced Sword profile thereafter. The ruined electronics add no resale value: use the ordinary Advanced Sword value of 1,000 credits for sale calculations.",
+      ],
+      slogan: "The edge that closes the distance.",
+      paragraphs: [
+        "The HX-47 Vector is a Helix Dynamics advanced sword built around a sealed flight spine. In hand it performs exactly like a conventional Advanced Sword; at its owner's command, compact lift hardware unfolds and the whole blade becomes a directly controlled pursuit drone.",
+        "Helix sells the Vector as a single closed product rather than a weapon fitted to a reusable drone chassis. Its flight system, integral capture web, and blade geometry are factory-matched and cannot be modified without disabling the assembly.",
+      ],
+    }),
+    makeWeapon({
       key: "advanced-sword-shintech-raijin",
       category: "Melee and Thrown Weapons",
       family: "Advanced Swords",
@@ -1767,6 +1794,14 @@ export async function installWeaponCatalogue() {
           manufacturer: manufacturerData[weapon.manufacturer].name,
         },
       });
+      if (weapon.modificationPolicy || weapon.samePhysicalObjectKey) {
+        source.flags = foundry.utils.mergeObject(source.flags, {
+          [CONTENT_PACK_FLAG_SCOPE]: {
+            modificationPolicy: weapon.modificationPolicy,
+            samePhysicalObjectKey: weapon.samePhysicalObjectKey,
+          }
+        });
+      }
       if (baseContract.reloadable) {
         source.flags = foundry.utils.mergeObject(source.flags, {
           [CONTENT_PACK_FLAG_SCOPE]: {

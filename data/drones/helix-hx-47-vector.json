@@ -1,0 +1,34 @@
+{
+  "sourceKey": "helix-hx-47-vector",
+  "actorId": "Re973991e9ac9cde",
+  "name": "Helix HX-47 Vector",
+  "manufacturer": "Helix",
+  "model": "HX-47 Vector",
+  "descriptionParagraphs": [
+    "The HX-47 Vector is the deployed drone mode of the identically named Helix advanced sword. These compendium documents are alternate representations of one physical object, not separate purchases; use only the representation matching its current mode.",
+    "Its sealed flight spine unfolds around the blade, turning the sword into a fast directly controlled capture drone. It has no autonomous combat routine and cannot accept fittings, hardpoints, weapon modifications, or aftermarket upgrades."
+  ],
+  "specialRules": [
+    "Direct control only: deploy, assume command, move, attack, grab, and drop control using the normal CWN drone actions.",
+    "Integral blade: the embedded Integral Advanced Sword attack uses the canonical Advanced Sword damage and Trauma profile but inflicts no Shock. It is part of the chassis, costs no extra hardpoint, and is not a separately removable weapon.",
+    "Integral No Touch Web: it is automatically armed while drone mode is deployed. After a successful Grab Drone action, the held target suffers 2d6 nonlethal damage. The web has five discharges before it must be recharged; track these manually.",
+    "Capture failsafe: if the deployed drone is captured, its electronics permanently fry. Remove or stop using this drone Actor and use the same object's unmodifiable normal HX-47 Vector Advanced Sword Item thereafter. The ruined electronics add no resale value; the remaining sword has the ordinary Advanced Sword value of 1,000 credits."
+  ],
+  "cost": 5000,
+  "ac": 15,
+  "traumaTarget": 6,
+  "hp": 5,
+  "fittings": 0,
+  "speed": 20,
+  "moveType": "fly",
+  "hardpoints": 0,
+  "encumbrance": 0,
+  "tokenScale": 0.8,
+  "modificationPolicy": "none",
+  "samePhysicalObjectKey": "helix-hx-47-vector",
+  "integralAttack": {
+    "itemId": "I3572cf3dccfa386",
+    "name": "Integral Advanced Sword",
+    "baseWeapon": "Advanced Sword"
+  }
+}

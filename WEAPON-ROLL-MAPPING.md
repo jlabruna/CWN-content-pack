@@ -1,6 +1,6 @@
 # Harbour City Stories weapon-roll mapping
 
-This table is the source-of-truth audit for all 73 Harbour City Stories weapon
+This table is the source-of-truth audit for all 74 Harbour City Stories weapon
 records. The catalogue has 26 native SWNR base-weapon groups.
 
 `system.skill` is deliberately `ask` for every compendium entry. SWNR stores a
@@ -34,7 +34,7 @@ an NPC weapon.
 | Mortar | 1 | Shoot | Wis / None | false |
 | Advanced Bow | 1 | Shoot | Dex / None | false |
 | Advanced Knife | 1 | Stab | Str / Dex | true |
-| Advanced Sword | 1 | Stab | Str / Dex | true |
+| Advanced Sword | 2 | Stab | Str / Dex | true |
 | Knife | 4 | Stab | Str / Dex | true |
 | Spear | 2 | Stab | Str / Dex | false |
 | Sword | 1 | Stab | Str / Dex | true |
@@ -44,7 +44,7 @@ an NPC weapon.
 | Big Sword | 1 | Stab | Str / None | true |
 | Club | 5 | Stab | Str / None | true |
 
-There are no Punch/body-weapon source records in the current 73-item
+There are no Punch/body-weapon source records in the current 74-item
 catalogue. Any such item added later must be reviewed individually and mapped
 to Punch before it is included in the build.
 

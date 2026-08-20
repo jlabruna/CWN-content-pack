@@ -13,8 +13,8 @@ const { extractPack } = await import("@foundryvtt/foundryvtt-cli");
 const moduleRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const manifest = JSON.parse(await fs.readFile(path.join(moduleRoot, "module.json"), "utf8"));
 
-if (manifest.version !== "0.9.0") {
-  throw new Error(`Expected module version 0.9.0 but found ${manifest.version}.`);
+if (manifest.version !== "0.9.1") {
+  throw new Error(`Expected module version 0.9.1 but found ${manifest.version}.`);
 }
 if (manifest.compatibility?.verified !== "14.365") {
   throw new Error("module.json must be verified for Foundry VTT 14.365.");
@@ -31,12 +31,12 @@ if (
 }
 
 const expectedPacks = Object.freeze({
-  "harbour-city-stories-weapons": { documentType: "Item", itemType: "weapon", count: 73 },
+  "harbour-city-stories-weapons": { documentType: "Item", itemType: "weapon", count: 74 },
   "harbour-city-stories-armor": { documentType: "Item", itemType: "armor", count: 14, folderCount: 3 },
   "cwn-ammunition": { documentType: "Item", itemType: "item", count: 15, folderCount: 4 },
   "cwn-common-operator-gear": { documentType: "Item", itemType: "item", count: 27, folderCount: 5 },
   "cwn-cyberware": { documentType: "Item", itemType: "cyberware", count: 88, folderCount: 8 },
-  "cwn-drones": { documentType: "Actor", itemType: "drone", count: 9, folderCount: 0 }
+  "cwn-drones": { documentType: "Actor", itemType: "drone", count: 10, folderCount: 0 }
 });
 const expectedLegacyWeaponIdentityDigest =
   "ea6b624ee9c9a8fa10fdca13971315ecb7cfd332643b952c7421a08f947b936b";
@@ -122,6 +122,11 @@ const expectedNewWeapons = Object.freeze({
     name: "Sledgehammer", base: "Big Club", manufacturer: "Various Manufacturers", cost: 100,
     id: "W85bd585c0bae7da",
     img: "modules/cwn-content-pack/assets/icons/weapons/generic/sledgehammer.svg"
+  }),
+  "advanced-sword-helix-hx-47-vector": Object.freeze({
+    name: "HX-47 Vector", base: "Advanced Sword", manufacturer: "Helix Dynamics", cost: 5000,
+    id: "Wc7a4596d885a199",
+    img: "modules/cwn-content-pack/assets/icons/weapons/helix/hx-47-vector.svg"
   })
 });
 const expectedProfileFields = Object.freeze({
@@ -149,6 +154,12 @@ const expectedProfileFields = Object.freeze({
     "system.range.normal": 30, "system.range.max": 200, "system.isNonLethal": false,
     "system.isTwoHanded": false, "system.ammo.type": "special", "system.ammo.max": 1,
     "system.ammo.value": 1, "system.ammo.burst": false, "system.ammo.suppress": false
+  }),
+  "Advanced Sword": Object.freeze({
+    "system.damage": "1d10", "system.encumbrance": 1, "system.shock.dmg": 3,
+    "system.shock.ac": 15, "system.trauma.die": "1d8", "system.trauma.rating": 3,
+    "system.range.normal": 0, "system.range.max": 0, "system.isNonLethal": false,
+    "system.isTwoHanded": false, "system.ammo.type": "none", "system.ammo.max": 0
   })
 });
 const expectedValcourWeapons = Object.freeze({
@@ -350,6 +361,20 @@ for (const weapon of weapons) {
         );
       }
     }
+    if (sourceKey === "advanced-sword-helix-hx-47-vector") {
+      if (
+        getProperty(weapon, `flags.${CONTENT_PACK_FLAG_SCOPE}.modificationPolicy`) !== "none"
+        || getProperty(weapon, `flags.${CONTENT_PACK_FLAG_SCOPE}.samePhysicalObjectKey`)
+          !== "helix-hx-47-vector"
+        || !weapon.system.description.includes("one physical object")
+        || !weapon.system.description.includes("cannot accept weapon modifications")
+        || !weapon.system.description.includes("ordinary Advanced Sword value of 1,000 credits")
+        || !weapon.system.description.includes("100&cent;&ndash;250&cent;")
+        || !weapon.system.description.includes("500&cent;")
+      ) {
+        throw new Error("HX-47 Vector weapon has invalid closed-chassis, shared-object, or resale rules.");
+      }
+    }
     const icon = await fs.readFile(moduleAssetPath(weapon.img), "utf8");
     if (!/<svg\b/.test(icon) || !/viewBox="0 0 512 512"/.test(icon)) {
       throw new Error(`New weapon "${weapon.name}" has an invalid square SVG icon.`);
@@ -410,7 +435,7 @@ if (
   foundNewWeaponKeys.size !== Object.keys(expectedNewWeapons).length
   || Object.keys(expectedNewWeapons).some((key) => !foundNewWeaponKeys.has(key))
 ) {
-  throw new Error("Weapon compendium does not contain the exact nine requested new weapons.");
+  throw new Error("Weapon compendium does not contain the exact ten requested new weapons.");
 }
 if (reloadableWeaponCount !== expectedReloadableWeaponCount) {
   throw new Error(
@@ -785,7 +810,8 @@ const expectedDrones = Object.freeze({
   "valcour-vc-90-shrike": [25000, 18, 8, 20, 6, 30, "fly", 2, 99],
   "ironbark-mouse": [500, 13, 6, 1, 0, 5, "ground", 0, 1],
   "valcour-vc-14-hummingbird": [2000, 15, 6, 5, 2, 10, "fly", 0, 3],
-  "titan-td-66-kraken": [10000, 16, 8, 20, 5, 15, "swim", 2, 99]
+  "titan-td-66-kraken": [10000, 16, 8, 20, 5, 15, "swim", 2, 99],
+  "helix-hx-47-vector": [5000, 15, 6, 5, 0, 20, "fly", 0, 0]
 });
 const expectedDroneIdentity = Object.freeze({
   "blackhound-bh-10-roach": [
@@ -802,6 +828,9 @@ const expectedDroneIdentity = Object.freeze({
   ],
   "helix-hx-40-javelin": [
     "Helix HX-40 Javelin", "Helix", "HX-40 Javelin", "R2f54fecacb361cf"
+  ],
+  "helix-hx-47-vector": [
+    "Helix HX-47 Vector", "Helix", "HX-47 Vector", "Re973991e9ac9cde"
   ],
   "valcour-vc-90-shrike": [
     "Valcour VC-90 Shrike", "Valcour", "VC-90 Shrike", "Rc33b716df8ce944"
@@ -822,6 +851,7 @@ const expectedDroneScales = Object.freeze({
   "titan-td-70-kerberos": 0.9,
   "helix-hx-35-pitbull": 0.8,
   "helix-hx-40-javelin": 0.8,
+  "helix-hx-47-vector": 0.8,
   "valcour-vc-90-shrike": 1,
   "ironbark-mouse": 0.6,
   "valcour-vc-14-hummingbird": 0.6,
@@ -832,7 +862,7 @@ const droneSourceFiles = (await fs.readdir(droneSourceRoot))
   .filter((name) => name.endsWith(".json"))
   .sort();
 if (droneSourceFiles.length !== Object.keys(expectedDrones).length) {
-  throw new Error(`Drone source directory contains ${droneSourceFiles.length} entries, expected nine.`);
+  throw new Error(`Drone source directory contains ${droneSourceFiles.length} entries, expected ten.`);
 }
 for (const filename of droneSourceFiles) {
   const source = JSON.parse(await fs.readFile(path.join(droneSourceRoot, filename), "utf8"));
@@ -894,13 +924,40 @@ for (const actor of dronePack.items) {
   ) {
     throw new Error(`Drone "${actor.name}" has invalid native SWNR fields.`);
   }
+  const isVector = sourceKey === "helix-hx-47-vector";
   if (
     !Array.isArray(actor.items)
-    || actor.items.length !== 0
+    || (!isVector && actor.items.length !== 0)
+    || (isVector && actor.items.length !== 1)
     || !Array.isArray(actor.effects)
     || actor.effects.length !== 0
   ) {
-    throw new Error(`Drone "${actor.name}" must not include optional equipment or Active Effects.`);
+    throw new Error(`Drone "${actor.name}" has invalid embedded equipment or Active Effects.`);
+  }
+  if (isVector) {
+    const attack = actor.items[0];
+    if (
+      flags?.modificationPolicy !== "none"
+      || flags?.samePhysicalObjectKey !== "helix-hx-47-vector"
+      || flags?.controlMode !== "direct-only"
+      || flags?.noTouchWeb?.damage !== "2d6"
+      || flags?.noTouchWeb?.nonLethal !== true
+      || flags?.noTouchWeb?.discharges !== 5
+      || attack._id !== "I3572cf3dccfa386"
+      || attack.name !== "Integral Advanced Sword"
+      || attack.system?.damage !== "1d10"
+      || attack.system?.trauma?.die !== "1d8"
+      || attack.system?.trauma?.rating !== 3
+      || attack.system?.shock?.dmg !== 0
+      || attack.system?.shock?.ac !== 0
+      || attack.system?.encumbrance !== 0
+      || getProperty(attack, `flags.${CONTENT_PACK_FLAG_SCOPE}.modificationPolicy`) !== "none"
+      || !actor.system.description.includes("five discharges")
+      || !actor.system.description.includes("permanently fry")
+      || !actor.system.description.includes("one physical object")
+    ) {
+      throw new Error("HX-47 Vector drone rules, integral attack, or closed-chassis metadata are invalid.");
+    }
   }
   if (actor._id !== actorId) {
     throw new Error(`Drone "${actor.name}" did not preserve its established Actor ID.`);
@@ -941,8 +998,8 @@ for (const actor of dronePack.items) {
   }
   droneTokenHashes.add(tokenHash);
 }
-if (droneKeys.size !== 9 || Object.keys(expectedDrones).some((key) => !droneKeys.has(key))) {
-  throw new Error("Drone compendium does not contain the exact approved nine-Actor manifest.");
+if (droneKeys.size !== 10 || Object.keys(expectedDrones).some((key) => !droneKeys.has(key))) {
+  throw new Error("Drone compendium does not contain the exact approved ten-Actor manifest.");
 }
 const shippedDroneAssets = (await fs.readdir(path.join(moduleRoot, "assets", "tokens", "drones")))
   .sort();
@@ -952,13 +1009,13 @@ if (
   || expectedDroneAssets.some((name, index) => shippedDroneAssets[index] !== name)
 ) {
   throw new Error(
-    "Drone token directory must contain only the nine production WebPs; "
+    "Drone token directory must contain only the ten production WebPs; "
     + "captions, concept sheets, and other working files must not be shipped."
   );
 }
 
 console.log(
-  "Validated 73 weapons (53 reloadable), 14 armor items, 15 ammunition items, "
-  + "27 Common Operator Gear items, 88 cyberware items, and nine drone Actors; all deterministic IDs, "
+  "Validated 74 weapons (53 reloadable), 14 armor items, 15 ammunition items, "
+  + "27 Common Operator Gear items, 88 cyberware items, and ten drone Actors; all deterministic IDs, "
   + "folder relationships, icons, metadata, and SWNR fields are valid."
 );

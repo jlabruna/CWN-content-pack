@@ -75,11 +75,11 @@ Do not claim Foundry runtime success until these checks have been completed.
 
 ## Regression
 
-- [ ] Harbour City Stories Weapons contains exactly 73 weapons.
+- [ ] Harbour City Stories Weapons contains exactly 74 weapons.
 - [ ] Confirm Broken Bottle, Kitchen Knife, and Shiv use the Knife profile;
       Wrench, Crowbar, Metal Pipe, and Pool Cue use the Club profile; and
       Sledgehammer uses the two-handed Big Club profile.
-- [ ] Confirm all nine added weapons have distinct, readable SVG icons and the
+- [ ] Confirm all ten added weapons have distinct, readable SVG icons and the
       original 64 weapon Item IDs remain unchanged.
 - [ ] Open Ironbark Huntsman: confirm Damage 1d8, Range 30/200, Cost 500,
       Encumbrance 2, magazine 1, Trauma 1d8+1/x3, Dex/Shoot handling, and its
@@ -141,18 +141,18 @@ Do not claim Foundry runtime success until these checks have been completed.
 
 ## CWN Drones v0.8.0
 
-- [ ] **CWN Drones** appears in Compendium Packs and contains exactly nine
+- [ ] **CWN Drones** appears in Compendium Packs and contains exactly ten
       Actors.
-- [ ] Confirm the nine names are Ironbark Mouse, Blackhound BH-10 Roach,
+- [ ] Confirm the ten names are Ironbark Mouse, Blackhound BH-10 Roach,
       Valcour VC-14 Hummingbird, Ironbark Sunfish, Helix HX-35 Pitbull, Helix
-      HX-40 Javelin, Titan TD-66 Kraken, Titan TD-70 Kerberos, and Valcour
+      HX-40 Javelin, Helix HX-47 Vector, Titan TD-66 Kraken, Titan TD-70 Kerberos, and Valcour
       VC-90 Shrike.
 - [ ] Confirm none of the superseded catalogue names appears in the compendium.
 - [ ] Open each Actor and confirm it uses the native SWNR Drone sheet.
 - [ ] Confirm each Actor has a distinct circular gunmetal-framed token with
       transparent corners and no caption or nameplate inside the image.
-- [ ] Confirm all descriptions are non-empty and no Actor contains optional
-      equipment, weapons, fittings, or Active Effects.
+- [ ] Confirm all descriptions are non-empty; only HX-47 Vector contains an
+      embedded weapon, and no Actor contains optional equipment or Active Effects.
 - [ ] Spot-check Mouse: Cost 500, AC 13, Trauma Target 6, HP 1, Fittings 0,
       Speed 5, Ground, Hardpoints 0, Encumbrance 1.
 - [ ] Spot-check Pitbull: Cost 5,000, AC 15, Trauma Target 8, HP 15, Fittings
@@ -165,8 +165,8 @@ Do not claim Foundry runtime success until these checks have been completed.
 - [ ] Confirm newly placed tokens are Friendly and have token vision enabled.
 - [ ] Confirm every token retains a 1 x 1 grid footprint while its visible
       artwork uses these scales: Mouse 0.6, Hummingbird 0.6, Roach 0.7,
-      Sunfish 0.7, Pitbull 0.8, Javelin 0.8, Kerberos 0.9, Kraken 0.9, and
-      Shrike 1.0.
+      Sunfish 0.7, Pitbull 0.8, Javelin 0.8, Vector 0.8, Kerberos 0.9,
+      Kraken 0.9, and Shrike 1.0.
 - [ ] Confirm each placed token uses the same artwork as its compendium Actor.
 - [ ] Modify an imported or world Actor copy and confirm the compendium source
       remains unchanged.
@@ -174,3 +174,25 @@ Do not claim Foundry runtime success until these checks have been completed.
       copy retains its previous name and data.
 - [ ] Restart the world and confirm the compendium, Actors, prototype settings,
       and token artwork still load without red Content Pack console errors.
+
+## HX-47 Vector
+
+- [ ] Open the HX-47 Vector weapon Item and confirm Cost 5,000, Damage 1d10,
+      Shock 3/AC 15, Encumbrance 1, Trauma 1d8/x3, Strength/Dexterity, and Stab.
+- [ ] Confirm its description says it cannot be modified, the weapon Item and
+      drone Actor are one physical object, and the electronic fallback uses the
+      normal 1,000-credit Advanced Sword resale basis.
+- [ ] Open Helix HX-47 Vector and confirm AC 15, Trauma Target 6, HP 5, Speed 20,
+      Flying, Fittings 0, Hardpoints 0, Encumbrance 0, and Cost 5,000.
+- [ ] Confirm the Actor contains exactly one Integral Advanced Sword attack with
+      Damage 1d10, Trauma 1d8/x3, Encumbrance 0, and Shock 0/AC 0.
+- [ ] Confirm the description requires direct control and gives no autonomous
+      attack permission.
+- [ ] Resolve a successful Grab Drone action and manually apply 2d6 nonlethal
+      No Touch Web damage; confirm the text specifies five tracked discharges.
+- [ ] Simulate capture: retire the drone Actor, continue with the weapon Item,
+      and confirm neither representation offers fittings, hardpoints, or mods.
+- [ ] Import both documents for inspection and confirm the text clearly warns
+      that they are alternate representations, not two physical objects.
+- [ ] Drag the drone Actor to a scene and confirm its distinct transparent
+      circular token renders at scale 0.8 with the model name on hover.

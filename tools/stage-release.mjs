@@ -7,17 +7,17 @@ const moduleRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), ".
 const releaseRoot = path.join(moduleRoot, "release");
 const stagedModule = path.join(releaseRoot, "cwn-content-pack");
 const githubUpload = path.join(releaseRoot, "github-upload");
-const githubPatchUpload = path.join(releaseRoot, "github-upload-v0.9.0-patch");
-const githubWorkflowUpload = path.join(releaseRoot, "github-workflow-v0.9.0");
+const githubPatchUpload = path.join(releaseRoot, "github-upload-v0.9.1-patch");
+const githubWorkflowUpload = path.join(releaseRoot, "github-workflow-v0.9.1");
 const githubDotfilesUpload = path.join(releaseRoot, "github-dotfiles-upload");
 const manifest = JSON.parse(await fs.readFile(path.join(moduleRoot, "module.json"), "utf8"));
 const expectedPackCounts = Object.freeze({
-  "harbour-city-stories-weapons": { type: "weapon", count: 73 },
+  "harbour-city-stories-weapons": { type: "weapon", count: 74 },
   "harbour-city-stories-armor": { type: "armor", count: 14 },
   "cwn-ammunition": { type: "item", count: 15 },
   "cwn-common-operator-gear": { type: "item", count: 27 },
   "cwn-cyberware": { type: "cyberware", count: 88 },
-  "cwn-drones": { type: "drone", count: 9 }
+  "cwn-drones": { type: "drone", count: 10 }
 });
 
 const expectedDownload =
@@ -114,6 +114,7 @@ const expectedDroneTokens = [
   "blackhound-bh-10-roach.webp",
   "helix-hx-35-pitbull.webp",
   "helix-hx-40-javelin.webp",
+  "helix-hx-47-vector.webp",
   "ironbark-mouse.webp",
   "ironbark-sunfish.webp",
   "valcour-vc-14-hummingbird.webp",
@@ -126,7 +127,7 @@ if (
   sortedDroneTokens.length !== expectedDroneTokens.length
   || expectedDroneTokens.some((name, index) => sortedDroneTokens[index] !== name)
 ) {
-  throw new Error("Staged release must contain the exact nine branded drone WebP tokens.");
+  throw new Error("Staged release must contain the exact ten branded drone WebP tokens.");
 }
 
 await fs.copyFile(
@@ -185,7 +186,7 @@ await fs.copyFile(
   path.join(githubDotfilesUpload, ".gitignore")
 );
 
-// This compact V0.9.0 browser-upload bundle stays below GitHub's 100-file
+// This compact V0.9.1 browser-upload bundle stays below GitHub's 100-file
 // upload limit; the Action rebuilds every generated pack from these sources.
 await fs.rm(githubPatchUpload, { recursive: true, force: true });
 for (const directory of [[".github", "workflows"], ["scripts"], ["tools"]]) {
@@ -211,6 +212,7 @@ for (const directory of [
   ["assets", "icons", "ammunition"],
   ["assets", "icons", "weapons", "generic"],
   ["assets", "icons", "weapons", "ironbark"],
+  ["assets", "icons", "weapons", "helix"],
   ["assets", "icons", "weapons", "valcour"],
   ["assets", "tokens", "drones"],
   ["data", "ammunition"],
@@ -222,6 +224,7 @@ for (const directory of [
   ["assets", "icons", "ammunition"],
   ["assets", "icons", "weapons", "generic"],
   ["assets", "icons", "weapons", "ironbark"],
+  ["assets", "icons", "weapons", "helix"],
   ["assets", "icons", "weapons", "valcour"],
   ["data", "ammunition"]
 ]) {
@@ -232,6 +235,7 @@ for (const directory of [
   );
 }
 for (const filename of [
+  "helix-hx-47-vector.webp",
   "valcour-vc-14-hummingbird.webp",
   "valcour-vc-90-shrike.webp"
 ]) {
@@ -241,6 +245,7 @@ for (const filename of [
   );
 }
 for (const filename of [
+  "helix-hx-47-vector.json",
   "valcour-vc-14-hummingbird.json",
   "valcour-vc-90-shrike.json"
 ]) {
@@ -262,6 +267,7 @@ for (const filename of [
 }
 for (const filename of [
   "build-ammunition-compendium.mjs",
+  "build-drone-compendium.mjs",
   "build-weapon-compendium.mjs",
   "generate-ammunition-icons.mjs",
   "generate-npc-weapon-icons.mjs",
@@ -286,7 +292,7 @@ await fs.copyFile(
 console.log(
   `Staged CWN Content Pack ${manifest.version} at ${stagedModule} `
   + `and browser-upload sources at ${githubUpload}. `
-  + `The compact V0.9.0 patch upload is at ${githubPatchUpload}. `
+  + `The compact V0.9.1 patch upload is at ${githubPatchUpload}. `
   + `The visible workflow upload is at ${githubWorkflowUpload}. `
   + `Hidden browser-upload paths are also at ${githubDotfilesUpload}.`
 );
