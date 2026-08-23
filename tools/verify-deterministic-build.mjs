@@ -17,7 +17,8 @@ const packNames = [
   "cwn-ammunition",
   "cwn-common-operator-gear",
   "cwn-cyberware",
-  "cwn-drones"
+  "cwn-drones",
+  "cwn-foci"
 ];
 
 const sortObject = (value) => {
@@ -98,6 +99,13 @@ const snapshotGeneratedContent = async (label) => {
       .digest("hex");
   }
 
+  const focusIconRoot = path.join(moduleRoot, "assets", "icons", "foci");
+  content.focusIcons = {};
+  for (const filename of (await fs.readdir(focusIconRoot)).sort()) {
+    const bytes = await fs.readFile(path.join(focusIconRoot, filename));
+    content.focusIcons[filename] = crypto.createHash("sha256").update(bytes).digest("hex");
+  }
+
   return crypto
     .createHash("sha256")
     .update(JSON.stringify(sortObject(content)))
@@ -115,7 +123,9 @@ const commands = [
   ["tools/build-common-operator-gear-compendium.mjs"],
   ["tools/generate-cyberware-icons.mjs"],
   ["tools/build-cyberware-compendium.mjs"],
-  ["tools/build-drone-compendium.mjs"]
+  ["tools/build-drone-compendium.mjs"],
+  ["tools/generate-focus-icons.mjs"],
+  ["tools/build-focus-compendium.mjs"]
 ];
 
 for (const args of commands) {

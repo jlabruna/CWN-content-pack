@@ -23,7 +23,7 @@
   "moveType": "fly",
   "hardpoints": 0,
   "encumbrance": 0,
-  "tokenScale": 0.8,
+  "tokenScale": 0.6,
   "modificationPolicy": "none",
   "samePhysicalObjectKey": "helix-hx-47-vector",
   "integralAttack": {

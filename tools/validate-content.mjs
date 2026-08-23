@@ -13,8 +13,8 @@ const { extractPack } = await import("@foundryvtt/foundryvtt-cli");
 const moduleRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const manifest = JSON.parse(await fs.readFile(path.join(moduleRoot, "module.json"), "utf8"));
 
-if (manifest.version !== "0.9.1") {
-  throw new Error(`Expected module version 0.9.1 but found ${manifest.version}.`);
+if (manifest.version !== "0.10.0") {
+  throw new Error(`Expected module version 0.10.0 but found ${manifest.version}.`);
 }
 if (manifest.compatibility?.verified !== "14.365") {
   throw new Error("module.json must be verified for Foundry VTT 14.365.");
@@ -36,7 +36,8 @@ const expectedPacks = Object.freeze({
   "cwn-ammunition": { documentType: "Item", itemType: "item", count: 15, folderCount: 4 },
   "cwn-common-operator-gear": { documentType: "Item", itemType: "item", count: 27, folderCount: 5 },
   "cwn-cyberware": { documentType: "Item", itemType: "cyberware", count: 88, folderCount: 8 },
-  "cwn-drones": { documentType: "Actor", itemType: "drone", count: 10, folderCount: 0 }
+  "cwn-drones": { documentType: "Actor", itemType: "drone", count: 10, folderCount: 0 },
+  "cwn-foci": { documentType: "Item", itemType: "feature", count: 26, folderCount: 0 }
 });
 const expectedLegacyWeaponIdentityDigest =
   "ea6b624ee9c9a8fa10fdca13971315ecb7cfd332643b952c7421a08f947b936b";
@@ -851,7 +852,7 @@ const expectedDroneScales = Object.freeze({
   "titan-td-70-kerberos": 0.9,
   "helix-hx-35-pitbull": 0.8,
   "helix-hx-40-javelin": 0.8,
-  "helix-hx-47-vector": 0.8,
+  "helix-hx-47-vector": 0.6,
   "valcour-vc-90-shrike": 1,
   "ironbark-mouse": 0.6,
   "valcour-vc-14-hummingbird": 0.6,

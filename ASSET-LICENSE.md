@@ -22,3 +22,6 @@ it does not automatically grant rights to artwork or other media assets.
 
 Third-party assets must not be added unless their license permits redistribution
 and their required attribution is recorded in `THIRD-PARTY-LICENSES.md`.
+# CWN Focus icons
+
+The 26 SVG files under `assets/icons/foci/` are original project artwork generated from the module-owned vector source in `tools/generate-focus-icons.mjs`. They contain no rulebook artwork or third-party icon assets.

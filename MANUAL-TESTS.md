@@ -1,10 +1,19 @@
 # Foundry VTT 14.365 / SWNR 2.3.1 manual test checklist
 
-Use CWN Content & Icon Pack 0.8.0 in a disposable Foundry V14 world running
+Use CWN Content & Icon Pack 0.10.0 in a disposable Foundry V14 world running
 SWNR 2.3.1. Tests marked as Combat Enhancements integration require CWN Combat
-Enhancements 0.13.1.
+Enhancements 0.19.0.
 
 Do not claim Foundry runtime success until these checks have been completed.
+
+## CWN Foci 0.10.0
+
+- [ ] Open **Compendium Packs > CWN Foci** and confirm exactly 26 entries with distinct SVG icons.
+- [ ] Open Armsmaster and Drone Pilot; confirm complete Level 1 and Level 2 headings and an initial Focus level of 1.
+- [ ] Open All Natural, Many Faces, Unique Gift, and Unregistered; confirm each is documented as a single-level Focus.
+- [ ] Drag a Focus to a character, close/reopen the actor, and confirm its native SWNR feature type, level, icon, and description persist.
+- [ ] Upgrade a two-level Focus to level 2 and confirm no duplicate Item is created.
+- [ ] Disable Combat Enhancements and confirm every Focus remains fully readable for manual adjudication.
 
 ## Compendium and independence
 
@@ -165,7 +174,7 @@ Do not claim Foundry runtime success until these checks have been completed.
 - [ ] Confirm newly placed tokens are Friendly and have token vision enabled.
 - [ ] Confirm every token retains a 1 x 1 grid footprint while its visible
       artwork uses these scales: Mouse 0.6, Hummingbird 0.6, Roach 0.7,
-      Sunfish 0.7, Pitbull 0.8, Javelin 0.8, Vector 0.8, Kerberos 0.9,
+      Sunfish 0.7, Pitbull 0.8, Javelin 0.8, Vector 0.6, Kerberos 0.9,
       Kraken 0.9, and Shrike 1.0.
 - [ ] Confirm each placed token uses the same artwork as its compendium Actor.
 - [ ] Modify an imported or world Actor copy and confirm the compendium source
@@ -195,4 +204,7 @@ Do not claim Foundry runtime success until these checks have been completed.
 - [ ] Import both documents for inspection and confirm the text clearly warns
       that they are alternate representations, not two physical objects.
 - [ ] Drag the drone Actor to a scene and confirm its distinct transparent
-      circular token renders at scale 0.8 with the model name on hover.
+      circular token renders at scale 0.6 with the model name on hover.
+- [ ] Note the current SWNR sheet can display `-1` hardpoints for the Vector;
+      confirm no conventional hardpoint weapon can actually be equipped and
+      retain this as a future display-compatibility issue.

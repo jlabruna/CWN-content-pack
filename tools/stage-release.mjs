@@ -7,8 +7,8 @@ const moduleRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), ".
 const releaseRoot = path.join(moduleRoot, "release");
 const stagedModule = path.join(releaseRoot, "cwn-content-pack");
 const githubUpload = path.join(releaseRoot, "github-upload");
-const githubPatchUpload = path.join(releaseRoot, "github-upload-v0.9.1-patch");
-const githubWorkflowUpload = path.join(releaseRoot, "github-workflow-v0.9.1");
+const githubPatchUpload = path.join(releaseRoot, "github-upload-v0.10.0");
+const githubWorkflowUpload = path.join(releaseRoot, "github-workflow-v0.10.0");
 const githubDotfilesUpload = path.join(releaseRoot, "github-dotfiles-upload");
 const manifest = JSON.parse(await fs.readFile(path.join(moduleRoot, "module.json"), "utf8"));
 const expectedPackCounts = Object.freeze({
@@ -17,7 +17,8 @@ const expectedPackCounts = Object.freeze({
   "cwn-ammunition": { type: "item", count: 15 },
   "cwn-common-operator-gear": { type: "item", count: 27 },
   "cwn-cyberware": { type: "cyberware", count: 88 },
-  "cwn-drones": { type: "drone", count: 10 }
+  "cwn-drones": { type: "drone", count: 10 },
+  "cwn-foci": { type: "feature", count: 26 }
 });
 
 const expectedDownload =
@@ -48,6 +49,7 @@ for (const filename of [
   "CYBERWARE-CATALOGUE.md",
   "CYBERWARE-AUDIT.md",
   "DRONE-CATALOGUE.md",
+  "FOCI-CATALOGUE.md",
   "WEAPON-ROLL-MAPPING.md",
   "MANUAL-TESTS.md"
 ]) {
@@ -129,6 +131,12 @@ if (
 ) {
   throw new Error("Staged release must contain the exact ten branded drone WebP tokens.");
 }
+const stagedFocusIcons = await fs.readdir(
+  path.join(stagedModule, "assets", "icons", "foci")
+);
+if (stagedFocusIcons.filter((name) => name.endsWith(".svg")).length !== 26) {
+  throw new Error("Staged release must contain exactly 26 CWN Focus SVG icons.");
+}
 
 await fs.copyFile(
   path.join(moduleRoot, "module.json"),
@@ -167,6 +175,7 @@ for (const filename of [
   "CYBERWARE-CATALOGUE.md",
   "CYBERWARE-AUDIT.md",
   "DRONE-CATALOGUE.md",
+  "FOCI-CATALOGUE.md",
   "MANUAL-TESTS.md"
 ]) {
   await fs.copyFile(path.join(moduleRoot, filename), path.join(githubUpload, filename));
@@ -186,8 +195,8 @@ await fs.copyFile(
   path.join(githubDotfilesUpload, ".gitignore")
 );
 
-// This compact V0.9.1 browser-upload bundle stays below GitHub's 100-file
-// upload limit; the Action rebuilds every generated pack from these sources.
+// This compact browser-upload bundle contains the complete Focus feature set;
+// the Action rebuilds every generated pack from these sources.
 await fs.rm(githubPatchUpload, { recursive: true, force: true });
 for (const directory of [[".github", "workflows"], ["scripts"], ["tools"]]) {
   await fs.mkdir(path.join(githubPatchUpload, ...directory), { recursive: true });
@@ -198,8 +207,10 @@ await fs.copyFile(
 );
 for (const filename of [
   "AMMUNITION-CATALOGUE.md",
+  "ASSET-LICENSE.md",
   "CHANGELOG.md",
   "DRONE-CATALOGUE.md",
+  "FOCI-CATALOGUE.md",
   "MANUAL-TESTS.md",
   "README.md",
   "WEAPON-ROLL-MAPPING.md",
@@ -215,6 +226,7 @@ for (const directory of [
   ["assets", "icons", "weapons", "helix"],
   ["assets", "icons", "weapons", "valcour"],
   ["assets", "tokens", "drones"],
+  ["assets", "icons", "foci"],
   ["data", "ammunition"],
   ["data", "drones"]
 ]) {
@@ -226,6 +238,7 @@ for (const directory of [
   ["assets", "icons", "weapons", "ironbark"],
   ["assets", "icons", "weapons", "helix"],
   ["assets", "icons", "weapons", "valcour"],
+  ["assets", "icons", "foci"],
   ["data", "ammunition"]
 ]) {
   await fs.cp(
@@ -265,14 +278,22 @@ for (const filename of [
     path.join(githubPatchUpload, "scripts", filename)
   );
 }
+await fs.copyFile(
+  path.join(moduleRoot, "scripts", "focus-catalogue.mjs"),
+  path.join(githubPatchUpload, "scripts", "focus-catalogue.mjs")
+);
 for (const filename of [
   "build-ammunition-compendium.mjs",
   "build-drone-compendium.mjs",
+  "build-focus-compendium.mjs",
   "build-weapon-compendium.mjs",
   "generate-ammunition-icons.mjs",
+  "generate-focus-icons.mjs",
   "generate-npc-weapon-icons.mjs",
   "stage-release.mjs",
-  "validate-content.mjs"
+  "validate-content.mjs",
+  "validate-foci.mjs",
+  "verify-deterministic-build.mjs"
 ]) {
   await fs.copyFile(
     path.join(moduleRoot, "tools", filename),
@@ -292,7 +313,7 @@ await fs.copyFile(
 console.log(
   `Staged CWN Content Pack ${manifest.version} at ${stagedModule} `
   + `and browser-upload sources at ${githubUpload}. `
-  + `The compact V0.9.1 patch upload is at ${githubPatchUpload}. `
+  + `The compact browser upload is at ${githubPatchUpload}. `
   + `The visible workflow upload is at ${githubWorkflowUpload}. `
   + `Hidden browser-upload paths are also at ${githubDotfilesUpload}.`
 );

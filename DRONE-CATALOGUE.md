@@ -16,7 +16,7 @@ this is not optional equipment.
 | Ironbark Sunfish | 1,000 | 15 | 6 | 8 | 3 | 10 | Swim | 0 | 3 | 0.7 |
 | Helix HX-35 Pitbull | 5,000 | 15 | 8 | 15 | 5 | 20 | Ground | 1 | 5 | 0.8 |
 | Helix HX-40 Javelin | 10,000 | 16 | 6 | 12 | 5 | 20 | Fly | 1 | 6 | 0.8 |
-| Helix HX-47 Vector | 5,000 | 15 | 6 | 5 | 0 | 20 | Fly | 0 | 0 | 0.8 |
+| Helix HX-47 Vector | 5,000 | 15 | 6 | 5 | 0 | 20 | Fly | 0 | 0 | 0.6 |
 | Titan TD-66 Kraken | 10,000 | 16 | 8 | 20 | 5 | 15 | Swim | 2 | 99 (nonportable) | 0.9 |
 | Titan TD-70 Kerberos | 15,000 | 18 | 8 | 25 | 6 | 20 | Ground | 3 | 99 (nonportable) | 0.9 |
 | Valcour VC-90 Shrike | 25,000 | 18 | 8 | 20 | 6 | 30 | Fly | 2 | 99 (nonportable) | 1.0 |
@@ -53,3 +53,9 @@ discharges; the discharge count is tracked manually. If the deployed drone is
 captured, its electronics permanently fry. Retire the Actor and continue with
 the same object's unmodifiable HX-47 Vector weapon Item. Its remaining resale
 value is calculated from a normal 1,000-credit Advanced Sword.
+
+Known SWNR sheet issue: a zero-hardpoint Vector can display `-1` in the
+hardpoint field after its integral attack is present. The catalogue source and
+validated Actor both retain a true zero-hardpoint capacity, so players cannot
+equip a conventional hardpoint weapon. This display mismatch is recorded for a
+future compatibility release.

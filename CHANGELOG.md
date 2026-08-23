@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.10.0
+
+- Added the dedicated `CWN Foci` compendium with all 26 standard core CWN Foci.
+- Added faithful original Level 1/Level 2 summaries, including the four single-level Foci.
+- Added deterministic Item IDs, 26 original SVG icons, provenance, and a stable declarative Focus metadata contract.
+- Added strict Focus schema, count, key, level, description, icon, and deterministic-build validation.
+- Extended release staging and GitHub Actions to build and verify the seventh compendium.
+
+## 0.9.2
+
+- Reduced the Helix HX-47 Vector prototype-token artwork scale from 0.8 to 0.6
+  after Foundry scene testing.
+- Recorded the current SWNR sheet display mismatch that can show `-1`
+  hardpoints when the zero-hardpoint Vector contains its inseparable integral
+  attack. The validated source capacity remains zero and does not permit a
+  conventional hardpoint weapon; a display compatibility fix is deferred.
+
 ## 0.9.1
 
 - Added the HX-47 Vector as a 5,000-credit Helix Advanced Sword and as an

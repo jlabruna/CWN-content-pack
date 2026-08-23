@@ -4,7 +4,9 @@ An independent Foundry VTT content and icon pack for **Cities Without Number**
 games running on **Systems Without Number Redux (SWNR) 2.3.1**, verified for
 Foundry VTT 14.365.
 
-## Version 0.9.1
+## Version 0.10.0
+
+Version 0.10.0 adds a seventh generated compendium, **CWN Foci**, containing all 26 standard core Foci as native SWNR feature Items. Each Focus has deterministic identity, an original icon, complete paraphrased level text, and declarative metadata for optional Combat Enhancements automation.
 
 The content pack includes:
 
@@ -133,7 +135,7 @@ manufacturers and model codes without changing mechanics, prices, token scales,
 Actor IDs, or artwork.
 
 Version 0.7.3 retains that catalogue unchanged while rebuilding and validating
-all six compendia for SWNR 2.3.1 and allowing installation on Foundry VTT 14.
+all seven compendia for SWNR 2.3.1 and allowing installation on Foundry VTT 14.
 
 Version 0.8.0 replaces ShinTech with **Valcour**, a boutique manufacturer of
 bespoke firearms, precision blades, executive-security drones, and autonomous
