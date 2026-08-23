@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Unarmed Attack">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1219"/><stop offset="1" stop-color="#030507"/></linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2=".8" y2="1"><stop offset="0" stop-color="#77808b"/><stop offset=".38" stop-color="#242b32"/><stop offset=".72" stop-color="#596675"/><stop offset="1" stop-color="#11151a"/></linearGradient>
+    <linearGradient id="blade" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f0f3f5"/><stop offset=".42" stop-color="#7c8792"/><stop offset=".72" stop-color="#596675"/><stop offset="1" stop-color="#222930"/></linearGradient>
+    <linearGradient id="wood" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4d3a2b"/><stop offset="1" stop-color="#24170f"/></linearGradient>
+    <radialGradient id="halo"><stop offset="0" stop-color="#596675" stop-opacity=".25"/><stop offset="1" stop-color="#596675" stop-opacity="0"/></radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <style>
+      .body{fill:url(#metal);stroke:#596675;stroke-width:6;stroke-linejoin:round}.blade{fill:url(#blade);stroke:#c2ccd6;stroke-width:6;stroke-linejoin:round}.wood{fill:url(#wood);stroke:#596675;stroke-width:6;stroke-linejoin:round}.glass{fill:#8ed6df;fill-opacity:.32;stroke:#c2ccd6;stroke-width:6;stroke-linejoin:round}.detail{fill:#11161c;stroke:#596675;stroke-width:5;stroke-linejoin:round}.accent{fill:#0b1118;stroke:#c2ccd6;stroke-width:6;stroke-linejoin:round}.linefill{fill:#090c10;stroke:#c2ccd6;stroke-width:5}.line{fill:none;stroke:#c2ccd6;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;opacity:.72}.edge{fill:none;stroke:#c2ccd6;stroke-width:7;stroke-linecap:round;filter:url(#glow)}.bolt{fill:#c2ccd6;stroke:#596675;stroke-width:4}.arrow{fill:#c2ccd6;stroke:#596675;stroke-width:4;stroke-linejoin:round}
+    </style>
+  </defs>
+  <rect width="512" height="512" rx="48" fill="url(#bg)"/><circle cx="256" cy="256" r="209" fill="url(#halo)"/><circle cx="256" cy="256" r="179" fill="none" stroke="#596675" stroke-width="3" opacity=".22"/><circle cx="256" cy="256" r="132" fill="none" stroke="#c2ccd6" stroke-width="2" stroke-dasharray="11 17" opacity=".16"/><path d="M79 65h354l14 14v354l-14 14H79l-14-14V79z" fill="none" stroke="#596675" stroke-width="9"/><path d="M96 83h320M429 97v318M416 429H96M83 415V97" fill="none" stroke="#c2ccd6" stroke-width="2" opacity=".72"/><path d="M65 151h28m-28 210h28M419 151h28m-28 210h28" stroke="#c2ccd6" stroke-width="5" opacity=".5"/><g>
+      <path class="body" d="M165 249l29-109 41-26 32 31 25-17 37 34-9 63 51 77-72 126H185l-48-132z"/>
+      <path class="detail" d="M194 140l21 88m20-114 18 105m39-91-9 92m46-58-25 77"/>
+      <path class="accent" d="M160 247h161l29 49-47 39H182l-45-39z"/>
+      <path class="line" d="M185 335l-20 74m138-74 25 74M207 371h90"/>
+    </g>
+</svg>
