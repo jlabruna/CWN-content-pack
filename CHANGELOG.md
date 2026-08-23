@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.10.1
+
+- Added a deterministic Unarmed Attack weapon to the generated catalogue.
+- Bound the new entry to the portable Punch, Strength/Dexterity roll contract so Combat Enhancements can recognise unarmed Focus attacks without manual Item editing.
+- Added a distinct original SVG icon and expanded weapon validation to 75 Items.
+
 ## 0.10.0
 
 - Added the dedicated `CWN Foci` compendium with all 26 standard core CWN Foci.

@@ -7,12 +7,12 @@ const moduleRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), ".
 const releaseRoot = path.join(moduleRoot, "release");
 const stagedModule = path.join(releaseRoot, "cwn-content-pack");
 const githubUpload = path.join(releaseRoot, "github-upload");
-const githubPatchUpload = path.join(releaseRoot, "github-upload-v0.10.0");
-const githubWorkflowUpload = path.join(releaseRoot, "github-workflow-v0.10.0");
+const githubPatchUpload = path.join(releaseRoot, "github-upload-v0.10.1");
+const githubWorkflowUpload = path.join(releaseRoot, "github-workflow-v0.10.1");
 const githubDotfilesUpload = path.join(releaseRoot, "github-dotfiles-upload");
 const manifest = JSON.parse(await fs.readFile(path.join(moduleRoot, "module.json"), "utf8"));
 const expectedPackCounts = Object.freeze({
-  "harbour-city-stories-weapons": { type: "weapon", count: 74 },
+  "harbour-city-stories-weapons": { type: "weapon", count: 75 },
   "harbour-city-stories-armor": { type: "armor", count: 14 },
   "cwn-ammunition": { type: "item", count: 15 },
   "cwn-common-operator-gear": { type: "item", count: 27 },

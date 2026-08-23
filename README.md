@@ -4,18 +4,18 @@ An independent Foundry VTT content and icon pack for **Cities Without Number**
 games running on **Systems Without Number Redux (SWNR) 2.3.1**, verified for
 Foundry VTT 14.365.
 
-## Version 0.10.0
+## Version 0.10.1
 
-Version 0.10.0 adds a seventh generated compendium, **CWN Foci**, containing all 26 standard core Foci as native SWNR feature Items. Each Focus has deterministic identity, an original icon, complete paraphrased level text, and declarative metadata for optional Combat Enhancements automation.
+Version 0.10.1 adds a portable **Unarmed Attack** weapon bound to the Punch contract. Version 0.10.0 added the seventh generated compendium, **CWN Foci**, containing all 26 standard core Foci as native SWNR feature Items.
 
 The content pack includes:
 
-- A 74-item Harbour City Stories weapon catalogue in a native
+- A 75-item Harbour City Stories weapon catalogue in a native
   Foundry Item compendium.
 - Explicit Weapon Family metadata on every reloadable catalogue weapon.
 - Explicit native SWNR roll fields on every weapon, with a portable skill
   prompt and documented Shoot/Stab mappings.
-- 56 colour-coded SVG weapon icons.
+- 57 colour-coded SVG weapon icons.
 - A 14-item Harbour City Stories armor catalogue in its own native Foundry
   Item compendium.
 - 14 original armor icons.
@@ -150,7 +150,7 @@ static compendium cannot safely hard-code a Shoot or Stab Item ID. When CWN
 Combat Enhancements is active, its semantic Skill and Stat metadata resolves
 the receiving character's actor-owned Shoot or Stab Item and restores the
 intended native Stat if SWNR imports it as `Ask`. See
-[`WEAPON-ROLL-MAPPING.md`](WEAPON-ROLL-MAPPING.md) for the complete 74-item
+[`WEAPON-ROLL-MAPPING.md`](WEAPON-ROLL-MAPPING.md) for the complete 75-item
 audit and intended native skills.
 
 ## Cyberware and recurring expenses

@@ -1,7 +1,7 @@
 # Harbour City Stories weapon-roll mapping
 
-This table is the source-of-truth audit for all 74 Harbour City Stories weapon
-records. The catalogue has 26 native SWNR base-weapon groups.
+This table is the source-of-truth audit for all 75 Harbour City Stories weapon
+records. The catalogue has 27 native SWNR base-weapon groups.
 
 `system.skill` is deliberately `ask` for every compendium entry. SWNR stores a
 skill as an **actor-owned Item ID**, so a static pack cannot safely store a
@@ -43,10 +43,10 @@ an NPC weapon.
 | Big Club | 1 | Stab | Str / None | true |
 | Big Sword | 1 | Stab | Str / None | true |
 | Club | 5 | Stab | Str / None | true |
+| Unarmed Attack | 1 | Punch | Str / Dex | true |
 
-There are no Punch/body-weapon source records in the current 74-item
-catalogue. Any such item added later must be reviewed individually and mapped
-to Punch before it is included in the build.
+The portable Unarmed Attack entry is explicitly mapped to Punch so Combat
+Enhancements can bind the actor-owned skill and recognise unarmed Focus rules.
 
 Spear is the only thrown-capable source base. It deliberately remains
 `isMelee: false`, matching SWNR's own native Spear item and preserving its

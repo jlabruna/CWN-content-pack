@@ -13,8 +13,8 @@ const { extractPack } = await import("@foundryvtt/foundryvtt-cli");
 const moduleRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const manifest = JSON.parse(await fs.readFile(path.join(moduleRoot, "module.json"), "utf8"));
 
-if (manifest.version !== "0.10.0") {
-  throw new Error(`Expected module version 0.10.0 but found ${manifest.version}.`);
+if (manifest.version !== "0.10.1") {
+  throw new Error(`Expected module version 0.10.1 but found ${manifest.version}.`);
 }
 if (manifest.compatibility?.verified !== "14.365") {
   throw new Error("module.json must be verified for Foundry VTT 14.365.");
@@ -31,7 +31,7 @@ if (
 }
 
 const expectedPacks = Object.freeze({
-  "harbour-city-stories-weapons": { documentType: "Item", itemType: "weapon", count: 74 },
+  "harbour-city-stories-weapons": { documentType: "Item", itemType: "weapon", count: 75 },
   "harbour-city-stories-armor": { documentType: "Item", itemType: "armor", count: 14, folderCount: 3 },
   "cwn-ammunition": { documentType: "Item", itemType: "item", count: 15, folderCount: 4 },
   "cwn-common-operator-gear": { documentType: "Item", itemType: "item", count: 27, folderCount: 5 },
@@ -73,7 +73,8 @@ const expectedWeaponFolderIds = Object.freeze({
   "Spears": "Fa2e6e46110612d0",
   "Submachine Guns": "Fe6c9023b0147bef",
   "Swords": "Fd9c0d95198a6e86",
-  "Taser Pistols": "Fe07696532b3def7"
+  "Taser Pistols": "Fe07696532b3def7",
+  Unarmed: "Fc55efdc44650b52"
 });
 const expectedNewWeapons = Object.freeze({
   "advanced-bow-ironbark-huntsman": Object.freeze({
@@ -124,6 +125,11 @@ const expectedNewWeapons = Object.freeze({
     id: "W85bd585c0bae7da",
     img: "modules/cwn-content-pack/assets/icons/weapons/generic/sledgehammer.svg"
   }),
+  "unarmed-generic-unarmed-attack": Object.freeze({
+    name: "Unarmed Attack", base: "Unarmed Attack", manufacturer: "Various Manufacturers", cost: 0,
+    id: "Wa684f6660ba6491",
+    img: "modules/cwn-content-pack/assets/icons/weapons/generic/unarmed-attack.svg"
+  }),
   "advanced-sword-helix-hx-47-vector": Object.freeze({
     name: "HX-47 Vector", base: "Advanced Sword", manufacturer: "Helix Dynamics", cost: 5000,
     id: "Wc7a4596d885a199",
@@ -148,6 +154,12 @@ const expectedProfileFields = Object.freeze({
     "system.shock.ac": 18, "system.trauma.die": "1d8", "system.trauma.rating": 3,
     "system.range.normal": 0, "system.range.max": 0, "system.isNonLethal": true,
     "system.isTwoHanded": true, "system.ammo.type": "none", "system.ammo.max": 0
+  }),
+  "Unarmed Attack": Object.freeze({
+    "system.damage": "1d2", "system.encumbrance": 0, "system.shock.dmg": 0,
+    "system.shock.ac": 0, "system.trauma.die": "1d6", "system.trauma.rating": 1,
+    "system.range.normal": 0, "system.range.max": 0, "system.isNonLethal": true,
+    "system.isTwoHanded": false, "system.ammo.type": "none", "system.ammo.max": 0
   }),
   "Advanced Bow": Object.freeze({
     "system.damage": "1d8", "system.encumbrance": 2, "system.shock.dmg": 0,
@@ -1016,7 +1028,7 @@ if (
 }
 
 console.log(
-  "Validated 74 weapons (53 reloadable), 14 armor items, 15 ammunition items, "
+  "Validated 75 weapons (53 reloadable), 14 armor items, 15 ammunition items, "
   + "27 Common Operator Gear items, 88 cyberware items, and ten drone Actors; all deterministic IDs, "
   + "folder relationships, icons, metadata, and SWNR fields are valid."
 );

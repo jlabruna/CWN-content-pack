@@ -80,6 +80,15 @@ const icons = Object.freeze({
       <path class="edge" d="M111 158h290"/>
     </g>`
   },
+  "generic/unarmed-attack": {
+    label: "Unarmed Attack",
+    shape: `<g>
+      <path class="body" d="M165 249l29-109 41-26 32 31 25-17 37 34-9 63 51 77-72 126H185l-48-132z"/>
+      <path class="detail" d="M194 140l21 88m20-114 18 105m39-91-9 92m46-58-25 77"/>
+      <path class="accent" d="M160 247h161l29 49-47 39H182l-45-39z"/>
+      <path class="line" d="M185 335l-20 74m138-74 25 74M207 371h90"/>
+    </g>`
+  },
   "ironbark/huntsman-compound-bow": {
     label: "Ironbark Huntsman Compound Bow",
     shape: `<g transform="rotate(-8 256 256)">

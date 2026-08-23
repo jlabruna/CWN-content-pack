@@ -141,6 +141,7 @@ export async function installWeaponCatalogue() {
     "Advanced Big Sword": 2500,
     "Advanced Club": 500,
     "Big Club": 100,
+    "Unarmed Attack": 0,
   });
 
   const ordinaryModCosts = Object.freeze({
@@ -198,6 +199,7 @@ export async function installWeaponCatalogue() {
     twoHanded,
     modificationPolicy,
     samePhysicalObjectKey,
+    allowExactNameAdoption = true,
   }) => ({
     key,
     category,
@@ -213,6 +215,7 @@ export async function installWeaponCatalogue() {
     paragraphs,
     modificationPolicy,
     samePhysicalObjectKey,
+    allowExactNameAdoption,
     overrides: {
       ab,
       damage,
@@ -1268,6 +1271,21 @@ export async function installWeaponCatalogue() {
       ],
     }),
     makeWeapon({
+      key: "unarmed-generic-unarmed-attack",
+      category: "Melee and Thrown Weapons",
+      family: "Unarmed",
+      base: "Unarmed Attack",
+      manufacturer: "generic",
+      name: "Unarmed Attack",
+      icon: "unarmed-attack",
+      cost: 0,
+      allowExactNameAdoption: false,
+      slogan: "The weapon you always have with you.",
+      paragraphs: [
+        "The standard unarmed strike profile for punches, kicks, grapples and similar close-combat attacks. It is bound to the Punch skill contract so imported characters can roll it consistently and Focus automation can recognise it without manual setup.",
+      ],
+    }),
+    makeWeapon({
       key: "club-generic-wrench",
       category: "Melee and Thrown Weapons",
       family: "Clubs",
@@ -1851,7 +1869,7 @@ export async function installWeaponCatalogue() {
       let existing = existingByKey.get(weapon.key);
       let adopted = false;
 
-      if (!existing) {
+      if (!existing && weapon.allowExactNameAdoption) {
         const exactNameMatches = worldWeaponsByName.get(normalized(weapon.name)) ?? [];
         if (exactNameMatches.length === 1) {
           existing = exactNameMatches[0];

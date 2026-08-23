@@ -1,12 +1,12 @@
 # Foundry VTT 14.365 / SWNR 2.3.1 manual test checklist
 
-Use CWN Content & Icon Pack 0.10.0 in a disposable Foundry V14 world running
+Use CWN Content & Icon Pack 0.10.1 in a disposable Foundry V14 world running
 SWNR 2.3.1. Tests marked as Combat Enhancements integration require CWN Combat
 Enhancements 0.19.0.
 
 Do not claim Foundry runtime success until these checks have been completed.
 
-## CWN Foci 0.10.0
+## CWN Foci 0.10.1
 
 - [ ] Open **Compendium Packs > CWN Foci** and confirm exactly 26 entries with distinct SVG icons.
 - [ ] Open Armsmaster and Drone Pilot; confirm complete Level 1 and Level 2 headings and an initial Focus level of 1.
@@ -84,11 +84,12 @@ Do not claim Foundry runtime success until these checks have been completed.
 
 ## Regression
 
-- [ ] Harbour City Stories Weapons contains exactly 74 weapons.
+- [ ] Harbour City Stories Weapons contains exactly 75 weapons.
 - [ ] Confirm Broken Bottle, Kitchen Knife, and Shiv use the Knife profile;
       Wrench, Crowbar, Metal Pipe, and Pool Cue use the Club profile; and
       Sledgehammer uses the two-handed Big Club profile.
-- [ ] Confirm all ten added weapons have distinct, readable SVG icons and the
+- [ ] Import Unarmed Attack and confirm it uses Damage 1d2, Punch, Strength or Dexterity, zero Encumbrance, and no Weapon Family.
+- [ ] Confirm all eleven added weapons have distinct, readable SVG icons and the
       original 64 weapon Item IDs remain unchanged.
 - [ ] Open Ironbark Huntsman: confirm Damage 1d8, Range 30/200, Cost 500,
       Encumbrance 2, magazine 1, Trauma 1d8+1/x3, Dex/Shoot handling, and its

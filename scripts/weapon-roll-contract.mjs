@@ -33,8 +33,16 @@ const meleeStrength = Object.freeze({
   isMelee: true,
 });
 
+const unarmed = Object.freeze({
+  skill: "Punch",
+  stat: "str",
+  secondStat: "dex",
+  systemSkill: ACTOR_SKILL_PROMPT,
+  isMelee: true,
+});
+
 /**
- * Every native base weapon used by the 74-record Harbour City Stories source.
+ * Every native base weapon used by the 75-record Harbour City Stories source.
  * Mortar intentionally retains SWNR's native Wisdom/Shoot configuration, and
  * Spear intentionally remains non-melee to preserve SWNR's thrown-weapon
  * handling while still using Stab with Strength or Dexterity.
@@ -78,6 +86,7 @@ export const WEAPON_ROLL_CONTRACTS = Object.freeze({
   "Big Club": meleeStrength,
   "Big Sword": meleeStrength,
   Club: meleeStrength,
+  "Unarmed Attack": unarmed,
 });
 
 export function weaponRollContractForBaseWeapon(baseWeapon) {
