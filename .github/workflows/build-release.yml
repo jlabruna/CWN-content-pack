@@ -64,8 +64,14 @@ jobs:
       - name: Build drone compendium
         run: node tools/build-drone-compendium.mjs
 
+      - name: Generate Focus icons
+        run: node tools/generate-focus-icons.mjs
+
+      - name: Build Focus compendium
+        run: node tools/build-focus-compendium.mjs
+
       - name: Validate generated content
-        run: node tools/validate-content.mjs
+        run: npm run validate
 
       - name: Verify deterministic rebuild
         run: node tools/verify-deterministic-build.mjs vendor/swnr
@@ -95,11 +101,13 @@ jobs:
           unzip -Z1 "$ZIP" | grep -q "^packs/cwn-common-operator-gear/"
           unzip -Z1 "$ZIP" | grep -q "^packs/cwn-cyberware/"
           unzip -Z1 "$ZIP" | grep -q "^packs/cwn-drones/"
+          unzip -Z1 "$ZIP" | grep -q "^packs/cwn-foci/"
           test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/weapons/.*\.svg$')" -eq 56
           test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/ammunition/.*\.svg$')" -eq 15
           test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/gear/common-operator-gear/.*\.svg$')" -eq 27
           test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/cyberware/.*\.svg$')" -eq 88
           test "$(unzip -Z1 "$ZIP" | grep -c '^assets/tokens/drones/.*\.webp$')" -eq 10
+          test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/foci/.*\.svg$')" -eq 26
           for TOKEN in \
             blackhound-bh-10-roach \
             helix-hx-35-pitbull \
@@ -114,7 +122,7 @@ jobs:
           do
             unzip -Z1 "$ZIP" | grep -qx "assets/tokens/drones/${TOKEN}.webp"
           done
-          echo "Release ZIP contains all six declared packs and all expected icon and token assets."
+          echo "Release ZIP contains all seven declared packs and all expected icon and token assets."
 
       - name: Upload workflow artifact
         uses: actions/upload-artifact@v4
