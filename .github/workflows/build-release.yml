@@ -102,7 +102,7 @@ jobs:
           unzip -Z1 "$ZIP" | grep -q "^packs/cwn-cyberware/"
           unzip -Z1 "$ZIP" | grep -q "^packs/cwn-drones/"
           unzip -Z1 "$ZIP" | grep -q "^packs/cwn-foci/"
-          test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/weapons/.*\.svg$')" -eq 56
+          test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/weapons/.*\.svg$')" -eq 57
           test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/ammunition/.*\.svg$')" -eq 15
           test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/gear/common-operator-gear/.*\.svg$')" -eq 27
           test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/cyberware/.*\.svg$')" -eq 88
