@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.11.0
+
+- Added all 14 standard Operator Edges as native SWNR Edge Items.
+- Added a separate, non-selectable Underdog Rule reference Item.
+- Added deterministic Edge IDs, original Edge SVG icons, metadata validation, release checks, and browser-upload staging.
+- Added declarative skill-award, configuration, and automation metadata for CWN Combat Enhancements.
+
 ## 0.10.1
 
 - Added a deterministic Unarmed Attack weapon to the generated catalogue.

@@ -7,8 +7,8 @@ const moduleRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), ".
 const releaseRoot = path.join(moduleRoot, "release");
 const stagedModule = path.join(releaseRoot, "cwn-content-pack");
 const githubUpload = path.join(releaseRoot, "github-upload");
-const githubPatchUpload = path.join(releaseRoot, "github-upload-v0.10.1");
-const githubWorkflowUpload = path.join(releaseRoot, "github-workflow-v0.10.1");
+const githubPatchUpload = path.join(releaseRoot, "github-upload-v0.11.0");
+const githubWorkflowUpload = path.join(releaseRoot, "github-workflow-v0.11.0");
 const githubDotfilesUpload = path.join(releaseRoot, "github-dotfiles-upload");
 const manifest = JSON.parse(await fs.readFile(path.join(moduleRoot, "module.json"), "utf8"));
 const expectedPackCounts = Object.freeze({
@@ -18,7 +18,8 @@ const expectedPackCounts = Object.freeze({
   "cwn-common-operator-gear": { type: "item", count: 27 },
   "cwn-cyberware": { type: "cyberware", count: 88 },
   "cwn-drones": { type: "drone", count: 10 },
-  "cwn-foci": { type: "feature", count: 26 }
+  "cwn-foci": { type: "feature", count: 26 },
+  "cwn-operator-edges": { type: "feature", count: 15 }
 });
 
 const expectedDownload =
@@ -50,6 +51,7 @@ for (const filename of [
   "CYBERWARE-AUDIT.md",
   "DRONE-CATALOGUE.md",
   "FOCI-CATALOGUE.md",
+  "EDGES-CATALOGUE.md",
   "WEAPON-ROLL-MAPPING.md",
   "MANUAL-TESTS.md"
 ]) {
@@ -137,6 +139,12 @@ const stagedFocusIcons = await fs.readdir(
 if (stagedFocusIcons.filter((name) => name.endsWith(".svg")).length !== 26) {
   throw new Error("Staged release must contain exactly 26 CWN Focus SVG icons.");
 }
+const stagedEdgeIcons = await fs.readdir(
+  path.join(stagedModule, "assets", "icons", "edges")
+);
+if (stagedEdgeIcons.filter((name) => name.endsWith(".svg")).length !== 15) {
+  throw new Error("Staged release must contain exactly 15 CWN Edge/reference SVG icons.");
+}
 
 await fs.copyFile(
   path.join(moduleRoot, "module.json"),
@@ -176,6 +184,7 @@ for (const filename of [
   "CYBERWARE-AUDIT.md",
   "DRONE-CATALOGUE.md",
   "FOCI-CATALOGUE.md",
+  "EDGES-CATALOGUE.md",
   "MANUAL-TESTS.md"
 ]) {
   await fs.copyFile(path.join(moduleRoot, filename), path.join(githubUpload, filename));
@@ -211,6 +220,7 @@ for (const filename of [
   "CHANGELOG.md",
   "DRONE-CATALOGUE.md",
   "FOCI-CATALOGUE.md",
+  "EDGES-CATALOGUE.md",
   "MANUAL-TESTS.md",
   "README.md",
   "WEAPON-ROLL-MAPPING.md",
@@ -227,6 +237,7 @@ for (const directory of [
   ["assets", "icons", "weapons", "valcour"],
   ["assets", "tokens", "drones"],
   ["assets", "icons", "foci"],
+  ["assets", "icons", "edges"],
   ["data", "ammunition"],
   ["data", "drones"]
 ]) {
@@ -239,6 +250,7 @@ for (const directory of [
   ["assets", "icons", "weapons", "helix"],
   ["assets", "icons", "weapons", "valcour"],
   ["assets", "icons", "foci"],
+  ["assets", "icons", "edges"],
   ["data", "ammunition"]
 ]) {
   await fs.cp(
@@ -282,6 +294,10 @@ await fs.copyFile(
   path.join(moduleRoot, "scripts", "focus-catalogue.mjs"),
   path.join(githubPatchUpload, "scripts", "focus-catalogue.mjs")
 );
+await fs.copyFile(
+  path.join(moduleRoot, "scripts", "edge-catalogue.mjs"),
+  path.join(githubPatchUpload, "scripts", "edge-catalogue.mjs")
+);
 for (const filename of [
   "build-ammunition-compendium.mjs",
   "build-drone-compendium.mjs",
@@ -289,10 +305,13 @@ for (const filename of [
   "build-weapon-compendium.mjs",
   "generate-ammunition-icons.mjs",
   "generate-focus-icons.mjs",
+  "build-edge-compendium.mjs",
+  "generate-edge-icons.mjs",
   "generate-npc-weapon-icons.mjs",
   "stage-release.mjs",
   "validate-content.mjs",
   "validate-foci.mjs",
+  "validate-edges.mjs",
   "verify-deterministic-build.mjs"
 ]) {
   await fs.copyFile(

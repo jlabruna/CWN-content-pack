@@ -1,12 +1,19 @@
 # Foundry VTT 14.365 / SWNR 2.3.1 manual test checklist
 
-Use CWN Content & Icon Pack 0.10.1 in a disposable Foundry V14 world running
+Use CWN Content & Icon Pack 0.11.0 in a disposable Foundry V14 world running
 SWNR 2.3.1. Tests marked as Combat Enhancements integration require CWN Combat
 Enhancements 0.19.0.
 
 Do not claim Foundry runtime success until these checks have been completed.
 
-## CWN Foci 0.10.1
+## CWN Operator Edges 0.11.0
+
+1. Open **CWN Operator Edges** and confirm 15 folderless entries: 14 selectable Operator Edges and one Underdog Rule reference.
+2. Drag Hard To Kill, Killing Blow, On Target, and Prodigy to a character; confirm each remains a native SWNR Edge Item and its description/icon opens correctly.
+3. Confirm Underdog Rule is clearly labelled as a character-creation reference rather than a selectable fifteenth Edge.
+4. With Combat Enhancements 0.20.0 active, drag each Edge to a disposable character and complete the matching setup/action tests in that module's manual checklist.
+
+## CWN Foci regression
 
 - [ ] Open **Compendium Packs > CWN Foci** and confirm exactly 26 entries with distinct SVG icons.
 - [ ] Open Armsmaster and Drone Pilot; confirm complete Level 1 and Level 2 headings and an initial Focus level of 1.

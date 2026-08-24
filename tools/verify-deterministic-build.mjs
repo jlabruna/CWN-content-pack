@@ -18,7 +18,8 @@ const packNames = [
   "cwn-common-operator-gear",
   "cwn-cyberware",
   "cwn-drones",
-  "cwn-foci"
+  "cwn-foci",
+  "cwn-operator-edges"
 ];
 
 const sortObject = (value) => {

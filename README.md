@@ -4,9 +4,13 @@ An independent Foundry VTT content and icon pack for **Cities Without Number**
 games running on **Systems Without Number Redux (SWNR) 2.3.1**, verified for
 Foundry VTT 14.365.
 
-## Version 0.10.1
+## Version 0.11.0
 
-Version 0.10.1 adds a portable **Unarmed Attack** weapon bound to the Punch contract. Version 0.10.0 added the seventh generated compendium, **CWN Foci**, containing all 26 standard core Foci as native SWNR feature Items.
+Version 0.11.0 adds the eighth generated compendium, **CWN Operator Edges**, with all 14 standard Edges and a non-selectable Underdog Rule reference. Each native SWNR Edge Item carries a deterministic ID, original SVG icon, concise rules summary, and declarative setup/automation metadata.
+
+## Previous release
+
+Version 0.10.1 added a portable **Unarmed Attack** weapon bound to the Punch contract. Version 0.10.0 added the seventh generated compendium, **CWN Foci**, containing all 26 standard core Foci as native SWNR feature Items.
 
 The content pack includes:
 

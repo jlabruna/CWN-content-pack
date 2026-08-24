@@ -13,8 +13,8 @@ const { extractPack } = await import("@foundryvtt/foundryvtt-cli");
 const moduleRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const manifest = JSON.parse(await fs.readFile(path.join(moduleRoot, "module.json"), "utf8"));
 
-if (manifest.version !== "0.10.1") {
-  throw new Error(`Expected module version 0.10.1 but found ${manifest.version}.`);
+if (manifest.version !== "0.11.0") {
+  throw new Error(`Expected module version 0.11.0 but found ${manifest.version}.`);
 }
 if (manifest.compatibility?.verified !== "14.365") {
   throw new Error("module.json must be verified for Foundry VTT 14.365.");
@@ -37,7 +37,8 @@ const expectedPacks = Object.freeze({
   "cwn-common-operator-gear": { documentType: "Item", itemType: "item", count: 27, folderCount: 5 },
   "cwn-cyberware": { documentType: "Item", itemType: "cyberware", count: 88, folderCount: 8 },
   "cwn-drones": { documentType: "Actor", itemType: "drone", count: 10, folderCount: 0 },
-  "cwn-foci": { documentType: "Item", itemType: "feature", count: 26, folderCount: 0 }
+  "cwn-foci": { documentType: "Item", itemType: "feature", count: 26, folderCount: 0 },
+  "cwn-operator-edges": { documentType: "Item", itemType: "feature", count: 15, folderCount: 0 }
 });
 const expectedLegacyWeaponIdentityDigest =
   "ea6b624ee9c9a8fa10fdca13971315ecb7cfd332643b952c7421a08f947b936b";
