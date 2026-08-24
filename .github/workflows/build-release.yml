@@ -70,6 +70,12 @@ jobs:
       - name: Build Focus compendium
         run: node tools/build-focus-compendium.mjs
 
+      - name: Generate Operator Edge icons
+        run: node tools/generate-edge-icons.mjs
+
+      - name: Build Operator Edge compendium
+        run: node tools/build-edge-compendium.mjs
+
       - name: Validate generated content
         run: npm run validate
 
@@ -102,12 +108,14 @@ jobs:
           unzip -Z1 "$ZIP" | grep -q "^packs/cwn-cyberware/"
           unzip -Z1 "$ZIP" | grep -q "^packs/cwn-drones/"
           unzip -Z1 "$ZIP" | grep -q "^packs/cwn-foci/"
+          unzip -Z1 "$ZIP" | grep -q "^packs/cwn-operator-edges/"
           test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/weapons/.*\.svg$')" -eq 57
           test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/ammunition/.*\.svg$')" -eq 15
           test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/gear/common-operator-gear/.*\.svg$')" -eq 27
           test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/cyberware/.*\.svg$')" -eq 88
           test "$(unzip -Z1 "$ZIP" | grep -c '^assets/tokens/drones/.*\.webp$')" -eq 10
           test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/foci/.*\.svg$')" -eq 26
+          test "$(unzip -Z1 "$ZIP" | grep -c '^assets/icons/edges/.*\.svg$')" -eq 15
           for TOKEN in \
             blackhound-bh-10-roach \
             helix-hx-35-pitbull \
@@ -122,7 +130,7 @@ jobs:
           do
             unzip -Z1 "$ZIP" | grep -qx "assets/tokens/drones/${TOKEN}.webp"
           done
-          echo "Release ZIP contains all seven declared packs and all expected icon and token assets."
+          echo "Release ZIP contains all eight declared packs and all expected icon and token assets."
 
       - name: Upload workflow artifact
         uses: actions/upload-artifact@v4
